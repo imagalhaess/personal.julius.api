@@ -6,62 +6,7 @@
 
 ---
 
-## ADR-001: Versões do Stack Tecnológico
-
-### Contexto
-
-O projeto Personal Julius API é um desafio BECA 2026 que exige o uso de tecnologias modernas e estáveis. As escolhas de versão devem equilibrar:
-
-- **Estabilidade:** Versões maduras e testadas em produção
-- **Compatibilidade:** Interoperabilidade entre dependências
-- **Modernidade:** Suporte a recursos atuais (Spring Boot 4, Java 21)
-- **Suporte de longo prazo:** Documentação atualizada e comunidade ativa
-
-### Decisão
-
-Adotamos as seguintes versões para o stack tecnológico:
-
-| Tecnologia | Versão | Justificativa |
-|------------|--------|---------------|
-| **Java** | 21 | Versão LTS (Long-Term Support) mais recente. Suporte até 2029. Recursos modernos: pattern matching, virtual threads, record patterns. |
-| **Spring Boot** | 4.0.1 | Versão mais recente (lançada em dezembro 2024). Migração completa para Jakarta EE. Suporte nativo a Java 21. |
-| **Spring Data JPA** | 4.0.x | Incluída no Spring Boot 4.0.1. Compatibilidade total com Jakarta Persistence. |
-| **PostgreSQL** | 18.1 | Versão mais recente (lançada em 2024). Suporte a UUID nativo, JSONB, performance otimizada. |
-| **Spring Security** | 7.0.x | Incluída no Spring Boot 4.0.1. Arquitetura moderna de segurança. |
-| **JWT (jjwt)** | 0.12.3 | Biblioteca mais popular para JWT em Java. Suporte a algoritmos modernos (HS256, RS256). |
-| **Apache Kafka** | 4.0.0 | Versão com KRaft nativo (sem Zookeeper). Simplifica arquitetura. Performance superior. |
-| **Apache POI** | 5.5.1 | Versão estável para manipulação Excel (.xlsx). Compatível com Java 21. |
-| **Springdoc OpenAPI** | 2.3.0 | Biblioteca padrão para OpenAPI 3 no Spring Boot 4. Substitui Springfox (descontinuado). |
-| **JUnit** | 6.0.2 | JUnit Jupiter - versão mais recente. Suporte completo a Java 21 e anotações modernas. |
-| **Mockito** | 5.21.0 | Framework de mocks mais popular. Compatibilidade com JUnit 5. |
-| **Docker** | 29.1.5 | Versão mais recente do Docker Engine. Suporte completo a docker-compose v3. |
-
-### Consequências
-
-#### Positivas
-
-- **Compatibilidade garantida:** Todas as versões foram testadas juntas e são oficialmente compatíveis
-- **Suporte oficial:** Spring Boot 4.0.1 garante compatibilidade transitiva entre dependências
-- **Recursos modernos:** Java 21 + Spring Boot 4 permitem uso de records, virtual threads, pattern matching
-- **Jakarta EE:** Alinhamento com o padrão Jakarta (migração completa de `javax.*` para `jakarta.*`)
-- **Kafka KRaft:** Elimina dependência do Zookeeper, simplificando deploy e manutenção
-- **Documentação atualizada:** Todas as tecnologias têm documentação oficial atualizada para 2026
-
-#### Negativas
-
-- **Migração Jakarta:** Dependências antigas que usam `javax.*` não funcionarão (requer versões atualizadas)
-- **Breaking changes:** Spring Boot 4 tem breaking changes em relação ao 3.x (requer atenção na configuração)
-- **Kafka 4.0.0:** Como é versão recente, pode ter menos exemplos práticos disponíveis (documentação oficial compensa)
-
-#### Mitigações
-
-- **Documentação preparada:** Guias completos do projeto incluem referências das documentações oficiais
-- **Validação de dependências:** pom.xml será validado antes do início do desenvolvimento
-- **Uso de starters oficiais:** Priorizamos Spring Boot Starters para evitar conflitos de versão
-
----
-
-## ADR-002: Apache Kafka 4.0.0 com KRaft (sem Zookeeper)
+## ADR-001: Apache Kafka 4.0.0 com KRaft (sem Zookeeper)
 
 ### Contexto
 
@@ -96,33 +41,43 @@ environment:
 
 ---
 
-## ADR-003: JUnit 6 + Mockito 5 para Testes
+## ADR-002: Utilizar somente um arquivo application.properties
 
 ### Contexto
 
-Testes automatizados são obrigatórios com cobertura mínima de 80%.
+O Spring Boot permite separar configurações por ambiente utilizando profiles
+(application-dev.properties, application-prod.properties, etc.). Essa abordagem
+é recomendada para projetos que terão deploy em múltiplos ambientes.
+
+No entanto, este projeto é acadêmico e:
+
+- Não terá deploy em produção
+- O banco de dados será sempre o mesmo (local via Docker)
+- O Kafka será sempre o mesmo (local via Docker)
 
 ### Decisão
 
-**JUnit 6.0.2 (JUnit Jupiter):**
-- Anotações modernas: `@Test`, `@BeforeEach`, `@ParameterizedTest`
-- Melhor integração com Spring Boot Test
-- Suporte a testes parametrizados nativamente
+Utilizar **apenas um arquivo** `application.properties` com todas as configurações,
+sem separação por profiles.
 
-**Mockito 5.21.0:**
-- Framework de mocks mais popular no ecossistema Java
-- Sintaxe clara: `when(...).thenReturn(...)`
-- Integração perfeita com JUnit 5 via `@ExtendWith(MockitoExtension.class)`
-
-**JaCoCo (Code Coverage):**
-- Plugin Maven para relatório de cobertura
-- Meta: >80% de cobertura de linhas
+**Princípio aplicado:** KISS (Keep It Simple, Stupid) - evitar complexidade
+desnecessária para o contexto do projeto.
 
 ### Consequências
 
-- Testes unitários para domain layer (entidades, value objects, use cases)
-- Testes de integração para repositories (com `@DataJpaTest`)
-- Testes de API com `@SpringBootTest` e `MockMvc`
+**Positivas:**
+
+- Configuração simples e centralizada
+- Fácil manutenção e visualização
+- Menos arquivos para gerenciar
+
+**Negativas:**
+
+- Não demonstra na prática o uso de profiles
+- Credenciais ficam expostas no arquivo (aceitável para projeto acadêmico)
+
+**Nota:** O conceito de profiles foi estudado e compreendido, mas optou-se
+conscientemente por não aplicá-lo neste contexto.
 
 ---
 
