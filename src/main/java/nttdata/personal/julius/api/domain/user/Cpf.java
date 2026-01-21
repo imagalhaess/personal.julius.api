@@ -2,7 +2,7 @@ package nttdata.personal.julius.api.domain.user;
 
 import nttdata.personal.julius.api.domain.BusinessException;
 
-public record Cpf (String value) {
+public record Cpf(String value) {
 
     public Cpf {
         if (value == null || value.isBlank()) {
@@ -12,11 +12,11 @@ public record Cpf (String value) {
         value = value.replaceAll("\\D", "");
 
         if (value.length() != 11) {
-            throw new BusinessException("CPF deve ter 11 dígitos");
+            throw new BusinessException("CPF deve ter exatamente 11 dígitos");
         }
 
         if (value.matches("(\\d)\\1{10}")) {
-            throw new BusinessException("CPF não pode ter todos os dígitos iguais");
+            throw new BusinessException("CPF inválido");
         }
 
     }

@@ -2,7 +2,9 @@ package nttdata.personal.julius.api.domain.user;
 
 import nttdata.personal.julius.api.domain.BusinessException;
 
-public record Email  (String email) {
+public record Email(String email) {
+
+    private static final String EMAIL_REGEX = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
 
     public Email {
         if (email == null || email.isBlank()) {
@@ -11,8 +13,8 @@ public record Email  (String email) {
 
         email = email.trim().toLowerCase();
 
-        if (!email.contains("@") || !email.substring(email.indexOf("@")).contains(".")) {
-            throw new BusinessException("E-mail com formato inválido");
+        if (!email.matches(EMAIL_REGEX)) {
+            throw new BusinessException("Formato de e-mail inválido");
         }
     }
 
@@ -20,5 +22,4 @@ public record Email  (String email) {
     public String toString() {
         return email;
     }
-
 }
