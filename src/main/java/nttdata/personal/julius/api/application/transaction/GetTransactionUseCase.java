@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class GetTransactionsUseCase {
+public class GetTransactionUseCase {
 
     private final TransactionRepository transactionRepository;
 
-    public GetTransactionsUseCase(TransactionRepository transactionRepository) {
+    public GetTransactionUseCase(TransactionRepository transactionRepository) {
         this.transactionRepository = transactionRepository;
     }
 

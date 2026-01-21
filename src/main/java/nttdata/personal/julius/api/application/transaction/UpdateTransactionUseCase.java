@@ -10,11 +10,10 @@ import nttdata.personal.julius.api.domain.transaction.TransactionRepository;
 import java.util.UUID;
 
 public class UpdateTransactionUseCase {
-    public class UpdateTransactionsUseCase {
 
         private final TransactionRepository transactionRepository;
 
-        public UpdateTransactionsUseCase(TransactionRepository transactionRepository) {
+        public UpdateTransactionUseCase(TransactionRepository transactionRepository) {
             this.transactionRepository = transactionRepository;
         }
 
@@ -31,4 +30,3 @@ public class UpdateTransactionUseCase {
             return TransactionResponse.fromDomain(transaction);
         }
     }
-}
