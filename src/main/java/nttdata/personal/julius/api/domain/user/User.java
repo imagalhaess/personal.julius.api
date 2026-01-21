@@ -51,6 +51,14 @@ public class User {
         return active;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(Email email) {
+        this.email = email;
+    }
+
     public void deactivate(){
         this.active = false;
     }
