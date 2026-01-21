@@ -1,4 +1,5 @@
 package nttdata.personal.julius.api.domain.transaction;
 
-public class Transaction {
+public enum TransactionType {
+    INCOME, EXPENSE
 }
