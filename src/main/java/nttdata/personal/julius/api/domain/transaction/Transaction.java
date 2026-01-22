@@ -29,6 +29,19 @@ public class Transaction {
         this.transactionDate = transactionDate;
     }
 
+    public Transaction(UUID id, UUID userId, Money money, Category category,
+                       TransactionType type, String description,
+                       LocalDate transactionDate, LocalDateTime createdAt) {
+        this.id = id;
+        this.userId = userId;
+        this.money = money;
+        this.category = category;
+        this.type = type;
+        this.description = description;
+        this.transactionDate = transactionDate;
+        this.createdAt = createdAt;
+    }
+
     public UUID getId() {
         return id;
     }

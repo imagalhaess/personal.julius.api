@@ -23,6 +23,17 @@ public class User {
         this.active = true;
     }
 
+    // construtor exclusivo de uso para o mapper carregar a entidade do banco
+    public User(UUID id, String name, Email email, Cpf cpf, String passwordHash, LocalDateTime createdAt, boolean active) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.cpf = cpf;
+        this.passwordHash = passwordHash;
+        this.createdAt = createdAt;
+        this.active = active;
+    }
+
     public UUID getId() {
         return id;
     }

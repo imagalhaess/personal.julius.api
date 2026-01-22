@@ -1,5 +1,6 @@
 package nttdata.personal.julius.api.domain.transaction;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -10,10 +11,12 @@ public interface TransactionRepository {
 
     Optional<Transaction> findById(UUID id);
 
-    List<Transaction> findByUserId(UUID userId);
-
-    void deleteById(UUID id);
+    void delete(UUID id);
 
     List<Transaction> findByUserId(UUID userId, int page, int size);
+
+    BigDecimal getTotalIncomeByUserId(UUID userId);
+
+    BigDecimal getTotalExpenseByUserId(UUID userId);
 
 }

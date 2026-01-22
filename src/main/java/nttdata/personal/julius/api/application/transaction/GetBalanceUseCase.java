@@ -18,21 +18,8 @@ public class GetBalanceUseCase {
     }
 
     public BalanceResponse execute(UUID userId) {
-
-        List<Transaction> transactions = transactionRepository.findByUserId(userId);
-
-        BigDecimal totalIncome = BigDecimal.ZERO;
-        BigDecimal totalExpense = BigDecimal.ZERO;
-
-        for (Transaction t : transactions) {
-            BigDecimal amount = t.getMoney().amount();
-
-            if (t.getType() == TransactionType.INCOME) {
-                totalIncome = totalIncome.add(amount);
-            } else if (t.getType() == TransactionType.EXPENSE) {
-                totalExpense = totalExpense.add(amount);
-            }
-        }
+        BigDecimal totalIncome = transactionRepository.getTotalIncomeByUserId(userId);
+        BigDecimal totalExpense = transactionRepository.getTotalExpenseByUserId(userId);
 
         BigDecimal balance = totalIncome.subtract(totalExpense);
 
