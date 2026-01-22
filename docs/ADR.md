@@ -81,6 +81,38 @@ conscientemente por não aplicá-lo neste contexto.
 
 ---
 
+## ADR-003: Delegação de Agregações Financeiras para a Camada de Persistência
+
+### Contexto
+
+Originalmente, o cálculo de saldo e totais (entradas/saídas) era realizado na camada de aplicação (GetBalanceUseCase),
+recuperando a lista completa de transações do usuário e iterando sobre ela em memória. Com a introdução da paginação na
+interface TransactionRepository para suportar grandes volumes de dados, a recuperação da lista completa tornou-se
+inconsistente com a estratégia de performance do sistema.
+
+### Decisão
+
+Mover a lógica de agregação (soma de valores) para o banco de dados através de queries customizadas (SUM com filtros de
+TransactionType) no TransactionJpaRepository. O GetBalanceUseCase agora consome apenas os resultados finais calculados
+pela infraestrutura.
+*Princípio aplicado*: Performance e Escalabilidade - evitar o tráfego desnecessário de grandes volumes de dados 
+(evitando OutOfMemoryError) e aproveitar a otimização do motor de banco de dados para cálculos matemáticos.
+
+### Consequências
+
+**Positivas:**
+
+- Performance: Redução drástica no tráfego de rede e uso de memória da aplicação.
+- O código do Use Case tornou-se extremamente limpo e focado na regra de negócio final.
+
+**Negativas:**
+
+- Parte da lógica de "como calcular o saldo" agora reside em uma query SQL na camada de infraestrutura.
+- Os testes do Use Case agora dependem de valores pré-calculados vindos do repositório (mockados), perdendo a validação
+  da lógica de soma no código Java.
+
+---
+
 ## Referências das Documentações Oficiais
 
 Todas as decisões foram baseadas nas documentações oficiais atualizadas:
