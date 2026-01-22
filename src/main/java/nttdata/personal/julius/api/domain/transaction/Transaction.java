@@ -14,12 +14,14 @@ public class Transaction {
     private String description;
     private LocalDate transactionDate;
     private LocalDateTime createdAt;
+    private TransactionStatus status;
 
     public Transaction(UUID userId, Money money, Category category,
                        TransactionType type, String description, LocalDate transactionDate) {
 
         this.id = UUID.randomUUID();
         this.createdAt = LocalDateTime.now();
+        this.status = TransactionStatus.PENDING;
 
         this.userId = userId;
         this.money = money;
@@ -31,7 +33,7 @@ public class Transaction {
 
     public Transaction(UUID id, UUID userId, Money money, Category category,
                        TransactionType type, String description,
-                       LocalDate transactionDate, LocalDateTime createdAt) {
+                       LocalDate transactionDate, LocalDateTime createdAt, TransactionStatus status) {
         this.id = id;
         this.userId = userId;
         this.money = money;
@@ -40,6 +42,11 @@ public class Transaction {
         this.description = description;
         this.transactionDate = transactionDate;
         this.createdAt = createdAt;
+        this.status = status;
+    }
+
+    public TransactionStatus getStatus() {
+        return status;
     }
 
     public UUID getId() {
@@ -72,6 +79,14 @@ public class Transaction {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public void approve() {
+        this.status = TransactionStatus.APPROVED;
+    }
+
+    public void reject() {
+        this.status = TransactionStatus.REJECTED;
     }
 
     public void update(Money money, Category category, String description, LocalDate date) {
