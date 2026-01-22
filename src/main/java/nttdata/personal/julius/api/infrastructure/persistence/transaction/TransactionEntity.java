@@ -2,6 +2,7 @@ package nttdata.personal.julius.api.infrastructure.persistence.transaction;
 
 import jakarta.persistence.*;
 import nttdata.personal.julius.api.domain.transaction.Category;
+import nttdata.personal.julius.api.domain.transaction.TransactionStatus;
 import nttdata.personal.julius.api.domain.transaction.TransactionType;
 
 import java.math.BigDecimal;
@@ -21,6 +22,10 @@ public class TransactionEntity {
     private String currency;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TransactionStatus status;
+
+    @Enumerated(EnumType.STRING)
     private Category category;
 
     @Enumerated(EnumType.STRING)
@@ -38,6 +43,7 @@ public class TransactionEntity {
             UUID userId,
             BigDecimal amount,
             String currency,
+            TransactionStatus status,
             Category category,
             TransactionType type,
             String description,
@@ -48,6 +54,7 @@ public class TransactionEntity {
         this.userId = userId;
         this.amount = amount;
         this.currency = currency;
+        this.status = status;
         this.category = category;
         this.type = type;
         this.description = description;
@@ -126,5 +133,14 @@ public class TransactionEntity {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
+    public TransactionStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TransactionStatus status) {
+        this.status = status;
+    }
+
 }
 

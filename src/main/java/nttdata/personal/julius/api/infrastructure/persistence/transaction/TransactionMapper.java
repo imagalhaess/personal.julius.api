@@ -10,6 +10,7 @@ public class TransactionMapper {
                 domain.getUserId(),
                 domain.getMoney().amount(),
                 domain.getMoney().currency(),
+                domain.getStatus(),
                 domain.getCategory(),
                 domain.getType(),
                 domain.getDescription(),
@@ -29,7 +30,8 @@ public class TransactionMapper {
                 entity.getType(),
                 entity.getDescription(),
                 entity.getTransactionDate(),
-                entity.getCreatedAt()
+                entity.getCreatedAt(),
+                entity.getStatus()
         );
     }
 }

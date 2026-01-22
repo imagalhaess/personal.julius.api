@@ -52,6 +52,7 @@ class CreateTransactionUseCaseTest {
         // ASSERT
         assertNotNull(response);
         assertEquals(new BigDecimal("50.00"), response.amount());
+        assertEquals("PENDING", response.status());
         verify(transactionRepository, times(1)).save(any());
     }
 
