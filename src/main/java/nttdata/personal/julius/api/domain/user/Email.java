@@ -22,4 +22,5 @@ public record Email(String email) {
     public String toString() {
         return email;
     }
+
 }

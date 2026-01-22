@@ -25,4 +25,5 @@ public record Cpf(String value) {
     public String toString() {
         return value;
     }
+
 }

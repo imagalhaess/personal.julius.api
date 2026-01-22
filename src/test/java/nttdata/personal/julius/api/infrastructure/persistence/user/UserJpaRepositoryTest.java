@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDateTime;
@@ -63,5 +62,29 @@ class UserJpaRepositoryTest {
                 LocalDateTime.now(),
                 true
         );
+    }
+
+    @Test
+    @DisplayName("Deve buscar usuário por CPF com sucesso")
+    void shouldFindUserByCpf() {
+        UserEntity user = createValidUserEntity();
+        repository.save(user);
+
+        var foundUser = repository.findByCpf("810.479.100-12");
+
+        assertThat(foundUser).isPresent();
+        assertThat(foundUser.get().getEmail()).isEqualTo("julius@example.com");
+    }
+
+    @Test
+    @DisplayName("Deve buscar usuário por Email com sucesso")
+    void shouldFindUserByEmail() {
+        UserEntity user = createValidUserEntity();
+        repository.save(user);
+
+        var foundUser = repository.findByEmail("julius@example.com");
+
+        assertThat(foundUser).isPresent();
+        assertThat(foundUser.get().getCpf()).isEqualTo("810.479.100-12");
     }
 }
