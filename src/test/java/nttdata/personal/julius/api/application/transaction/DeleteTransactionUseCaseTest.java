@@ -36,6 +36,6 @@ public class DeleteTransactionUseCaseTest {
         deleteTransactionUseCase.execute(id);
 
         // ASSERT
-        verify(transactionRepository, times(1)).deleteById(id);
+        verify(transactionRepository, times(1)).delete(id);
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Desenvolvido como projeto de validação de conhecimentos adquiridos
  * no programa Java NTTData BECA.
  * 
- * @author [Seu Nome]
+ * @author Isabela M
  * @version 0.0.1-SNAPSHOT
  */
 @SpringBootApplication

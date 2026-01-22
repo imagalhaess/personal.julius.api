@@ -17,6 +17,6 @@ public class DeleteTransactionUseCase {
         transactionRepository.findById(transactionId)
                 .orElseThrow(() -> new BusinessException("Transação não encontrada."));
 
-        transactionRepository.deleteById(transactionId);
+        transactionRepository.delete(transactionId);
     }
 }
