@@ -5,15 +5,19 @@ import nttdata.personal.julius.api.application.transaction.dto.TransactionRespon
 import nttdata.personal.julius.api.domain.BusinessException;
 import nttdata.personal.julius.api.domain.transaction.*;
 import nttdata.personal.julius.api.domain.user.UserRepository;
+import nttdata.personal.julius.api.infrastructure.messaging.kafka.events.TransactionCreatedEvent;
+import nttdata.personal.julius.api.infrastructure.messaging.kafka.producer.TransactionEventProducer;
 
 public class CreateTransactionUseCase {
 
     private final TransactionRepository transactionRepository;
-    private final UserRepository userRepository; // Para validar o dono da transação
+    private final UserRepository userRepository;
+    private final TransactionEventProducer eventProducer;
 
-    public CreateTransactionUseCase(TransactionRepository transactionRepository, UserRepository userRepository) {
+    public CreateTransactionUseCase(TransactionRepository transactionRepository, UserRepository userRepository, TransactionEventProducer eventProducer) {
         this.transactionRepository = transactionRepository;
         this.userRepository = userRepository;
+        this.eventProducer = eventProducer;
     }
 
     public TransactionResponse execute(TransactionRequest request) {
@@ -34,6 +38,20 @@ public class CreateTransactionUseCase {
 
         transactionRepository.save(transaction);
 
+        publishEvent(transaction);
+
         return TransactionResponse.fromDomain(transaction);
+    }
+
+    public void publishEvent(Transaction transaction) {
+        var event = new TransactionCreatedEvent(
+                transaction.getId(),
+                transaction.getUserId(),
+                transaction.getMoney().amount(),
+                transaction.getMoney().currency(),
+                transaction.getType().name(),
+                transaction.getCategory().name()
+        );
+        eventProducer.send(event);
     }
 }
