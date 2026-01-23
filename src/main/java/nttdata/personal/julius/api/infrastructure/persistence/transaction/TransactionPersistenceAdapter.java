@@ -22,9 +22,10 @@ public class TransactionPersistenceAdapter implements TransactionRepository {
     }
 
     @Override
-    public void save(Transaction transaction) {
+    public Transaction save(Transaction transaction) {
         TransactionEntity entity = TransactionMapper.toEntity(transaction);
         jpaRepository.save(entity);
+        return transaction;
     }
 
     @Override

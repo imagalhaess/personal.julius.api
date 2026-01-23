@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface TransactionRepository {
 
-    void save(Transaction transaction);
+    Transaction save(Transaction transaction);
 
     Optional<Transaction> findById(UUID id);
 
