@@ -62,4 +62,9 @@ public class UseCaseConfig {
     public GetBalanceUseCase getBalanceUseCase(TransactionRepository transactionRepository) {
         return new GetBalanceUseCase(transactionRepository);
     }
+
+    @Bean
+    public ProcessTransactionUseCase processTransactionUseCase(TransactionRepository transactionRepository) {
+        return new ProcessTransactionUseCase(transactionRepository);
+    }
 }
