@@ -10,13 +10,14 @@ import nttdata.personal.julius.api.domain.user.UserRepository;
 import nttdata.personal.julius.api.infrastructure.messaging.kafka.producer.TransactionEventProducer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class UseCaseConfig {
 
     @Bean
-    public CreateUserUseCase createUserUseCase(UserRepository userRepository) {
-        return new CreateUserUseCase(userRepository);
+    public CreateUserUseCase createUserUseCase(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        return new CreateUserUseCase(userRepository, passwordEncoder);
     }
 
     @Bean
