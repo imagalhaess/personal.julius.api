@@ -61,16 +61,13 @@ public class KafkaIntegrationTest {
         TransactionResponse response = createTransactionUseCase.execute(request);
         System.out.println("ID DA TRANSAÇÃO CRIADA: " + response.id());
 
-        // Aguarda o processamento assíncrono do Kafka
-        Thread.sleep(10000); // DEZ SEGUNDOS MEU PAI
+        Thread.sleep(10000);
 
-        // Busca novamente do banco para garantir que pega o status atualizado pelo Consumer
         Transaction processedTransaction = transactionRepository.findById(response.id())
                 .orElseThrow(() -> new AssertionError("Transação não encontrada no banco após o processamento"));
 
         System.out.println("STATUS DA TRANSAÇÃO NO BANCO: " + processedTransaction.getStatus());
 
-        // vou enlouquecer4rrrrrrrrrrr
         assertThat(processedTransaction.getStatus())
                 .withFailMessage(
                         "O status deveria ser APPROVED, mas o cache do JPA ou atraso no Kafka manteve como PENDING")

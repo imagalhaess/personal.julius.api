@@ -8,6 +8,7 @@ import nttdata.personal.julius.api.domain.transaction.TransactionRepository;
 import nttdata.personal.julius.api.domain.transaction.TransactionType;
 import nttdata.personal.julius.api.domain.user.User;
 import nttdata.personal.julius.api.domain.user.UserRepository;
+import nttdata.personal.julius.api.infrastructure.messaging.kafka.producer.TransactionEventProducer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,6 +31,8 @@ class CreateTransactionUseCaseTest {
     private TransactionRepository transactionRepository;
     @Mock
     private UserRepository userRepository;
+    @Mock
+    private TransactionEventProducer eventProducer;
 
     @InjectMocks
     private CreateTransactionUseCase createTransactionUseCase;

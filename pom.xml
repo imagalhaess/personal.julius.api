@@ -33,9 +33,7 @@
     </properties>
 
     <dependencies>
-        <!-- ═══════════════════════════════════════════════════════════════ -->
-        <!-- SPRING BOOT STARTERS                                            -->
-        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- Spring Boot Starters -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -68,33 +66,26 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- ═══════════════════════════════════════════════════════════════ -->
-        <!-- KAFKA                                                           -->
-        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- Kafka -->
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
         </dependency>
 
-        <!-- ═══════════════════════════════════════════════════════════════ -->
-        <!-- DATABASE                                                        -->
-        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- Database -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
 
-        <!-- H2 para testes de integração -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>test</scope>
         </dependency>
 
-        <!-- ═══════════════════════════════════════════════════════════════ -->
-        <!-- JWT (JSON Web Token)                                            -->
-        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- JWT -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
@@ -113,36 +104,28 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- ═══════════════════════════════════════════════════════════════ -->
-        <!-- APACHE POI (Excel Manipulation)                                 -->
-        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- Apache POI -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>${poi.version}</version>
         </dependency>
 
-        <!-- ═══════════════════════════════════════════════════════════════ -->
-        <!-- OPENAPI / SWAGGER                                               -->
-        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- OpenAPI / Swagger -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>${springdoc.version}</version>
         </dependency>
 
-        <!-- ═══════════════════════════════════════════════════════════════ -->
-        <!-- UTILITIES                                                       -->
-        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- Utilities -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
 
-        <!-- ═══════════════════════════════════════════════════════════════ -->
-        <!-- TESTING                                                         -->
-        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- Testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -202,7 +185,6 @@
                 </configuration>
             </plugin>
 
-            <!-- JaCoCo para cobertura de código -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>

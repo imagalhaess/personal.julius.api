@@ -26,19 +26,4 @@ public class PersonalJuliusApiApplication {
         SpringApplication.run(PersonalJuliusApiApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner testKafka(TransactionEventProducer producer) {
-        return args -> {
-            var testEvent = new TransactionCreatedEvent(
-                    UUID.randomUUID(),
-                    UUID.randomUUID(),
-                    new BigDecimal("100.00"),
-                    "BRL",
-                    "EXPENSE",
-                    "FOOD"
-            );
-            producer.send(testEvent);
-            System.out.println("MENSAGEM DE TESTE ENVIADA AO KAFKA!");
-        };
-    }
 }

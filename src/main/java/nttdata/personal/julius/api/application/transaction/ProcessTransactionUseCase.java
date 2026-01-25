@@ -15,13 +15,18 @@ public class ProcessTransactionUseCase {
     }
 
     public TransactionResponse execute(UUID transactionId) {
-        Transaction transaction = transactionRepository.findById(transactionId).
-                orElseThrow(() -> new BusinessException("Transação não encontrada: "
-                + transactionId));
+        System.out.println("[DEBUG] Iniciando processamento da transação: " + transactionId);
+
+        Transaction transaction = transactionRepository.findById(transactionId)
+                .orElseThrow(() -> new BusinessException("Transação não encontrada"));
+
+        System.out.println("[DEBUG] Status atual no banco: " + transaction.getStatus());
 
         transaction.approve();
+        System.out.println("[DEBUG] Status alterado na memória para: " + transaction.getStatus());
 
         transactionRepository.save(transaction);
+        System.out.println("[DEBUG] Comando save() executado!");
 
         return TransactionResponse.fromDomain(transaction);
     }

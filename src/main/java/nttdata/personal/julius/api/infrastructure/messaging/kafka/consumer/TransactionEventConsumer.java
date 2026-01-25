@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class TransactionEventConsumer {
@@ -18,6 +19,7 @@ public class TransactionEventConsumer {
         this.processTransactionUseCase = processTransactionUseCase;
     }
 
+    @Transactional
     @KafkaListener(topics = "transaction-events", groupId = "julius-group")
     public void consume(TransactionCreatedEvent event) {
         log.info("Evento recebido do Kafka: Transação ID {}", event.transactionId());

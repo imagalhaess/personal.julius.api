@@ -5,6 +5,7 @@ import nttdata.personal.julius.api.domain.transaction.TransactionRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -22,9 +23,26 @@ public class TransactionPersistenceAdapter implements TransactionRepository {
     }
 
     @Override
+    @Transactional
     public Transaction save(Transaction transaction) {
+        Optional<TransactionEntity> existingEntity = jpaRepository.findById(transaction.getId());
+
+        if (existingEntity.isPresent()) {
+            TransactionEntity entity = existingEntity.get();
+            entity.setUserId(transaction.getUserId());
+            entity.setAmount(transaction.getMoney().amount());
+            entity.setCurrency(transaction.getMoney().currency());
+            entity.setStatus(transaction.getStatus());
+            entity.setCategory(transaction.getCategory());
+            entity.setType(transaction.getType());
+            entity.setDescription(transaction.getDescription());
+            entity.setTransactionDate(transaction.getTransactionDate());
+            jpaRepository.saveAndFlush(entity);
+            return transaction;
+        }
+
         TransactionEntity entity = TransactionMapper.toEntity(transaction);
-        jpaRepository.save(entity);
+        jpaRepository.saveAndFlush(entity);
         return transaction;
     }
 
