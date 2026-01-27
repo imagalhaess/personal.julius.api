@@ -1,16 +1,20 @@
 package nttdata.personal.julius.api.domain.model;
 
-import java.util.UUID;
+import nttdata.personal.julius.common.exception.DomainValidationException;
 
 public class User {
-    private UUID id;
+    private Long id;
     private String name;
     private String email;
     private String cpf;
     private String password;
     private boolean active;
 
-    public User(UUID id, String name, String email, String cpf, String password, boolean active) {
+    public User(Long id, String name, String email, String cpf, String password, boolean active) {
+        validateName(name);
+        validateEmail(email);
+        validateCpf(cpf);
+
         this.id = id;
         this.name = name;
         this.email = email;
@@ -20,6 +24,10 @@ public class User {
     }
 
     public User(String name, String email, String cpf, String password) {
+        validateName(name);
+        validateEmail(email);
+        validateCpf(cpf);
+
         this.name = name;
         this.email = email;
         this.cpf = cpf;
@@ -27,11 +35,29 @@ public class User {
         this.active = true;
     }
 
-    public UUID getId() {
+    private void validateName(String name) {
+        if (name == null || name.isBlank()) {
+            throw new DomainValidationException("Nome é obrigatório");
+        }
+    }
+
+    private void validateEmail(String email) {
+        if (email == null || !email.matches("^[\\w-.]+@[\\w-]+\\.[a-z]{2,}$")) {
+            throw new DomainValidationException("E-mail inválido");
+        }
+    }
+
+    private void validateCpf(String cpf) {
+        if (cpf == null || !cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {
+            throw new DomainValidationException("CPF inválido. Formato esperado: 000.000.000-00");
+        }
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

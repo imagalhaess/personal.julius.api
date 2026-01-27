@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
@@ -23,8 +22,10 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserResponse>> listAll() {
-        List<UserResponseDto> usersDto = userService.findAll();
+    public ResponseEntity<List<UserResponse>> listAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size) {
+        List<UserResponseDto> usersDto = userService.findAll(page, size);
 
         List<UserResponse> responseList = usersDto.stream()
                 .map(dto -> new UserResponse(dto.id(), dto.name(), dto.email()))
@@ -34,21 +35,21 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponse> getUser(@PathVariable UUID id) {
+    public ResponseEntity<UserResponse> getUser(@PathVariable Long id) {
         UserResponseDto dto = userService.getUser(id);
         UserResponse response = new UserResponse(dto.id(), dto.name(), dto.email());
         return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponse> update(@PathVariable UUID id, @RequestBody @Valid UserUpdateRequest request) {
+    public ResponseEntity<UserResponse> update(@PathVariable Long id, @RequestBody @Valid UserUpdateRequest request) {
         UserUpdateDto dto = new UserUpdateDto(id, request.name(), request.email(), request.cpf());
         UserResponseDto responseDto = userService.update(dto);
         return ResponseEntity.ok(toResponse(responseDto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable UUID id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         userService.delete(id);
         return ResponseEntity.noContent().build();
     }

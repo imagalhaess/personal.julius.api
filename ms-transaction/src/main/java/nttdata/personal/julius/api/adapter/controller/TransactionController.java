@@ -14,7 +14,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -32,7 +31,7 @@ public class TransactionController {
             @RequestBody @Valid TransactionRequest request,
             Authentication authentication
     ) {
-        UUID userId = (UUID) authentication.getPrincipal();
+        Long userId = (Long) authentication.getPrincipal();
 
         TransactionRequestDto dto = new TransactionRequestDto(
                 userId, request.amount(), request.currency(), request.category(),
@@ -50,7 +49,7 @@ public class TransactionController {
             @RequestParam(defaultValue = "10") int size,
             Authentication authentication
     ) {
-        UUID userId = (UUID) authentication.getPrincipal();
+        Long userId = (Long) authentication.getPrincipal();
         List<TransactionResponse> list = service.list(userId, page, size)
                 .stream()
                 .map(this::toResponse)
@@ -60,14 +59,14 @@ public class TransactionController {
 
     @GetMapping("/balance")
     public ResponseEntity<BalanceResponse> getBalance(Authentication authentication) {
-        UUID userId = (UUID) authentication.getPrincipal();
+        Long userId = (Long) authentication.getPrincipal();
         BalanceResponseDto dto = service.getBalance(userId);
         return ResponseEntity.ok(new BalanceResponse(dto.totalIncome(), dto.totalExpense(), dto.balance()));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable UUID id, Authentication authentication) {
-        UUID userId = (UUID) authentication.getPrincipal();
+    public ResponseEntity<Void> delete(@PathVariable Long id, Authentication authentication) {
+        Long userId = (Long) authentication.getPrincipal();
         service.delete(id, userId);
         return ResponseEntity.noContent().build();
     }

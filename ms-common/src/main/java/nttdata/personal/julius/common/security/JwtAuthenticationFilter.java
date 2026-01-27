@@ -1,4 +1,4 @@
-package nttdata.personal.julius.api.infrastructure.security;
+package nttdata.personal.julius.common.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

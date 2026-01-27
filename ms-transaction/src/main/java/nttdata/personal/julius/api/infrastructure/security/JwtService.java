@@ -4,27 +4,51 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
-import java.util.UUID;
 import java.util.function.Function;
 
+/**
+ * Service responsible for JWT token validation and claim extraction.
+ */
 @Service
 public class JwtService {
+
+    private static final Logger logger = LoggerFactory.getLogger(JwtService.class);
 
     @Value("${jwt.secret}")
     private String secretKey;
 
+    /**
+     * Extracts the username (subject) from the JWT token.
+     *
+     * @param token the JWT token
+     * @return the username stored in the token
+     */
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public UUID extractUserId(String token) {
-        String userIdStr = extractClaim(token, claims -> claims.get("userId", String.class));
-        return userIdStr != null ? UUID.fromString(userIdStr) : null;
+    /**
+     * Extracts the user ID from the JWT token.
+     *
+     * @param token the JWT token
+     * @return the user ID stored in the token, or null if not present
+     */
+    public Long extractUserId(String token) {
+        Object userIdObj = extractClaim(token, claims -> claims.get("userId"));
+        if (userIdObj == null) {
+            return null;
+        }
+        if (userIdObj instanceof Number) {
+            return ((Number) userIdObj).longValue();
+        }
+        return Long.parseLong(userIdObj.toString());
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
@@ -32,10 +56,17 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
+    /**
+     * Validates if the token is valid (not expired).
+     *
+     * @param token the JWT token
+     * @return true if the token is valid, false otherwise
+     */
     public boolean isTokenValid(String token) {
         try {
             return !isTokenExpired(token);
         } catch (Exception e) {
+            logger.debug("Token JWT inválido: {}", e.getMessage());
             return false;
         }
     }

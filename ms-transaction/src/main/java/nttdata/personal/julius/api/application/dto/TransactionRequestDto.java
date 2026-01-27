@@ -4,10 +4,9 @@ import nttdata.personal.julius.api.domain.model.Transaction;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
 
 public record TransactionRequestDto(
-        UUID userId,
+        Long userId,
         BigDecimal amount,
         String currency,
         Transaction.Category category,

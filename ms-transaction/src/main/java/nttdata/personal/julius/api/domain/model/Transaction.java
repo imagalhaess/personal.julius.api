@@ -1,13 +1,14 @@
 package nttdata.personal.julius.api.domain.model;
 
+import nttdata.personal.julius.common.exception.BusinessException;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class Transaction {
-    private UUID id;
-    private UUID userId;
+    private Long id;
+    private Long userId;
     private BigDecimal amount;
     private String currency;
     private TransactionStatus status;
@@ -18,9 +19,10 @@ public class Transaction {
     private LocalDateTime createdAt;
 
     public Transaction() {
+        this.status = TransactionStatus.PENDING;
     }
 
-    public Transaction(UUID id, UUID userId, BigDecimal amount, String currency, TransactionStatus status,
+    public Transaction(Long id, Long userId, BigDecimal amount, String currency, TransactionStatus status,
                        Category category, TransactionType type, String description,
                        LocalDate transactionDate, LocalDateTime createdAt) {
         this.id = id;
@@ -35,86 +37,109 @@ public class Transaction {
         this.createdAt = createdAt;
     }
 
-    // Getters and Setters
-    public UUID getId() {
+    /**
+     * Approves the transaction. Can only be called on PENDING transactions.
+     *
+     * @throws BusinessException if the transaction is not in PENDING status
+     */
+    public void approve() {
+        if (this.status != TransactionStatus.PENDING) {
+            throw new BusinessException("Transação não pode ser aprovada. Status atual: " + this.status);
+        }
+        this.status = TransactionStatus.APPROVED;
+    }
+
+    /**
+     * Rejects the transaction. Can only be called on PENDING transactions.
+     *
+     * @throws BusinessException if the transaction is not in PENDING status
+     */
+    public void reject() {
+        if (this.status != TransactionStatus.PENDING) {
+            throw new BusinessException("Transação não pode ser rejeitada. Status atual: " + this.status);
+        }
+        this.status = TransactionStatus.REJECTED;
+    }
+
+    // Getters
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public UUID getUserId() {
+    public Long getUserId() {
         return userId;
-    }
-
-    public void setUserId(UUID userId) {
-        this.userId = userId;
     }
 
     public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
     public String getCurrency() {
         return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
     }
 
     public TransactionStatus getStatus() {
         return status;
     }
 
-    public void setStatus(TransactionStatus status) {
-        this.status = status;
-    }
-
     public Category getCategory() {
         return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public TransactionType getType() {
         return type;
     }
 
-    public void setType(TransactionType type) {
-        this.type = type;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public LocalDate getTransactionDate() {
         return transactionDate;
     }
 
-    public void setTransactionDate(LocalDate transactionDate) {
-        this.transactionDate = transactionDate;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    // Setters for initialization (used by service during creation)
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setType(TransactionType type) {
+        this.type = type;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setTransactionDate(LocalDate transactionDate) {
+        this.transactionDate = transactionDate;
     }
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
+    // Note: setStatus removed - use approve() or reject() methods instead
 
     public enum TransactionStatus {PENDING, APPROVED, REJECTED}
 

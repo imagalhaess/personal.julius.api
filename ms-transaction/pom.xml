@@ -19,6 +19,13 @@
     <description>Transaction management microservice</description>
 
     <dependencies>
+        <!-- Common Module -->
+        <dependency>
+            <groupId>nttdata.beca</groupId>
+            <artifactId>ms-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!-- Spring Boot Starters -->
         <dependency>
             <groupId>io.github.cdimascio</groupId>

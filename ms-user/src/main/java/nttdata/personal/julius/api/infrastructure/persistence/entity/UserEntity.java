@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import nttdata.personal.julius.api.domain.model.User;
 
-import java.util.UUID;
-
 @Entity
 @Table(name = "users")
 @Data
@@ -16,8 +14,9 @@ import java.util.UUID;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @SequenceGenerator(name = "user_seq", sequenceName = "user_sequence", allocationSize = 50)
+    private Long id;
 
     @Column(nullable = false)
     private String name;

@@ -1,4 +1,4 @@
-package nttdata.personal.julius.api.infrastructure.security;
+package nttdata.personal.julius.common.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -7,17 +7,16 @@ import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 
+/**
+ * Service responsible for JWT token validation and claim extraction.
+ * Used by microservices that need to validate tokens but not generate them.
+ */
 @Service
 public class JwtService {
 
@@ -26,13 +25,22 @@ public class JwtService {
     @Value("${jwt.secret}")
     private String secretKey;
 
-    @Value("${jwt.expiration:86400000}")
-    private long jwtExpiration;
-
+    /**
+     * Extracts the username (subject) from the JWT token.
+     *
+     * @param token the JWT token
+     * @return the username stored in the token
+     */
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
+    /**
+     * Extracts the user ID from the JWT token.
+     *
+     * @param token the JWT token
+     * @return the user ID stored in the token, or null if not present
+     */
     public Long extractUserId(String token) {
         Object userIdObj = extractClaim(token, claims -> claims.get("userId"));
         if (userIdObj == null) {
@@ -44,6 +52,24 @@ public class JwtService {
         return Long.parseLong(userIdObj.toString());
     }
 
+    /**
+     * Extracts a specific claim from the JWT token.
+     *
+     * @param token the JWT token
+     * @param claimsResolver function to extract the desired claim
+     * @return the extracted claim value
+     */
+    public <T> T extractClaim(String token, java.util.function.Function<Claims, T> claimsResolver) {
+        final Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
+
+    /**
+     * Validates if the token is valid (not expired).
+     *
+     * @param token the JWT token
+     * @return true if the token is valid, false otherwise
+     */
     public boolean isTokenValid(String token) {
         try {
             return !isTokenExpired(token);
@@ -51,40 +77,6 @@ public class JwtService {
             logger.debug("Token JWT inválido: {}", e.getMessage());
             return false;
         }
-    }
-
-    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-        final Claims claims = extractAllClaims(token);
-        return claimsResolver.apply(claims);
-    }
-
-    public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
-    }
-
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
-        UserPrincipal principal = (UserPrincipal) userDetails;
-        extraClaims.put("userId", principal.getUser().getId());
-        List<String> roles = userDetails.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .toList();
-        extraClaims.put("roles", roles);
-        return buildToken(extraClaims, userDetails, jwtExpiration);
-    }
-
-    private String buildToken(Map<String, Object> extraClaims, UserDetails userDetails, long expiration) {
-        return Jwts.builder()
-                .claims(extraClaims)
-                .subject(userDetails.getUsername())
-                .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + expiration))
-                .signWith(getSignInKey())
-                .compact();
-    }
-
-    public boolean isTokenValid(String token, UserDetails userDetails) {
-        final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
     private boolean isTokenExpired(String token) {

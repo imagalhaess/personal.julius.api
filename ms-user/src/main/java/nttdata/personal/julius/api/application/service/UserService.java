@@ -3,14 +3,13 @@ package nttdata.personal.julius.api.application.service;
 import nttdata.personal.julius.api.application.dto.UserDto;
 import nttdata.personal.julius.api.application.dto.UserResponseDto;
 import nttdata.personal.julius.api.application.dto.UserUpdateDto;
-import nttdata.personal.julius.api.domain.exception.BusinessException;
+import nttdata.personal.julius.common.exception.BusinessException;
 import nttdata.personal.julius.api.domain.model.User;
 import nttdata.personal.julius.api.domain.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class UserService {
@@ -43,7 +42,7 @@ public class UserService {
         return toResponse(saved);
     }
 
-    public UserResponseDto getUser(UUID id) {
+    public UserResponseDto getUser(Long id) {
         User user = repository.findById(id)
                 .filter(User::isActive)
                 .orElseThrow(() -> new BusinessException("Usuário não encontrado"));
@@ -54,7 +53,7 @@ public class UserService {
         User user = repository.findById(dto.id())
                 .filter(User::isActive)
                 .orElseThrow(() -> new BusinessException("Usuário não encontrado ou inativo"));
-            
+
         if (dto.email() != null && !dto.email().equals(user.getEmail())) {
             if (repository.existsByEmail(dto.email())) {
                 throw new BusinessException("Este e-mail já está sendo usado por outro usuário.");
@@ -69,26 +68,28 @@ public class UserService {
                 user.getPassword(),
                 user.isActive()
         );
-            
+
         repository.save(updated);
         return toResponse(updated);
     }
-    public void delete(UUID id) {
+
+    public void delete(Long id) {
         User user = repository.findById(id)
                 .filter(User::isActive)
                 .orElseThrow(() -> new BusinessException("Usuário não encontrado ou já inativo"));
-            
+
         user.deactivate();
         repository.save(user);
     }
+
     private UserResponseDto toResponse(User user) {
         return new UserResponseDto(user.getId(), user.getName(), user.getEmail());
     }
 
-    public List<UserResponseDto> findAll() {
-        return repository.findAll()
+    public List<UserResponseDto> findAll(int page, int size) {
+        return repository.findAllActive(page, size)
                 .stream()
-                .map(user -> new UserResponseDto(user.getId(), user.getName(), user.getEmail()))
+                .map(this::toResponse)
                 .toList();
     }
 }

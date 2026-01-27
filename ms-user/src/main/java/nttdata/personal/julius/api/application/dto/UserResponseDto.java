@@ -1,9 +1,7 @@
 package nttdata.personal.julius.api.application.dto;
 
-import java.util.UUID;
-
 public record UserResponseDto(
-        UUID id,
+        Long id,
         String name,
         String email
 ) {}

@@ -2,7 +2,7 @@ package nttdata.personal.julius.api.application.service;
 
 import nttdata.personal.julius.api.application.dto.LoginRequestDto;
 import nttdata.personal.julius.api.application.dto.LoginResponseDto;
-import nttdata.personal.julius.api.domain.exception.BusinessException;
+import nttdata.personal.julius.common.exception.BusinessException;
 import nttdata.personal.julius.api.domain.model.User;
 import nttdata.personal.julius.api.domain.repository.UserRepository;
 import nttdata.personal.julius.api.infrastructure.security.JwtService;

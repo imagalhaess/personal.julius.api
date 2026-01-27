@@ -1,30 +1,33 @@
 package nttdata.personal.julius.api.application.service;
 
 import nttdata.personal.julius.api.application.dto.BalanceResponseDto;
+import nttdata.personal.julius.api.application.dto.TransactionCreatedEventDto;
 import nttdata.personal.julius.api.application.dto.TransactionRequestDto;
 import nttdata.personal.julius.api.application.dto.TransactionResponseDto;
-import nttdata.personal.julius.api.domain.exception.BusinessException;
+import nttdata.personal.julius.api.application.port.TransactionEventPort;
+import nttdata.personal.julius.common.exception.BusinessException;
 import nttdata.personal.julius.api.domain.model.Transaction;
 import nttdata.personal.julius.api.domain.repository.TransactionRepository;
-import nttdata.personal.julius.api.infrastructure.messaging.TransactionCreatedEvent;
-import nttdata.personal.julius.api.infrastructure.messaging.TransactionEventProducer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 public class TransactionService {
 
     private final TransactionRepository repository;
-    private final TransactionEventProducer producer;
+    private final TransactionEventPort eventPort;
 
-    public TransactionService(TransactionRepository repository, TransactionEventProducer producer) {
+    @Value("${app.default-currency:BRL}")
+    private String defaultCurrency;
+
+    public TransactionService(TransactionRepository repository, TransactionEventPort eventPort) {
         this.repository = repository;
-        this.producer = producer;
+        this.eventPort = eventPort;
     }
 
     @Transactional
@@ -32,7 +35,7 @@ public class TransactionService {
         Transaction t = new Transaction();
         t.setUserId(request.userId());
         t.setAmount(request.amount());
-        t.setCurrency(request.currency() != null ? request.currency() : "BRL");
+        t.setCurrency(request.currency() != null ? request.currency() : defaultCurrency);
         t.setCategory(request.category());
         t.setType(request.type());
         t.setDescription(request.description());
@@ -40,7 +43,7 @@ public class TransactionService {
 
         Transaction saved = repository.save(t);
 
-        producer.send(new TransactionCreatedEvent(
+        eventPort.publishTransactionCreated(new TransactionCreatedEventDto(
                 saved.getId(), saved.getUserId(), saved.getAmount(), saved.getCurrency(),
                 saved.getType().name(), saved.getCategory().name()
         ));
@@ -48,14 +51,14 @@ public class TransactionService {
         return toResponseDto(saved);
     }
 
-    public List<TransactionResponseDto> list(UUID userId, int page, int size) {
+    public List<TransactionResponseDto> list(Long userId, int page, int size) {
         return repository.findByUserId(userId, page, size)
                 .stream()
                 .map(this::toResponseDto)
                 .collect(Collectors.toList());
     }
 
-    public BalanceResponseDto getBalance(UUID userId) {
+    public BalanceResponseDto getBalance(Long userId) {
         BigDecimal income = repository.sumIncomeByUserId(userId);
         BigDecimal expense = repository.sumExpenseByUserId(userId);
 
@@ -69,7 +72,7 @@ public class TransactionService {
         return new BalanceResponseDto(income, expense, income.subtract(expense));
     }
 
-    public void delete(UUID transactionId, UUID userId) {
+    public void delete(Long transactionId, Long userId) {
         Transaction t = repository.findByIdAndUserId(transactionId, userId)
                 .orElseThrow(() -> new BusinessException("Transação não encontrada ou acesso negado."));
 
@@ -77,20 +80,20 @@ public class TransactionService {
     }
 
     @Transactional
-    public void approve(UUID transactionId) {
+    public void approve(Long transactionId) {
         Transaction t = repository.findById(transactionId)
                 .orElseThrow(() -> new BusinessException("Transação não encontrada: " + transactionId));
 
-        t.setStatus(Transaction.TransactionStatus.APPROVED);
+        t.approve();
         repository.save(t);
     }
 
     @Transactional
-    public void reject(UUID transactionId, String reason) {
+    public void reject(Long transactionId, String reason) {
         Transaction t = repository.findById(transactionId)
                 .orElseThrow(() -> new BusinessException("Transação não encontrada: " + transactionId));
 
-        t.setStatus(Transaction.TransactionStatus.REJECTED);
+        t.reject();
         repository.save(t);
     }
 

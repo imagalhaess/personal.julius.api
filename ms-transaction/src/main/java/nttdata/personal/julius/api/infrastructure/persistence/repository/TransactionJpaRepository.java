@@ -9,16 +9,15 @@ import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 import java.util.Optional;
-import java.util.UUID;
 
-public interface TransactionJpaRepository extends JpaRepository<TransactionEntity, UUID> {
-    Optional<TransactionEntity> findByIdAndUserId(UUID id, UUID userId);
+public interface TransactionJpaRepository extends JpaRepository<TransactionEntity, Long> {
+    Optional<TransactionEntity> findByIdAndUserId(Long id, Long userId);
 
-    Page<TransactionEntity> findByUserId(UUID userId, Pageable pageable);
+    Page<TransactionEntity> findByUserId(Long userId, Pageable pageable);
 
     @Query("SELECT SUM(t.amount) FROM TransactionEntity t WHERE t.userId = :userId AND t.type = 'INCOME'")
-    BigDecimal sumIncomeByUserId(@Param("userId") UUID userId);
+    BigDecimal sumIncomeByUserId(@Param("userId") Long userId);
 
     @Query("SELECT SUM(t.amount) FROM TransactionEntity t WHERE t.userId = :userId AND t.type = 'EXPENSE'")
-    BigDecimal sumExpenseByUserId(@Param("userId") UUID userId);
+    BigDecimal sumExpenseByUserId(@Param("userId") Long userId);
 }

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
@@ -29,7 +28,7 @@ public class TransactionPersistenceAdapter implements TransactionRepository {
     }
 
     @Override
-    public Optional<Transaction> findById(UUID id) {
+    public Optional<Transaction> findById(Long id) {
         return jpaRepository.findById(id).map(TransactionEntity::toDomain);
     }
 
@@ -39,12 +38,12 @@ public class TransactionPersistenceAdapter implements TransactionRepository {
     }
 
     @Override
-    public Optional<Transaction> findByIdAndUserId(UUID id, UUID userId) {
+    public Optional<Transaction> findByIdAndUserId(Long id, Long userId) {
         return jpaRepository.findByIdAndUserId(id, userId).map(TransactionEntity::toDomain);
     }
 
     @Override
-    public List<Transaction> findByUserId(UUID userId, int page, int size) {
+    public List<Transaction> findByUserId(Long userId, int page, int size) {
         return jpaRepository.findByUserId(userId, PageRequest.of(page, size))
                 .stream()
                 .map(TransactionEntity::toDomain)
@@ -52,12 +51,12 @@ public class TransactionPersistenceAdapter implements TransactionRepository {
     }
 
     @Override
-    public BigDecimal sumIncomeByUserId(UUID userId) {
+    public BigDecimal sumIncomeByUserId(Long userId) {
         return jpaRepository.sumIncomeByUserId(userId);
     }
 
     @Override
-    public BigDecimal sumExpenseByUserId(UUID userId) {
+    public BigDecimal sumExpenseByUserId(Long userId) {
         return jpaRepository.sumExpenseByUserId(userId);
     }
 }

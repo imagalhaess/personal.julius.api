@@ -3,12 +3,11 @@ package nttdata.personal.julius.api.infrastructure.persistence.repository;
 import nttdata.personal.julius.api.domain.model.User;
 import nttdata.personal.julius.api.domain.repository.UserRepository;
 import nttdata.personal.julius.api.infrastructure.persistence.entity.UserEntity;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Component
 public class UserPersistenceAdapter implements UserRepository {
@@ -27,7 +26,7 @@ public class UserPersistenceAdapter implements UserRepository {
     }
 
     @Override
-    public Optional<User> findById(UUID id) {
+    public Optional<User> findById(Long id) {
         return jpaRepository.findById(id).map(UserEntity::toDomain);
     }
 
@@ -54,6 +53,13 @@ public class UserPersistenceAdapter implements UserRepository {
     @Override
     public List<User> findAll() {
         return jpaRepository.findAll()
+                .stream().map(UserEntity::toDomain)
+                .toList();
+    }
+
+    @Override
+    public List<User> findAllActive(int page, int size) {
+        return jpaRepository.findAllActive(PageRequest.of(page, size))
                 .stream().map(UserEntity::toDomain)
                 .toList();
     }

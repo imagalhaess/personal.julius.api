@@ -13,6 +13,7 @@
     <name>Personal Julius API - Parent</name>
     <description>Parent POM for Personal Julius microservices</description>
     <modules>
+        <module>ms-common</module>
         <module>ms-user</module>
         <module>ms-transaction</module>
     </modules>
