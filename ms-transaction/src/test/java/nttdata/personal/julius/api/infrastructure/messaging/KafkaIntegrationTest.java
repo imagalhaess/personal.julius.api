@@ -18,13 +18,12 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(classes = PersonalJuliusApiApplication.class)
 @ActiveProfiles("test")
-@Import(KafkaTestConfig.class) // Importa a configuração manual do Template
+@Import(KafkaTestConfig.class)
 @DirtiesContext
 @EmbeddedKafka(partitions = 1, topics = {"transaction-events"}, bootstrapServersProperty = "spring.kafka.bootstrap-servers")
 public class KafkaIntegrationTest {
@@ -39,7 +38,7 @@ public class KafkaIntegrationTest {
     @DisplayName("Deve processar e criar uma transação com sucesso")
     void shouldCreateTransactionSuccessfully() throws InterruptedException {
 
-        UUID userId = UUID.randomUUID();
+        Long userId = 1L;
 
         TransactionRequestDto request = new TransactionRequestDto(
                 userId,
