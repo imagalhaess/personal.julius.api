@@ -32,13 +32,10 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<UserResponse> register(@RequestBody @Valid UserRequest request) {
-        // Conversão Presentation -> Application
         UserDto dto = new UserDto(request.name(), request.email(), request.cpf(), request.password());
         
-        // Chamada UseCase
         UserResponseDto responseDto = userService.create(dto);
         
-        // Conversão Application -> Presentation
         UserResponse response = new UserResponse(responseDto.id(), responseDto.name(), responseDto.email());
         
         return ResponseEntity.status(HttpStatus.CREATED).body(response);

@@ -9,6 +9,7 @@ import nttdata.personal.julius.api.adapter.dto.UserUpdateRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -19,6 +20,17 @@ public class UserController {
 
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserResponse>> listAll() {
+        List<UserResponseDto> usersDto = userService.findAll();
+
+        List<UserResponse> responseList = usersDto.stream()
+                .map(dto -> new UserResponse(dto.id(), dto.name(), dto.email()))
+                .toList();
+
+        return ResponseEntity.ok(responseList);
     }
 
     @GetMapping("/{id}")

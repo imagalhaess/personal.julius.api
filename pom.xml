@@ -12,7 +12,6 @@
 
     <name>Personal Julius API - Parent</name>
     <description>Parent POM for Personal Julius microservices</description>
-x'
     <modules>
         <module>ms-user</module>
         <module>ms-transaction</module>

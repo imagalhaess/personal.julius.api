@@ -38,10 +38,8 @@ public class TransactionService {
         t.setDescription(request.description());
         t.setTransactionDate(request.date());
 
-        // Save using repository adapter (returns domain model)
         Transaction saved = repository.save(t);
 
-        // Send event
         producer.send(new TransactionCreatedEvent(
                 saved.getId(), saved.getUserId(), saved.getAmount(), saved.getCurrency(),
                 saved.getType().name(), saved.getCategory().name()

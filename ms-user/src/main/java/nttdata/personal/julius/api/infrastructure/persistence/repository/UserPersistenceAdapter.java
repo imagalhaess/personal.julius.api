@@ -5,6 +5,8 @@ import nttdata.personal.julius.api.domain.repository.UserRepository;
 import nttdata.personal.julius.api.infrastructure.persistence.entity.UserEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -47,5 +49,12 @@ public class UserPersistenceAdapter implements UserRepository {
     @Override
     public void delete(User user) {
         jpaRepository.deleteById(user.getId());
+    }
+
+    @Override
+    public List<User> findAll() {
+        return jpaRepository.findAll()
+                .stream().map(UserEntity::toDomain)
+                .toList();
     }
 }

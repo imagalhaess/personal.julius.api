@@ -9,6 +9,7 @@ import nttdata.personal.julius.api.domain.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -49,38 +50,45 @@ public class UserService {
         return toResponse(user);
     }
 
-                public UserResponseDto update(UserUpdateDto dto) {
-                    User user = repository.findById(dto.id())
-                            .filter(User::isActive)
-                            .orElseThrow(() -> new BusinessException("Usuário não encontrado ou inativo"));
+    public UserResponseDto update(UserUpdateDto dto) {
+        User user = repository.findById(dto.id())
+                .filter(User::isActive)
+                .orElseThrow(() -> new BusinessException("Usuário não encontrado ou inativo"));
             
-                    if (dto.email() != null && !dto.email().equals(user.getEmail())) {
-                        if (repository.existsByEmail(dto.email())) {
-                            throw new BusinessException("Este e-mail já está sendo usado por outro usuário.");
-                        }
-                    }
-
-                    User updated = new User(
-                            user.getId(),
-                            dto.name() != null ? dto.name() : user.getName(),
-                            dto.email() != null ? dto.email() : user.getEmail(),
-                            user.getCpf(),
-                            user.getPassword(),
-                            user.isActive()
-                    );
-            
-                    repository.save(updated);
-                    return toResponse(updated);
-                }    
-        public void delete(UUID id) {
-            User user = repository.findById(id)
-                    .filter(User::isActive)
-                    .orElseThrow(() -> new BusinessException("Usuário não encontrado ou já inativo"));
-            
-            user.deactivate();
-            repository.save(user);
+        if (dto.email() != null && !dto.email().equals(user.getEmail())) {
+            if (repository.existsByEmail(dto.email())) {
+                throw new BusinessException("Este e-mail já está sendo usado por outro usuário.");
+            }
         }
+
+        User updated = new User(
+                user.getId(),
+                dto.name() != null ? dto.name() : user.getName(),
+                dto.email() != null ? dto.email() : user.getEmail(),
+                user.getCpf(),
+                user.getPassword(),
+                user.isActive()
+        );
+            
+        repository.save(updated);
+        return toResponse(updated);
+    }
+    public void delete(UUID id) {
+        User user = repository.findById(id)
+                .filter(User::isActive)
+                .orElseThrow(() -> new BusinessException("Usuário não encontrado ou já inativo"));
+            
+        user.deactivate();
+        repository.save(user);
+    }
     private UserResponseDto toResponse(User user) {
         return new UserResponseDto(user.getId(), user.getName(), user.getEmail());
+    }
+
+    public List<UserResponseDto> findAll() {
+        return repository.findAll()
+                .stream()
+                .map(user -> new UserResponseDto(user.getId(), user.getName(), user.getEmail()))
+                .toList();
     }
 }
