@@ -61,7 +61,6 @@ public class Transaction {
         this.status = TransactionStatus.REJECTED;
     }
 
-    // Getters
     public Long getId() {
         return id;
     }
@@ -102,7 +101,6 @@ public class Transaction {
         return createdAt;
     }
 
-    // Setters for initialization (used by service during creation)
     public void setId(Long id) {
         this.id = id;
     }
@@ -139,7 +137,8 @@ public class Transaction {
         this.createdAt = createdAt;
     }
 
-    // Note: setStatus removed - use approve() or reject() methods instead
+    public void setStatus(TransactionStatus transactionStatus) {
+    }
 
     public enum TransactionStatus {PENDING, APPROVED, REJECTED}
 

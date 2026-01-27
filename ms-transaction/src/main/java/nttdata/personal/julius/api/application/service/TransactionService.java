@@ -104,4 +104,23 @@ public class TransactionService {
                 t.getCategory(), t.getType()
         );
     }
+
+    @Transactional
+    public TransactionResponseDto update(Long id, TransactionRequestDto dto) {
+        Transaction t = repository.findByIdAndUserId(id, dto.userId())
+                .orElseThrow(() -> new BusinessException("Transação não encontrada ou acesso negado."));
+
+        t.setAmount(dto.amount());
+        t.setCurrency(dto.currency() != null ? dto.currency() : defaultCurrency);
+        t.setCategory(dto.category());
+        t.setType(dto.type());
+        t.setDescription(dto.description());
+        t.setTransactionDate(dto.date());
+
+        t.setStatus(Transaction.TransactionStatus.PENDING);
+
+        Transaction updated = repository.save(t);
+
+        return toResponseDto(updated);
+    }
 }

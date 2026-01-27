@@ -71,6 +71,24 @@ public class TransactionController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<TransactionResponse> update(
+            @PathVariable Long id,
+            @RequestBody @Valid TransactionRequest request,
+            Authentication authentication
+    ) {
+        Long userId = (Long) authentication.getPrincipal();
+
+        TransactionRequestDto dto = new TransactionRequestDto(
+                userId, request.amount(), request.currency(), request.category(),
+                request.type(), request.description(), request.date()
+        );
+
+        TransactionResponseDto responseDto = service.update(id, dto);
+
+        return ResponseEntity.ok(toResponse(responseDto));
+    }
+
     private TransactionResponse toResponse(TransactionResponseDto dto) {
         return new TransactionResponse(
                 dto.id(), dto.amount(), dto.status(), dto.description(),
