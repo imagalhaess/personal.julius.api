@@ -19,37 +19,21 @@ public class TransactionEventConsumer {
         this.dlqProducer = dlqProducer;
     }
 
-    @KafkaListener(topics = "${spring.kafka.template.default-topic:transaction-events}", groupId = "${spring.kafka.consumer.group-id:transaction-processor}")
-    public void consume(TransactionCreatedEvent event) {
-        log.info("Processando transação: {}", event.transactionId());
+    @KafkaListener(topics = "${app.kafka.topics.transaction-processed:transaction-processed}", groupId = "transaction-result-group")
+    public void consume(TransactionProcessedEvent event) {
+        log.info("Recebido resultado de processamento para transação: id={}, aprovado={}", event.transactionId(), event.approved());
 
         try {
-            // Regra de negócio simples:
-            // - INCOME: sempre aprovada
-            // - EXPENSE: aprovada (em produção, consultaria MockAPI para validar saldo)
-            boolean approved = validateTransaction(event);
-
-            if (approved) {
+            if (event.approved()) {
                 transactionService.approve(event.transactionId());
-                log.info("Transação APROVADA: {}", event.transactionId());
+                log.info("Transação {} finalizada com sucesso (APROVADA).", event.transactionId());
             } else {
-                transactionService.reject(event.transactionId(), "Transação rejeitada por regra de negócio");
-                log.info("Transação REJEITADA: {}", event.transactionId());
+                transactionService.reject(event.transactionId(), event.reason());
+                log.info("Transação {} finalizada com sucesso (REJEITADA): {}", event.transactionId(), event.reason());
             }
         } catch (Exception e) {
-            log.error("Erro ao processar transação: {}", event.transactionId(), e);
-            dlqProducer.send(event, e.getMessage());
+            log.error("Erro ao finalizar transação {}: {}", event.transactionId(), e.getMessage(), e);
+            dlqProducer.send(event, String.valueOf(event.transactionId()), e.getMessage());
         }
-    }
-
-    private boolean validateTransaction(TransactionCreatedEvent event) {
-        // INCOME sempre é aprovado
-        if ("INCOME".equals(event.type())) {
-            return true;
-        }
-
-        // Para EXPENSE, em produção consultaria MockAPI para validar saldo
-        // Por enquanto, aprova todas as transações
-        return true;
     }
 }

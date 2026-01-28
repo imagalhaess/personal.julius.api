@@ -41,13 +41,12 @@ public class KafkaIntegrationTest {
         Long userId = 1L;
 
         TransactionRequest request = new TransactionRequest(
-                userId,
-                new BigDecimal("150.00"),
+                1L,
+                new BigDecimal("50.00"),
                 "BRL",
                 Transaction.Category.FOOD,
                 Transaction.TransactionType.EXPENSE,
-                "Lanche de teste",
-                LocalDate.now()
+                "Test transaction"
         );
 
         TransactionResponse response = transactionService.create(request);

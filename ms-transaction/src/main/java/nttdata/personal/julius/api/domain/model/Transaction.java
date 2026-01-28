@@ -3,7 +3,6 @@ package nttdata.personal.julius.api.domain.model;
 import nttdata.personal.julius.api.common.exception.BusinessException;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Transaction {
@@ -15,7 +14,6 @@ public class Transaction {
     private Category category;
     private TransactionType type;
     private String description;
-    private LocalDate transactionDate;
     private LocalDateTime createdAt;
 
     public Transaction() {
@@ -24,7 +22,7 @@ public class Transaction {
 
     public Transaction(Long id, Long userId, BigDecimal amount, String currency, TransactionStatus status,
                        Category category, TransactionType type, String description,
-                       LocalDate transactionDate, LocalDateTime createdAt) {
+                       LocalDateTime createdAt) {
         this.id = id;
         this.userId = userId;
         this.amount = amount;
@@ -33,7 +31,6 @@ public class Transaction {
         this.category = category;
         this.type = type;
         this.description = description;
-        this.transactionDate = transactionDate;
         this.createdAt = createdAt;
     }
 
@@ -93,10 +90,6 @@ public class Transaction {
         return description;
     }
 
-    public LocalDate getTransactionDate() {
-        return transactionDate;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -129,15 +122,12 @@ public class Transaction {
         this.description = description;
     }
 
-    public void setTransactionDate(LocalDate transactionDate) {
-        this.transactionDate = transactionDate;
-    }
-
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
     public void setStatus(TransactionStatus transactionStatus) {
+        this.status = transactionStatus;
     }
 
     public enum TransactionStatus {PENDING, APPROVED, REJECTED}

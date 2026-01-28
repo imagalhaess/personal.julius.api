@@ -39,7 +39,7 @@ public class TransactionService {
         t.setCategory(request.category());
         t.setType(request.type());
         t.setDescription(request.description());
-        t.setTransactionDate(request.date());
+        t.setCreatedAt(java.time.LocalDateTime.now()); // Explicitly set creation date
 
         Transaction saved = repository.save(t);
 
@@ -100,7 +100,7 @@ public class TransactionService {
     private TransactionResponse toResponse(Transaction t) {
         return new TransactionResponse(
                 t.getId(), t.getAmount(), t.getStatus().name(),
-                t.getDescription(), t.getTransactionDate(),
+                t.getDescription(), t.getCreatedAt(),
                 t.getCategory(), t.getType()
         );
     }
@@ -115,7 +115,6 @@ public class TransactionService {
         t.setCategory(dto.category());
         t.setType(dto.type());
         t.setDescription(dto.description());
-        t.setTransactionDate(dto.date());
 
         t.setStatus(Transaction.TransactionStatus.PENDING);
 

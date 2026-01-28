@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import nttdata.personal.julius.api.domain.model.Transaction;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -41,13 +40,12 @@ public class TransactionEntity {
     private Transaction.TransactionType type;
 
     private String description;
-    private LocalDate transactionDate;
     private LocalDateTime createdAt;
 
     public static TransactionEntity fromDomain(Transaction t) {
         return new TransactionEntity(
                 t.getId(), t.getUserId(), t.getAmount(), t.getCurrency(), t.getStatus(),
-                t.getCategory(), t.getType(), t.getDescription(), t.getTransactionDate(), t.getCreatedAt()
+                t.getCategory(), t.getType(), t.getDescription(), t.getCreatedAt()
         );
     }
 
@@ -62,7 +60,7 @@ public class TransactionEntity {
     public Transaction toDomain() {
         return new Transaction(
                 this.id, this.userId, this.amount, this.currency, this.status,
-                this.category, this.type, this.description, this.transactionDate, this.createdAt
+                this.category, this.type, this.description, this.createdAt
         );
     }
 }

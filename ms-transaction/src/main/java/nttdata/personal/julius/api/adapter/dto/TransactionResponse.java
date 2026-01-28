@@ -3,14 +3,14 @@ package nttdata.personal.julius.api.adapter.dto;
 import nttdata.personal.julius.api.domain.model.Transaction;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public record TransactionResponse(
         Long id,
         BigDecimal amount,
         String status,
         String description,
-        LocalDate date,
+        LocalDateTime createdAt,
         Transaction.Category category,
         Transaction.TransactionType type
 ) {

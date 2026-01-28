@@ -22,7 +22,7 @@ public class DlqProducer {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void send(TransactionCreatedEvent event, String errorMessage) {
+    public void send(Object event, String key, String errorMessage) {
         DlqMessage dlqMessage = new DlqMessage(
                 event,
                 errorMessage,
@@ -31,10 +31,10 @@ public class DlqProducer {
         );
 
         try {
-            kafkaTemplate.send(dlqTopic, event.transactionId().toString(), dlqMessage);
-            log.warn("Mensagem enviada para DLQ: {}", event.transactionId());
+            kafkaTemplate.send(dlqTopic, key, dlqMessage);
+            log.warn("Mensagem enviada para DLQ. Key: {}", key);
         } catch (Exception e) {
-            log.error("Erro ao enviar mensagem para DLQ: {}", event.transactionId(), e);
+            log.error("Erro ao enviar mensagem para DLQ. Key: {}", key, e);
         }
     }
 }

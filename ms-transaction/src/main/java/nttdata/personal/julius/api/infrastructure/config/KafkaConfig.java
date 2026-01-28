@@ -57,7 +57,7 @@ public class KafkaConfig {
     }
 
     @Bean
-    public ConsumerFactory<String, TransactionCreatedEvent> consumerFactory() {
+    public ConsumerFactory<String, Object> consumerFactory() {
         Map<String, Object> configProps = new HashMap<>();
 
         configProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
@@ -68,15 +68,15 @@ public class KafkaConfig {
         configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JacksonJsonDeserializer.class);
 
         configProps.put(JacksonJsonDeserializer.TRUSTED_PACKAGES, "*");
-        configProps.put(JacksonJsonDeserializer.VALUE_DEFAULT_TYPE, TransactionCreatedEvent.class.getName());
+        configProps.put(JacksonJsonDeserializer.VALUE_DEFAULT_TYPE, nttdata.personal.julius.api.infrastructure.messaging.TransactionProcessedEvent.class.getName());
         configProps.put(JacksonJsonDeserializer.USE_TYPE_INFO_HEADERS, false);
 
         return new DefaultKafkaConsumerFactory<>(configProps);
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, TransactionCreatedEvent> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, TransactionCreatedEvent> factory =
+    public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, Object> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;

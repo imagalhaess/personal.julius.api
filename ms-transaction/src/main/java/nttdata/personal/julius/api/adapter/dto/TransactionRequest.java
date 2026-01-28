@@ -5,7 +5,6 @@ import jakarta.validation.constraints.Positive;
 import nttdata.personal.julius.api.domain.model.Transaction;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 public record TransactionRequest(
         Long userId,
@@ -16,10 +15,9 @@ public record TransactionRequest(
         String currency,
         Transaction.Category category,
         Transaction.TransactionType type,
-        String description,
-        LocalDate date
+        String description
 ) {
     public TransactionRequest withUserId(Long userId) {
-        return new TransactionRequest(userId, amount, currency, category, type, description, date);
+        return new TransactionRequest(userId, amount, currency, category, type, description);
     }
 }
