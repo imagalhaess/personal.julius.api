@@ -1,6 +1,6 @@
 package nttdata.personal.julius.api.domain.model;
 
-import nttdata.personal.julius.common.exception.BusinessException;
+import nttdata.personal.julius.api.common.exception.BusinessException;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

@@ -2,8 +2,6 @@ package nttdata.personal.julius.api.adapter.controller;
 
 import jakarta.validation.Valid;
 import nttdata.personal.julius.api.application.dto.ImportReportDto;
-import nttdata.personal.julius.api.application.dto.UserResponseDto;
-import nttdata.personal.julius.api.application.dto.UserUpdateDto;
 import nttdata.personal.julius.api.application.service.UserImportService;
 import nttdata.personal.julius.api.application.service.UserService;
 import nttdata.personal.julius.api.adapter.dto.UserResponse;
@@ -30,37 +28,23 @@ public class UserController {
     public ResponseEntity<List<UserResponse>> listAll(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size) {
-        List<UserResponseDto> usersDto = userService.findAll(page, size);
-
-        List<UserResponse> responseList = usersDto.stream()
-                .map(dto -> new UserResponse(dto.id(), dto.name(), dto.email()))
-                .toList();
-
-        return ResponseEntity.ok(responseList);
+        return ResponseEntity.ok(userService.findAll(page, size));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> getUser(@PathVariable Long id) {
-        UserResponseDto dto = userService.getUser(id);
-        UserResponse response = new UserResponse(dto.id(), dto.name(), dto.email());
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(userService.getUser(id));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<UserResponse> update(@PathVariable Long id, @RequestBody @Valid UserUpdateRequest request) {
-        UserUpdateDto dto = new UserUpdateDto(id, request.name(), request.email(), request.cpf());
-        UserResponseDto responseDto = userService.update(dto);
-        return ResponseEntity.ok(toResponse(responseDto));
+        return ResponseEntity.ok(userService.update(id, request));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         userService.delete(id);
         return ResponseEntity.noContent().build();
-    }
-
-    private UserResponse toResponse(UserResponseDto dto) {
-        return new UserResponse(dto.id(), dto.name(), dto.email());
     }
 
     @PostMapping(value = "/import", consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)

@@ -1,11 +1,11 @@
 package nttdata.personal.julius.api.application.service;
 
-import nttdata.personal.julius.api.application.dto.BalanceResponseDto;
+import nttdata.personal.julius.api.adapter.dto.BalanceResponse;
+import nttdata.personal.julius.api.adapter.dto.TransactionRequest;
+import nttdata.personal.julius.api.adapter.dto.TransactionResponse;
 import nttdata.personal.julius.api.application.dto.TransactionCreatedEventDto;
-import nttdata.personal.julius.api.application.dto.TransactionRequestDto;
-import nttdata.personal.julius.api.application.dto.TransactionResponseDto;
 import nttdata.personal.julius.api.application.port.TransactionEventPort;
-import nttdata.personal.julius.common.exception.BusinessException;
+import nttdata.personal.julius.api.common.exception.BusinessException;
 import nttdata.personal.julius.api.domain.model.Transaction;
 import nttdata.personal.julius.api.domain.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,7 +31,7 @@ public class TransactionService {
     }
 
     @Transactional
-    public TransactionResponseDto create(TransactionRequestDto request) {
+    public TransactionResponse create(TransactionRequest request) {
         Transaction t = new Transaction();
         t.setUserId(request.userId());
         t.setAmount(request.amount());
@@ -48,17 +48,17 @@ public class TransactionService {
                 saved.getType().name(), saved.getCategory().name()
         ));
 
-        return toResponseDto(saved);
+        return toResponse(saved);
     }
 
-    public List<TransactionResponseDto> list(Long userId, int page, int size) {
+    public List<TransactionResponse> list(Long userId, int page, int size) {
         return repository.findByUserId(userId, page, size)
                 .stream()
-                .map(this::toResponseDto)
+                .map(this::toResponse)
                 .collect(Collectors.toList());
     }
 
-    public BalanceResponseDto getBalance(Long userId) {
+    public BalanceResponse getBalance(Long userId) {
         BigDecimal income = repository.sumIncomeByUserId(userId);
         BigDecimal expense = repository.sumExpenseByUserId(userId);
 
@@ -69,7 +69,7 @@ public class TransactionService {
             expense = BigDecimal.ZERO;
         }
 
-        return new BalanceResponseDto(income, expense, income.subtract(expense));
+        return new BalanceResponse(income, expense, income.subtract(expense));
     }
 
     public void delete(Long transactionId, Long userId) {
@@ -97,8 +97,8 @@ public class TransactionService {
         repository.save(t);
     }
 
-    private TransactionResponseDto toResponseDto(Transaction t) {
-        return new TransactionResponseDto(
+    private TransactionResponse toResponse(Transaction t) {
+        return new TransactionResponse(
                 t.getId(), t.getAmount(), t.getStatus().name(),
                 t.getDescription(), t.getTransactionDate(),
                 t.getCategory(), t.getType()
@@ -106,7 +106,7 @@ public class TransactionService {
     }
 
     @Transactional
-    public TransactionResponseDto update(Long id, TransactionRequestDto dto) {
+    public TransactionResponse update(Long id, TransactionRequest dto) {
         Transaction t = repository.findByIdAndUserId(id, dto.userId())
                 .orElseThrow(() -> new BusinessException("Transação não encontrada ou acesso negado."));
 
@@ -121,6 +121,6 @@ public class TransactionService {
 
         Transaction updated = repository.save(t);
 
-        return toResponseDto(updated);
+        return toResponse(updated);
     }
 }

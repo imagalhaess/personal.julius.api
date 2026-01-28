@@ -16,7 +16,7 @@
     <packaging>jar</packaging>
 
     <name>Personal Julius API - Common</name>
-    <description>Shared components for Julius microservices</description>
+    <description>Biblioteca com componentes que são compartilhados</description>
 
     <dependencies>
         <!-- Spring Boot Starters -->

@@ -1,9 +1,9 @@
 package nttdata.personal.julius.api.application.service;
 
-import nttdata.personal.julius.api.application.dto.UserDto;
-import nttdata.personal.julius.api.application.dto.UserResponseDto;
-import nttdata.personal.julius.api.application.dto.UserUpdateDto;
-import nttdata.personal.julius.common.exception.BusinessException;
+import nttdata.personal.julius.api.adapter.dto.UserRequest;
+import nttdata.personal.julius.api.adapter.dto.UserResponse;
+import nttdata.personal.julius.api.adapter.dto.UserUpdateRequest;
+import nttdata.personal.julius.api.common.exception.BusinessException;
 import nttdata.personal.julius.api.domain.model.User;
 import nttdata.personal.julius.api.domain.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,7 +22,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UserResponseDto create(UserDto dto) {
+    public UserResponse create(UserRequest dto) {
         if (repository.existsByEmail(dto.email())) {
             throw new BusinessException("E-mail já cadastrado");
         }
@@ -42,15 +42,15 @@ public class UserService {
         return toResponse(saved);
     }
 
-    public UserResponseDto getUser(Long id) {
+    public UserResponse getUser(Long id) {
         User user = repository.findById(id)
                 .filter(User::isActive)
                 .orElseThrow(() -> new BusinessException("Usuário não encontrado"));
         return toResponse(user);
     }
 
-    public UserResponseDto update(UserUpdateDto dto) {
-        User user = repository.findById(dto.id())
+    public UserResponse update(Long id, UserUpdateRequest dto) {
+        User user = repository.findById(id)
                 .filter(User::isActive)
                 .orElseThrow(() -> new BusinessException("Usuário não encontrado ou inativo"));
 
@@ -82,11 +82,11 @@ public class UserService {
         repository.save(user);
     }
 
-    private UserResponseDto toResponse(User user) {
-        return new UserResponseDto(user.getId(), user.getName(), user.getEmail());
+    private UserResponse toResponse(User user) {
+        return new UserResponse(user.getId(), user.getName(), user.getEmail());
     }
 
-    public List<UserResponseDto> findAll(int page, int size) {
+    public List<UserResponse> findAll(int page, int size) {
         return repository.findAllActive(page, size)
                 .stream()
                 .map(this::toResponse)

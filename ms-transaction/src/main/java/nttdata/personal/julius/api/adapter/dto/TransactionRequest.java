@@ -8,6 +8,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public record TransactionRequest(
+        Long userId,
+
         @NotNull @Positive
         BigDecimal amount,
 
@@ -17,4 +19,7 @@ public record TransactionRequest(
         String description,
         LocalDate date
 ) {
+    public TransactionRequest withUserId(Long userId) {
+        return new TransactionRequest(userId, amount, currency, category, type, description, date);
+    }
 }

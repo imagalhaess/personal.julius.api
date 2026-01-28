@@ -1,9 +1,6 @@
 package nttdata.personal.julius.api.adapter.controller;
 
 import jakarta.validation.Valid;
-import nttdata.personal.julius.api.application.dto.BalanceResponseDto;
-import nttdata.personal.julius.api.application.dto.TransactionRequestDto;
-import nttdata.personal.julius.api.application.dto.TransactionResponseDto;
 import nttdata.personal.julius.api.application.service.TransactionService;
 import nttdata.personal.julius.api.adapter.dto.BalanceResponse;
 import nttdata.personal.julius.api.adapter.dto.TransactionRequest;
@@ -14,7 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/transactions")
@@ -32,15 +28,7 @@ public class TransactionController {
             Authentication authentication
     ) {
         Long userId = (Long) authentication.getPrincipal();
-
-        TransactionRequestDto dto = new TransactionRequestDto(
-                userId, request.amount(), request.currency(), request.category(),
-                request.type(), request.description(), request.date()
-        );
-
-        TransactionResponseDto responseDto = service.create(dto);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(toResponse(responseDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request.withUserId(userId)));
     }
 
     @GetMapping
@@ -50,18 +38,13 @@ public class TransactionController {
             Authentication authentication
     ) {
         Long userId = (Long) authentication.getPrincipal();
-        List<TransactionResponse> list = service.list(userId, page, size)
-                .stream()
-                .map(this::toResponse)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(list);
+        return ResponseEntity.ok(service.list(userId, page, size));
     }
 
     @GetMapping("/balance")
     public ResponseEntity<BalanceResponse> getBalance(Authentication authentication) {
         Long userId = (Long) authentication.getPrincipal();
-        BalanceResponseDto dto = service.getBalance(userId);
-        return ResponseEntity.ok(new BalanceResponse(dto.totalIncome(), dto.totalExpense(), dto.balance()));
+        return ResponseEntity.ok(service.getBalance(userId));
     }
 
     @DeleteMapping("/{id}")
@@ -78,21 +61,18 @@ public class TransactionController {
             Authentication authentication
     ) {
         Long userId = (Long) authentication.getPrincipal();
-
-        TransactionRequestDto dto = new TransactionRequestDto(
-                userId, request.amount(), request.currency(), request.category(),
-                request.type(), request.description(), request.date()
-        );
-
-        TransactionResponseDto responseDto = service.update(id, dto);
-
-        return ResponseEntity.ok(toResponse(responseDto));
+        return ResponseEntity.ok(service.update(id, request.withUserId(userId)));
     }
 
-    private TransactionResponse toResponse(TransactionResponseDto dto) {
-        return new TransactionResponse(
-                dto.id(), dto.amount(), dto.status(), dto.description(),
-                dto.date(), dto.category(), dto.type()
-        );
+    @PostMapping("/{id}/approve")
+    public ResponseEntity<Void> approve(@PathVariable Long id) {
+        service.approve(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/{id}/reject")
+    public ResponseEntity<Void> reject(@PathVariable Long id, @RequestParam String reason) {
+        service.reject(id, reason);
+        return ResponseEntity.ok().build();
     }
 }

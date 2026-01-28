@@ -1,7 +1,7 @@
 package nttdata.personal.julius.api.application.service;
 
+import nttdata.personal.julius.api.adapter.dto.UserRequest;
 import nttdata.personal.julius.api.application.dto.ImportReportDto;
-import nttdata.personal.julius.api.application.dto.UserDto;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
@@ -45,8 +45,8 @@ public class UserImportService {
                         continue;
                     }
 
-                    UserDto dto = new UserDto(name, email, cpf, password);
-                    userService.create(dto);
+                    UserRequest request = new UserRequest(name, email, cpf, password);
+                    userService.create(request);
 
                     successCount++;
                 } catch (Exception e) {

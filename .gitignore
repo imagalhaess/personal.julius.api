@@ -18,6 +18,7 @@ target/
 *.iws
 *.ipr
 out/
+.claude/
 
 # Eclipse
 .classpath

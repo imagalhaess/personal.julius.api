@@ -1,6 +1,6 @@
 package nttdata.personal.julius.api.domain.model;
 
-import nttdata.personal.julius.common.exception.DomainValidationException;
+import nttdata.personal.julius.api.common.exception.DomainValidationException;
 
 public class User {
     private Long id;
