@@ -1,0 +1,10 @@
+C:\Users\isa\NTTData\ms-processor\src\main\java\nttdata\personal\julius\api\infrastructure\config\KafkaConfig.java
+C:\Users\isa\NTTData\ms-processor\src\main\java\nttdata\personal\julius\api\infrastructure\client\BrasilApiClient.java
+C:\Users\isa\NTTData\ms-processor\src\main\java\nttdata\personal\julius\api\infrastructure\messaging\TransactionResultProducer.java
+C:\Users\isa\NTTData\ms-processor\src\main\java\nttdata\personal\julius\api\infrastructure\client\dto\ExternalBalanceResponse.java
+C:\Users\isa\NTTData\ms-processor\src\main\java\nttdata\personal\julius\api\infrastructure\client\MockApiClient.java
+C:\Users\isa\NTTData\ms-processor\src\main\java\nttdata\personal\julius\api\infrastructure\messaging\TransactionProcessedEvent.java
+C:\Users\isa\NTTData\ms-processor\src\main\java\nttdata\personal\julius\api\infrastructure\messaging\TransactionEventConsumer.java
+C:\Users\isa\NTTData\ms-processor\src\main\java\nttdata\personal\julius\api\application\service\TransactionProcessorService.java
+C:\Users\isa\NTTData\ms-processor\src\main\java\nttdata\personal\julius\api\infrastructure\client\dto\ExchangeRateResponse.java
+C:\Users\isa\NTTData\ms-processor\src\main\java\nttdata\personal\julius\api\MsProcessorApplication.java

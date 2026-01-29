@@ -21,7 +21,8 @@ public class TransactionEventAdapter implements TransactionEventPort {
                 dto.amount(),
                 dto.currency(),
                 dto.type(),
-                dto.category()
+                dto.category(),
+                dto.origin()
         );
         producer.send(event);
     }

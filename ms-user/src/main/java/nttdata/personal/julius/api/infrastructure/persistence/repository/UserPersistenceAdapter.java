@@ -31,6 +31,11 @@ public class UserPersistenceAdapter implements UserRepository {
     }
 
     @Override
+    public Optional<User> findByPublicId(java.util.UUID publicId) {
+        return jpaRepository.findByPublicId(publicId).map(UserEntity::toDomain);
+    }
+
+    @Override
     public Optional<User> findByEmail(String email) {
         return jpaRepository.findByEmail(email).map(UserEntity::toDomain);
     }

@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bash:*)",
+      "Bash(docker ps:*)",
+      "Bash(curl:*)",
+      "Bash(tasklist:*)",
+      "Bash(mvn spring-boot:run:*)",
+      "Bash(mvn clean compile:*)",
+      "Bash(mvn install:*)",
+      "WebSearch",
+      "Bash(taskkill:*)",
+      "Bash(mvn clean install:*)",
+      "Bash(mvn test:*)"
+    ]
+  }
+}

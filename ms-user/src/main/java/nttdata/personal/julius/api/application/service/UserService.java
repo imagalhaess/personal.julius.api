@@ -83,7 +83,7 @@ public class UserService {
     }
 
     private UserResponse toResponse(User user) {
-        return new UserResponse(user.getId(), user.getName(), user.getEmail());
+        return new UserResponse(user.getPublicId(), user.getName(), user.getEmail());
     }
 
     public List<UserResponse> findAll(int page, int size) {
@@ -91,5 +91,46 @@ public class UserService {
                 .stream()
                 .map(this::toResponse)
                 .toList();
+    }
+
+    public UserResponse findById(java.util.UUID publicId) {
+        User user = repository.findByPublicId(publicId)
+                .filter(User::isActive)
+                .orElseThrow(() -> new BusinessException("Usuário não encontrado"));
+        return toResponse(user);
+    }
+
+    public UserResponse update(java.util.UUID publicId, UserUpdateRequest dto) {
+        User user = repository.findByPublicId(publicId)
+                .filter(User::isActive)
+                .orElseThrow(() -> new BusinessException("Usuário não encontrado ou inativo"));
+
+        if (dto.email() != null && !dto.email().equals(user.getEmail())) {
+            if (repository.existsByEmail(dto.email())) {
+                throw new BusinessException("Este e-mail já está sendo usado por outro usuário.");
+            }
+        }
+
+        User updated = new User(
+                user.getId(),
+                dto.name() != null ? dto.name() : user.getName(),
+                dto.email() != null ? dto.email() : user.getEmail(),
+                user.getCpf(),
+                dto.password() != null ? passwordEncoder.encode(dto.password()) : user.getPassword(),
+                user.isActive()
+        );
+        updated.setPublicId(user.getPublicId());
+
+        repository.save(updated);
+        return toResponse(updated);
+    }
+
+    public void delete(java.util.UUID publicId) {
+        User user = repository.findByPublicId(publicId)
+                .filter(User::isActive)
+                .orElseThrow(() -> new BusinessException("Usuário não encontrado ou já inativo"));
+
+        user.deactivate();
+        repository.save(user);
     }
 }

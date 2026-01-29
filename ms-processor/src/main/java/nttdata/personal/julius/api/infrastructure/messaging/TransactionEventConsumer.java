@@ -1,11 +1,18 @@
 package nttdata.personal.julius.api.infrastructure.messaging;
 
 import nttdata.personal.julius.api.application.service.TransactionProcessorService;
+import nttdata.personal.julius.api.common.event.TransactionCreatedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class TransactionEventConsumer {
@@ -13,9 +20,14 @@ public class TransactionEventConsumer {
     private static final Logger log = LoggerFactory.getLogger(TransactionEventConsumer.class);
 
     private final TransactionProcessorService processorService;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
-    public TransactionEventConsumer(TransactionProcessorService processorService) {
+    @Value("${kafka.dlq.topic:transaction-dlq}")
+    private String dlqTopic;
+
+    public TransactionEventConsumer(TransactionProcessorService processorService, KafkaTemplate<String, Object> kafkaTemplate) {
         this.processorService = processorService;
+        this.kafkaTemplate = kafkaTemplate;
     }
 
     @KafkaListener(
@@ -32,7 +44,23 @@ public class TransactionEventConsumer {
             log.info("Transação {} processada com sucesso", event.transactionId());
         } catch (Exception e) {
             log.error("Erro ao processar transação {}: {}", event.transactionId(), e.getMessage(), e);
-            throw e;
+            sendToDlq(event, e.getMessage());
+            ack.acknowledge(); // Acknowledge para não ficar em loop se for erro irrecuperável
+        }
+    }
+
+    private void sendToDlq(TransactionCreatedEvent event, String errorMessage) {
+        Map<String, Object> dlqMessage = new HashMap<>();
+        dlqMessage.put("event", event);
+        dlqMessage.put("error", errorMessage);
+        dlqMessage.put("timestamp", LocalDateTime.now());
+        dlqMessage.put("service", "ms-processor");
+
+        try {
+            kafkaTemplate.send(dlqTopic, event.transactionId().toString(), dlqMessage);
+            log.warn("Mensagem enviada para DLQ: {}", dlqTopic);
+        } catch (Exception ex) {
+            log.error("Falha crítica ao enviar para DLQ", ex);
         }
     }
 }

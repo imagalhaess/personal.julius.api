@@ -11,13 +11,12 @@ import java.math.BigDecimal;
 import java.util.Optional;
 
 public interface TransactionJpaRepository extends JpaRepository<TransactionEntity, Long> {
+    Page<TransactionEntity> findByUserId(Long userId, Pageable pageable);
     Optional<TransactionEntity> findByIdAndUserId(Long id, Long userId);
 
-    Page<TransactionEntity> findByUserId(Long userId, Pageable pageable);
-
-    @Query("SELECT SUM(t.amount) FROM TransactionEntity t WHERE t.userId = :userId AND t.type = 'INCOME'")
+    @Query("SELECT SUM(t.convertedAmount) FROM TransactionEntity t WHERE t.userId = :userId AND t.type = 'INCOME' AND t.status = 'APPROVED'")
     BigDecimal sumIncomeByUserId(@Param("userId") Long userId);
 
-    @Query("SELECT SUM(t.amount) FROM TransactionEntity t WHERE t.userId = :userId AND t.type IN ('EXPENSE', 'EXTERNAL')")
+    @Query("SELECT SUM(t.convertedAmount) FROM TransactionEntity t WHERE t.userId = :userId AND (t.type = 'EXPENSE' OR t.type = 'EXTERNAL') AND t.status = 'APPROVED'")
     BigDecimal sumExpenseByUserId(@Param("userId") Long userId);
 }

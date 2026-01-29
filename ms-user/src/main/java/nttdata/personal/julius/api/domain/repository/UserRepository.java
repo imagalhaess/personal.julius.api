@@ -10,6 +10,8 @@ public interface UserRepository {
 
     Optional<User> findById(Long id);
 
+    Optional<User> findByPublicId(java.util.UUID publicId);
+
     Optional<User> findByEmail(String email);
 
     boolean existsByEmail(String email);

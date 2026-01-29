@@ -1,20 +1,41 @@
 package nttdata.personal.julius.api.domain.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import nttdata.personal.julius.api.common.exception.DomainValidationException;
 
+import java.util.UUID;
+import java.util.regex.Pattern;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     private Long id;
+    private UUID publicId;
     private String name;
     private String email;
     private String cpf;
     private String password;
     private boolean active;
 
-    public User(Long id, String name, String email, String cpf, String password, boolean active) {
-        validateName(name);
-        validateEmail(email);
-        validateCpf(cpf);
+    private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@(.+)$";
+    private static final String CPF_REGEX = "^\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$";
 
+    // Construtor para criação de novo usuário (sem ID)
+    public User(String name, String email, String cpf, String password) {
+        validate(name, email, cpf);
+        this.name = name;
+        this.email = email;
+        this.cpf = cpf;
+        this.password = password;
+        this.active = true;
+    }
+
+    // Construtor para atualização (com ID mas sem publicId)
+    public User(Long id, String name, String email, String cpf, String password, boolean active) {
+        validate(name, email, cpf);
         this.id = id;
         this.name = name;
         this.email = email;
@@ -23,65 +44,23 @@ public class User {
         this.active = active;
     }
 
-    public User(String name, String email, String cpf, String password) {
-        validateName(name);
-        validateEmail(email);
-        validateCpf(cpf);
-
-        this.name = name;
-        this.email = email;
-        this.cpf = cpf;
-        this.password = password;
-        this.active = true;
-    }
-
-    private void validateName(String name) {
-        if (name == null || name.isBlank()) {
-            throw new DomainValidationException("Nome é obrigatório");
+    private void validate(String name, String email, String cpf) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new DomainValidationException("Name cannot be empty");
         }
-    }
-
-    private void validateEmail(String email) {
-        if (email == null || !email.matches("^[\\w-.]+@[\\w-]+\\.[a-z]{2,}$")) {
-            throw new DomainValidationException("E-mail inválido");
+        if (email == null || !Pattern.matches(EMAIL_REGEX, email)) {
+            throw new DomainValidationException("Invalid email format");
         }
-    }
-
-    private void validateCpf(String cpf) {
-        if (cpf == null || !cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {
-            throw new DomainValidationException("CPF inválido. Formato esperado: 000.000.000-00");
+        if (cpf == null || !Pattern.matches(CPF_REGEX, cpf)) {
+            throw new DomainValidationException("Invalid CPF format");
         }
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public boolean isActive() {
-        return active;
     }
 
     public void deactivate() {
         this.active = false;
+    }
+
+    public boolean isActive() {
+        return this.active;
     }
 }

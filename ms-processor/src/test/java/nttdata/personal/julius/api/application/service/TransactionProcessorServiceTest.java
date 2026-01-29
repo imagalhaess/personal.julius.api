@@ -1,112 +1,87 @@
 package nttdata.personal.julius.api.application.service;
 
-import feign.FeignException;
-import nttdata.personal.julius.api.infrastructure.client.BrasilApiClient;
-import nttdata.personal.julius.api.infrastructure.client.MockApiClient;
-import nttdata.personal.julius.api.infrastructure.client.dto.ExternalBalanceResponse;
-import nttdata.personal.julius.api.infrastructure.messaging.TransactionCreatedEvent;
-import nttdata.personal.julius.api.infrastructure.messaging.TransactionProcessedEvent;
-import nttdata.personal.julius.api.infrastructure.messaging.TransactionResultProducer;
+import nttdata.personal.julius.api.common.event.TransactionCreatedEvent;
+import nttdata.personal.julius.api.common.event.TransactionProcessedEvent;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.kafka.core.KafkaTemplate;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class TransactionProcessorServiceTest {
 
     @Mock
-    private TransactionResultProducer producer;
-
-    @Mock
-    private MockApiClient mockApiClient;
-
-    @Mock
-    private BrasilApiClient brasilApiClient;
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
     private TransactionProcessorService service;
 
     @BeforeEach
     void setUp() {
-        service = new TransactionProcessorService(producer, mockApiClient, brasilApiClient);
+        service = new TransactionProcessorService(kafkaTemplate);
     }
 
     @Test
-    void shouldApprove_WhenBalanceIsSufficient() {
-        BigDecimal amountBrl = new BigDecimal("50.00");
-        BigDecimal balance = new BigDecimal("100.00");
-
+    void shouldProcessAndApproveTransaction() {
         TransactionCreatedEvent event = new TransactionCreatedEvent(
-                1L, 202L, amountBrl, "BRL", "EXPENSE", "FOOD", LocalDateTime.now()
-        );
-
-        when(mockApiClient.getBalance(202L))
-                .thenReturn(List.of(new ExternalBalanceResponse("202", 202L, balance, "BRL")));
-
-        service.process(event);
-
-        ArgumentCaptor<TransactionProcessedEvent> captor = ArgumentCaptor.forClass(TransactionProcessedEvent.class);
-        verify(producer).send(captor.capture());
-
-        assertTrue(captor.getValue().approved());
-    }
-
-    @Test
-    void shouldReject_WhenUserNotFoundInMockAPI() {
-        TransactionCreatedEvent event = new TransactionCreatedEvent(
-                1L, 999L, BigDecimal.TEN, "BRL", "EXPENSE", "FOOD", LocalDateTime.now()
-        );
-
-        when(mockApiClient.getBalance(999L)).thenThrow(FeignException.NotFound.class);
-
-        service.process(event);
-
-        ArgumentCaptor<TransactionProcessedEvent> captor = ArgumentCaptor.forClass(TransactionProcessedEvent.class);
-        verify(producer).send(captor.capture());
-
-        assertFalse(captor.getValue().approved());
-        assertEquals("Usuário não encontrado na instituição financeira.", captor.getValue().reason());
-    }
-
-    @Test
-    void shouldApproveIncome_WithoutCheckingBalance() {
-        // Given
-        BigDecimal amountBrl = new BigDecimal("5000.00");
-        TransactionCreatedEvent event = new TransactionCreatedEvent(
-                1L, 202L, amountBrl, "BRL", "INCOME", "SALARY", LocalDateTime.now()
-        );
-
-        // When
-        service.process(event);
-
-        // Then
-        ArgumentCaptor<TransactionProcessedEvent> captor = ArgumentCaptor.forClass(TransactionProcessedEvent.class);
-        verify(producer).send(captor.capture());
-        verify(mockApiClient, never()).getBalance(anyLong());
-
-        assertTrue(captor.getValue().approved());
-    }
-
-    @Test
-    void shouldApproveExternal_WithoutCheckingBalance() {
-        BigDecimal amountBrl = new BigDecimal("10.00");
-        TransactionCreatedEvent event = new TransactionCreatedEvent(
-                1L, 202L, amountBrl, "BRL", "EXTERNAL", "FOOD", LocalDateTime.now()
+                1L, 1L, new BigDecimal("100.00"), "BRL", "EXPENSE", "FOOD", 
+                nttdata.personal.julius.api.common.domain.TransactionOrigin.ACCOUNT, LocalDateTime.now()
         );
 
         service.process(event);
 
         ArgumentCaptor<TransactionProcessedEvent> captor = ArgumentCaptor.forClass(TransactionProcessedEvent.class);
-        verify(producer).send(captor.capture());
-        verify(mockApiClient, never()).getBalance(anyLong());
+        verify(kafkaTemplate).send(eq("transaction-processed"), captor.capture());
+        
+        TransactionProcessedEvent result = captor.getValue();
+        assertEquals(1L, result.transactionId());
+        assertTrue(result.approved());
+        assertNull(result.reason());
+    }
 
-        assertTrue(captor.getValue().approved());
+    @Test
+    void shouldRejectTransactionWhenLimitExceeded() {
+        TransactionCreatedEvent event = new TransactionCreatedEvent(
+                1L, 1L, new BigDecimal("15000.00"), "BRL", "EXPENSE", "FOOD", 
+                nttdata.personal.julius.api.common.domain.TransactionOrigin.ACCOUNT, LocalDateTime.now()
+        );
+
+        service.process(event);
+
+        ArgumentCaptor<TransactionProcessedEvent> captor = ArgumentCaptor.forClass(TransactionProcessedEvent.class);
+        verify(kafkaTemplate).send(eq("transaction-processed"), captor.capture());
+        
+        TransactionProcessedEvent result = captor.getValue();
+        assertEquals(1L, result.transactionId());
+        assertFalse(result.approved());
+        assertEquals("LIMIT_EXCEEDED", result.reason());
+    }
+
+    @Test
+    void shouldApproveCashTransactionAutomatically() {
+        TransactionCreatedEvent event = new TransactionCreatedEvent(
+                1L, 1L, new BigDecimal("20000.00"), "BRL", "EXPENSE", "FOOD", 
+                nttdata.personal.julius.api.common.domain.TransactionOrigin.CASH, LocalDateTime.now()
+        );
+
+        service.process(event);
+
+        ArgumentCaptor<TransactionProcessedEvent> captor = ArgumentCaptor.forClass(TransactionProcessedEvent.class);
+        verify(kafkaTemplate).send(eq("transaction-processed"), captor.capture());
+        
+        TransactionProcessedEvent result = captor.getValue();
+        assertEquals(1L, result.transactionId());
+        assertTrue(result.approved());
+        assertNull(result.reason());
     }
 }

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: nttdata.personal.julius.api.api.PersonalJuliusApiUserApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.782 s -- in nttdata.personal.julius.api.api.PersonalJuliusApiUserApplicationTests
