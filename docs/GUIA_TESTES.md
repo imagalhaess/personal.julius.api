@@ -3,8 +3,14 @@
 ## Pre-requisitos
 
 ### 1. Iniciar Infraestrutura
+
+**Windows:**
+```cmd
+start_dev.bat
+```
+
+**Linux/Mac:**
 ```bash
-# Na raiz do projeto
 ./start_dev.sh
 ```
 
@@ -569,20 +575,33 @@ Abra o Kafdrop: http://localhost:9000
 2. Selecione `transaction-dlq`
 3. Clique em "View Messages"
 
+Os topicos sao criados automaticamente quando o ms-transaction inicia. Se nao aparecerem, reinicie o servico.
+
 ---
 
-### 3.2 Simular Erro Irrecuperavel
+### 3.2 Verificar Persistencia do DLQ
 
-Para testar o DLQ, precisamos provocar um erro no processamento. Isso pode acontecer quando:
-
-1. **Servico externo indisponivel**
-2. **Dados malformados**
-3. **Excecao nao tratada**
-
-#### Teste: Parar MS-PROCESSOR durante processamento
+As mensagens do DLQ sao persistidas na tabela `dlq_messages`. Para consultar:
 
 ```bash
-# 1. Criar transacao
+# Conectar ao banco de transacoes
+docker exec -it transaction-db psql -U postgres -d transaction_db
+
+# Listar mensagens do DLQ
+SELECT id, transaction_id, source_service, error_message, failed_at FROM dlq_messages;
+```
+
+---
+
+### 3.3 Simular Erro para DLQ
+
+Para testar o fluxo completo do DLQ:
+
+```bash
+# 1. Parar o MS-PROCESSOR
+# (Ctrl+C no terminal do MS-PROCESSOR)
+
+# 2. Criar transacao (ficara em PENDING)
 curl -X POST http://localhost:8082/transactions \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
@@ -593,25 +612,22 @@ curl -X POST http://localhost:8082/transactions \
     "origin": "ACCOUNT"
   }'
 
-# 2. Rapidamente parar o MS-PROCESSOR (Ctrl+C no terminal)
-
-# 3. A mensagem ficara no topico transaction-events
-
-# 4. Reiniciar MS-PROCESSOR
+# 3. Reiniciar MS-PROCESSOR
 cd ms-processor && mvn spring-boot:run -Dspring-boot.run.profiles=dev
 
-# 5. Verificar que a mensagem foi processada
+# 4. Se houver erro no processamento, verificar DLQ no banco
+docker exec -it transaction-db psql -U postgres -d transaction_db -c "SELECT * FROM dlq_messages;"
 ```
 
 ---
 
-### 3.3 Estrutura de Mensagem na DLQ
+### 3.4 Estrutura de Mensagem na DLQ
 
-Quando uma mensagem vai para DLQ, ela contem:
+Formato padronizado (definido em ms-common):
 
-**MS-TRANSACTION DlqMessage:**
 ```json
 {
+  "transactionId": "5",
   "originalEvent": {
     "transactionId": 5,
     "userId": 1,
@@ -621,24 +637,14 @@ Quando uma mensagem vai para DLQ, ela contem:
     "origin": "ACCOUNT"
   },
   "errorMessage": "Erro ao processar transacao: Connection refused",
-  "timestamp": "2026-01-29T19:45:00",
-  "retryCount": 0
-}
-```
-
-**MS-PROCESSOR DLQ:**
-```json
-{
-  "event": { ... },
-  "error": "Descricao do erro",
-  "timestamp": "2026-01-29T19:45:00",
-  "service": "ms-processor"
+  "sourceService": "ms-processor",
+  "failedAt": "2026-01-29T19:45:00"
 }
 ```
 
 ---
 
-### 3.4 Tratamento de Erros por Tipo
+### 3.5 Tratamento de Erros por Tipo
 
 | Tipo de Erro | Comportamento | Destino |
 |--------------|---------------|---------|
@@ -646,9 +652,9 @@ Quando uma mensagem vai para DLQ, ela contem:
 | Autenticacao (401) | Retorna erro imediato | Cliente |
 | Autorizacao (403) | Retorna erro imediato | Cliente |
 | Nao encontrado (404) | Retorna erro imediato | Cliente |
-| Erro no processamento | Envia para DLQ | Kafka DLQ |
-| Timeout API externa | Retry + DLQ | Kafka DLQ |
-| Erro de serializacao | DLQ | Kafka DLQ |
+| Erro no processamento | Envia para DLQ | Kafka DLQ + PostgreSQL |
+| Timeout API externa | Envia para DLQ | Kafka DLQ + PostgreSQL |
+| Erro de serializacao | Envia para DLQ | Kafka DLQ + PostgreSQL |
 
 ---
 
@@ -724,7 +730,9 @@ mvn test -pl ms-processor
 - [ ] Transacao ACCOUNT < 10000 eh aprovada
 - [ ] Transacao ACCOUNT >= 10000 eh rejeitada
 - [ ] Conversao de moeda funciona (USD, EUR)
-- [ ] Mensagens DLQ sao persistidas
+- [ ] Topicos Kafka criados (transaction-events, transaction-processed, transaction-dlq)
+- [ ] Erros de processamento sao enviados para DLQ
+- [ ] Mensagens DLQ sao persistidas na tabela dlq_messages
 
 ### 5.3 Monitoramento
 

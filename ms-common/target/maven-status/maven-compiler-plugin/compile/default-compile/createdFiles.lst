@@ -3,6 +3,7 @@ nttdata\personal\julius\api\common\config\BaseSecurityConfig.class
 nttdata\personal\julius\api\common\event\TransactionProcessedEvent.class
 nttdata\personal\julius\api\common\config\OpenApiConfig.class
 nttdata\personal\julius\api\common\security\SecurityUtils.class
+nttdata\personal\julius\api\common\event\DlqMessage.class
 nttdata\personal\julius\api\common\exception\ErrorResponse.class
 nttdata\personal\julius\api\common\config\BaseKafkaConfig.class
 nttdata\personal\julius\api\common\exception\DomainValidationException.class

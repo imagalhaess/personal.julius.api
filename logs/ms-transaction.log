@@ -1,0 +1,1032 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for nttdata.beca:ms-transaction:jar:0.0.1-SNAPSHOT
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ line 203, column 21
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin is missing. @ line 199, column 21
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] --------------------< nttdata.beca:ms-transaction >---------------------
+[INFO] Building Personal Julius API - Transaction Service 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.1.0-M1:run (default-cli) > test-compile @ ms-transaction >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ ms-transaction ---
+[INFO] Copying 6 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ ms-transaction ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ ms-transaction ---
+[INFO] Copying 1 resource from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ ms-transaction ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot:4.1.0-M1:run (default-cli) < test-compile @ ms-transaction <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.1.0-M1:run (default-cli) @ ms-transaction ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.1)
+
+2026-01-29T20:04:36.419-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] .PersonalJuliusApiTransactionApplication : Starting PersonalJuliusApiTransactionApplication using Java 21.0.9 with PID 21324 (C:\Users\isa\NTTData\ms-transaction\target\classes started by isa in C:\Users\isa\NTTData\ms-transaction)
+2026-01-29T20:04:36.421-03:00 DEBUG 21324 --- [ms-transaction] [  restartedMain] .PersonalJuliusApiTransactionApplication : Running with Spring Boot v4.0.1, Spring v7.0.2
+2026-01-29T20:04:36.423-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] .PersonalJuliusApiTransactionApplication : The following 1 profile is active: "dev"
+2026-01-29T20:04:36.472-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-01-29T20:04:36.472-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-01-29T20:04:37.380-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-29T20:04:37.429-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
+2026-01-29T20:04:37.713-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=3b650286-53fc-304b-b09f-e1398878dc98
+2026-01-29T20:04:38.170-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8082 (http)
+2026-01-29T20:04:38.181-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-29T20:04:38.182-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-01-29T20:04:38.225-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1751 ms
+2026-01-29T20:04:38.431-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-01-29T20:04:38.470-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.0.Final
+2026-01-29T20:04:38.781-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-29T20:04:38.804-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-29T20:04:38.913-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3e8c04fd
+2026-01-29T20:04:38.914-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-29T20:04:38.960-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5433/julius_transaction_db]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: julius_transaction_db/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-29T20:04:39.596-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-29T20:04:39.635-03:00 DEBUG 21324 --- [ms-transaction] [  restartedMain] org.hibernate.SQL                        : 
+    alter table if exists transactions 
+       add column converted_amount numeric(38,2) not null
+Hibernate: 
+    alter table if exists transactions 
+       add column converted_amount numeric(38,2) not null
+2026-01-29T20:04:39.639-03:00  WARN 21324 --- [ms-transaction] [  restartedMain] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table if exists transactions 
+       add column converted_amount numeric(38,2) not null" via JDBC [ERROR: column "converted_amount" of relation "transactions" contains null values]
+
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table if exists transactions 
+       add column converted_amount numeric(38,2) not null" via JDBC [ERROR: column "converted_amount" of relation "transactions" contains null values]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:81) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:566) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:506) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:324) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:433) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:416) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:409) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:976) ~[spring-context-7.0.2.jar:7.0.2]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:620) ~[spring-context-7.0.2.jar:7.0.2]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756) ~[spring-boot-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445) ~[spring-boot-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.0.1.jar:4.0.1]
+	at nttdata.personal.julius.api.PersonalJuliusApiTransactionApplication.main(PersonalJuliusApiTransactionApplication.java:22) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52) ~[spring-boot-devtools-4.0.1.jar:4.0.1]
+Caused by: org.postgresql.util.PSQLException: ERROR: column "converted_amount" of relation "transactions" contains null values
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2736) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2421) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:525) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:435) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:357) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:342) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:318) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:313) ~[postgresql-42.7.8.jar:42.7.8]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-7.0.2.jar:na]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	... 41 common frames omitted
+
+2026-01-29T20:04:39.641-03:00 DEBUG 21324 --- [ms-transaction] [  restartedMain] org.hibernate.SQL                        : 
+    alter table if exists transactions 
+       add column public_id uuid not null
+Hibernate: 
+    alter table if exists transactions 
+       add column public_id uuid not null
+2026-01-29T20:04:39.643-03:00  WARN 21324 --- [ms-transaction] [  restartedMain] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table if exists transactions 
+       add column public_id uuid not null" via JDBC [ERROR: column "public_id" of relation "transactions" contains null values]
+
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table if exists transactions 
+       add column public_id uuid not null" via JDBC [ERROR: column "public_id" of relation "transactions" contains null values]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:81) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:566) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:506) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:324) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:433) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:416) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:409) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:976) ~[spring-context-7.0.2.jar:7.0.2]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:620) ~[spring-context-7.0.2.jar:7.0.2]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756) ~[spring-boot-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445) ~[spring-boot-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.0.1.jar:4.0.1]
+	at nttdata.personal.julius.api.PersonalJuliusApiTransactionApplication.main(PersonalJuliusApiTransactionApplication.java:22) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52) ~[spring-boot-devtools-4.0.1.jar:4.0.1]
+Caused by: org.postgresql.util.PSQLException: ERROR: column "public_id" of relation "transactions" contains null values
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2736) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2421) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:525) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:435) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:357) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:342) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:318) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:313) ~[postgresql-42.7.8.jar:42.7.8]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-7.0.2.jar:na]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	... 41 common frames omitted
+
+2026-01-29T20:04:39.654-03:00 DEBUG 21324 --- [ms-transaction] [  restartedMain] org.hibernate.SQL                        : 
+    alter table if exists transactions 
+       drop constraint if exists UK6ks0c2b0w4pnaq4v2heh7ychx
+Hibernate: 
+    alter table if exists transactions 
+       drop constraint if exists UK6ks0c2b0w4pnaq4v2heh7ychx
+2026-01-29T20:04:39.657-03:00  WARN 21324 --- [ms-transaction] [  restartedMain] org.hibernate.orm.jdbc.warn              : HHH000247: ErrorCode: 0, SQLState: 00000
+2026-01-29T20:04:39.657-03:00  WARN 21324 --- [ms-transaction] [  restartedMain] org.hibernate.orm.jdbc.warn              : constraint "uk6ks0c2b0w4pnaq4v2heh7ychx" of relation "transactions" does not exist, skipping
+2026-01-29T20:04:39.658-03:00 DEBUG 21324 --- [ms-transaction] [  restartedMain] org.hibernate.SQL                        : 
+    alter table if exists transactions 
+       add constraint UK6ks0c2b0w4pnaq4v2heh7ychx unique (public_id)
+Hibernate: 
+    alter table if exists transactions 
+       add constraint UK6ks0c2b0w4pnaq4v2heh7ychx unique (public_id)
+2026-01-29T20:04:39.660-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-29T20:04:39.723-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-29T20:04:40.450-03:00  WARN 21324 --- [ms-transaction] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-29T20:04:40.517-03:00  WARN 21324 --- [ms-transaction] [  restartedMain] .s.a.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: a504403c-9c53-4b7f-b882-724134a9d718
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-01-29T20:04:40.523-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-01-29T20:04:41.049-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-01-29T20:04:41.134-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8082 (http) with context path '/'
+2026-01-29T20:04:41.167-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = latest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-dlq-persistence-group-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = dlq-persistence-group
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.rebootstrap.trigger.ms = 300000
+	metadata.recovery.strategy = rebootstrap
+	metric.reporters = [org.apache.kafka.common.metrics.JmxReporter]
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.assertion.algorithm = RS256
+	sasl.oauthbearer.assertion.claim.aud = null
+	sasl.oauthbearer.assertion.claim.exp.seconds = 300
+	sasl.oauthbearer.assertion.claim.iss = null
+	sasl.oauthbearer.assertion.claim.jti.include = false
+	sasl.oauthbearer.assertion.claim.nbf.seconds = 60
+	sasl.oauthbearer.assertion.claim.sub = null
+	sasl.oauthbearer.assertion.file = null
+	sasl.oauthbearer.assertion.private.key.file = null
+	sasl.oauthbearer.assertion.private.key.passphrase = null
+	sasl.oauthbearer.assertion.template.file = null
+	sasl.oauthbearer.client.credentials.client.id = null
+	sasl.oauthbearer.client.credentials.client.secret = null
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.jwt.retriever.class = class org.apache.kafka.common.security.oauthbearer.DefaultJwtRetriever
+	sasl.oauthbearer.jwt.validator.class = class org.apache.kafka.common.security.oauthbearer.DefaultJwtValidator
+	sasl.oauthbearer.scope = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	share.acknowledgement.mode = implicit
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+
+2026-01-29T20:04:41.195-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-01-29T20:04:41.315-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.1
+2026-01-29T20:04:41.315-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: be816b82d25370ce
+2026-01-29T20:04:41.315-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1769727881314
+2026-01-29T20:04:41.316-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Subscribed to topic(s): transaction-dlq
+2026-01-29T20:04:41.323-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = latest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-transaction-result-group-2
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = transaction-result-group
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.rebootstrap.trigger.ms = 300000
+	metadata.recovery.strategy = rebootstrap
+	metric.reporters = [org.apache.kafka.common.metrics.JmxReporter]
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.assertion.algorithm = RS256
+	sasl.oauthbearer.assertion.claim.aud = null
+	sasl.oauthbearer.assertion.claim.exp.seconds = 300
+	sasl.oauthbearer.assertion.claim.iss = null
+	sasl.oauthbearer.assertion.claim.jti.include = false
+	sasl.oauthbearer.assertion.claim.nbf.seconds = 60
+	sasl.oauthbearer.assertion.claim.sub = null
+	sasl.oauthbearer.assertion.file = null
+	sasl.oauthbearer.assertion.private.key.file = null
+	sasl.oauthbearer.assertion.private.key.passphrase = null
+	sasl.oauthbearer.assertion.template.file = null
+	sasl.oauthbearer.client.credentials.client.id = null
+	sasl.oauthbearer.client.credentials.client.secret = null
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.jwt.retriever.class = class org.apache.kafka.common.security.oauthbearer.DefaultJwtRetriever
+	sasl.oauthbearer.jwt.validator.class = class org.apache.kafka.common.security.oauthbearer.DefaultJwtValidator
+	sasl.oauthbearer.scope = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	share.acknowledgement.mode = implicit
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+
+2026-01-29T20:04:41.323-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-01-29T20:04:41.328-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.1
+2026-01-29T20:04:41.329-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: be816b82d25370ce
+2026-01-29T20:04:41.329-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1769727881328
+2026-01-29T20:04:41.329-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] Subscribed to topic(s): transaction-processed
+2026-01-29T20:04:41.336-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] .PersonalJuliusApiTransactionApplication : Started PersonalJuliusApiTransactionApplication in 5.307 seconds (process running for 5.879)
+2026-01-29T20:04:41.341-03:00  WARN 21324 --- [ms-transaction] [  restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-01-29T20:04:41.341-03:00  WARN 21324 --- [ms-transaction] [  restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-01-29T20:04:41.585-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] Cluster ID: julius-kafka-cluster-001
+2026-01-29T20:04:41.587-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] Discovered group coordinator host.docker.internal:9092 (id: 2147483646 rack: null isFenced: false)
+2026-01-29T20:04:41.589-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] (Re-)joining group
+2026-01-29T20:04:41.600-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] Request joining group due to: need to re-join with the given member-id: consumer-transaction-result-group-2-ca188375-f0d5-4a3e-9b82-cd02fed873f1
+2026-01-29T20:04:41.600-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] (Re-)joining group
+2026-01-29T20:04:41.601-03:00  WARN 21324 --- [ms-transaction] [ntainer#0-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] The metadata response from the cluster reported a recoverable issue with correlation id 2 : {transaction-dlq=UNKNOWN_TOPIC_OR_PARTITION}
+2026-01-29T20:04:41.602-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Cluster ID: julius-kafka-cluster-001
+2026-01-29T20:04:41.602-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Discovered group coordinator host.docker.internal:9092 (id: 2147483646 rack: null isFenced: false)
+2026-01-29T20:04:41.604-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] (Re-)joining group
+2026-01-29T20:04:41.605-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] Successfully joined group with generation Generation{generationId=107, memberId='consumer-transaction-result-group-2-ca188375-f0d5-4a3e-9b82-cd02fed873f1', protocol='range'}
+2026-01-29T20:04:41.611-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Request joining group due to: need to re-join with the given member-id: consumer-dlq-persistence-group-1-94f170ce-6c0c-419e-bcb6-3a1de618dff4
+2026-01-29T20:04:41.611-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] Finished assignment for group at generation 107: {consumer-transaction-result-group-2-ca188375-f0d5-4a3e-9b82-cd02fed873f1=Assignment(partitions=[transaction-processed-0])}
+2026-01-29T20:04:41.611-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] (Re-)joining group
+2026-01-29T20:04:41.616-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Successfully joined group with generation Generation{generationId=1, memberId='consumer-dlq-persistence-group-1-94f170ce-6c0c-419e-bcb6-3a1de618dff4', protocol='range'}
+2026-01-29T20:04:41.623-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] Successfully synced group in generation Generation{generationId=107, memberId='consumer-transaction-result-group-2-ca188375-f0d5-4a3e-9b82-cd02fed873f1', protocol='range'}
+2026-01-29T20:04:41.623-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] Notifying assignor about the new Assignment(partitions=[transaction-processed-0])
+2026-01-29T20:04:41.625-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] Adding newly assigned partitions: [transaction-processed-0]
+2026-01-29T20:04:41.633-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition transaction-processed-0 to the committed offset FetchPosition{offset=20, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[host.docker.internal:9092 (id: 1 rack: null isFenced: false)], epoch=22}}
+2026-01-29T20:04:41.635-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : transaction-result-group: partitions assigned: [transaction-processed-0]
+2026-01-29T20:04:41.730-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Finished assignment for group at generation 1: {consumer-dlq-persistence-group-1-94f170ce-6c0c-419e-bcb6-3a1de618dff4=Assignment(partitions=[transaction-dlq-0])}
+2026-01-29T20:04:41.739-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Successfully synced group in generation Generation{generationId=1, memberId='consumer-dlq-persistence-group-1-94f170ce-6c0c-419e-bcb6-3a1de618dff4', protocol='range'}
+2026-01-29T20:04:41.739-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Notifying assignor about the new Assignment(partitions=[transaction-dlq-0])
+2026-01-29T20:04:41.739-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Adding newly assigned partitions: [transaction-dlq-0]
+2026-01-29T20:04:41.740-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Found no committed offset for partition transaction-dlq-0
+2026-01-29T20:04:41.742-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Found no committed offset for partition transaction-dlq-0
+2026-01-29T20:04:41.747-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.SubscriptionState    : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Resetting offset for partition transaction-dlq-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[host.docker.internal:9092 (id: 1 rack: null isFenced: false)], epoch=0}}.
+2026-01-29T20:04:41.767-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : dlq-persistence-group: partitions assigned: [transaction-dlq-0]
+2026-01-29T20:05:01.440-03:00  INFO 21324 --- [ms-transaction] [nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-29T20:05:01.440-03:00  INFO 21324 --- [ms-transaction] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-01-29T20:05:01.442-03:00  INFO 21324 --- [ms-transaction] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-01-29T20:05:31.162-03:00  INFO 21324 --- [ms-transaction] [nio-8082-exec-1] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 407 ms
+2026-01-29T20:14:38.336-03:00  INFO 21324 --- [ms-transaction] [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 33 class path changes (0 additions, 0 deletions, 33 modifications)
+2026-01-29T20:14:38.347-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Revoke previously assigned partitions [transaction-dlq-0]
+2026-01-29T20:14:38.347-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] Revoke previously assigned partitions [transaction-processed-0]
+2026-01-29T20:14:38.348-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : transaction-result-group: partitions revoked: [transaction-processed-0]
+2026-01-29T20:14:38.348-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : dlq-persistence-group: partitions revoked: [transaction-dlq-0]
+2026-01-29T20:14:38.348-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Member consumer-dlq-persistence-group-1-94f170ce-6c0c-419e-bcb6-3a1de618dff4 sending LeaveGroup request to coordinator host.docker.internal:9092 (id: 2147483646 rack: null isFenced: false) due to the consumer unsubscribed from all topics
+2026-01-29T20:14:38.348-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] Member consumer-transaction-result-group-2-ca188375-f0d5-4a3e-9b82-cd02fed873f1 sending LeaveGroup request to coordinator host.docker.internal:9092 (id: 2147483646 rack: null isFenced: false) due to the consumer unsubscribed from all topics
+2026-01-29T20:14:38.349-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-01-29T20:14:38.349-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-01-29T20:14:38.349-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] Request joining group due to: consumer pro-actively leaving the group
+2026-01-29T20:14:38.349-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] Unsubscribed all topics or patterns and assigned partitions
+2026-01-29T20:14:38.349-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Request joining group due to: consumer pro-actively leaving the group
+2026-01-29T20:14:38.349-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Unsubscribed all topics or patterns and assigned partitions
+2026-01-29T20:14:38.352-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-01-29T20:14:38.352-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-01-29T20:14:38.353-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-1, groupId=dlq-persistence-group] Request joining group due to: consumer pro-actively leaving the group
+2026-01-29T20:14:38.353-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-2, groupId=transaction-result-group] Request joining group due to: consumer pro-actively leaving the group
+2026-01-29T20:14:38.486-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2026-01-29T20:14:38.486-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2026-01-29T20:14:38.486-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-01-29T20:14:38.486-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-01-29T20:14:38.486-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2026-01-29T20:14:38.486-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2026-01-29T20:14:38.486-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2026-01-29T20:14:38.486-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2026-01-29T20:14:38.494-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-transaction-result-group-2 unregistered
+2026-01-29T20:14:38.495-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-dlq-persistence-group-1 unregistered
+2026-01-29T20:14:38.495-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : dlq-persistence-group: Consumer stopped
+2026-01-29T20:14:38.495-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : transaction-result-group: Consumer stopped
+2026-01-29T20:14:38.497-03:00  INFO 21324 --- [ms-transaction] [       Thread-1] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-29T20:14:38.508-03:00  INFO 21324 --- [ms-transaction] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-01-29T20:14:38.515-03:00  INFO 21324 --- [ms-transaction] [       Thread-1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-29T20:14:38.522-03:00  INFO 21324 --- [ms-transaction] [       Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-29T20:14:38.527-03:00  INFO 21324 --- [ms-transaction] [       Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.1)
+
+2026-01-29T20:14:38.627-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] .PersonalJuliusApiTransactionApplication : Starting PersonalJuliusApiTransactionApplication using Java 21.0.9 with PID 21324 (C:\Users\isa\NTTData\ms-transaction\target\classes started by isa in C:\Users\isa\NTTData\ms-transaction)
+2026-01-29T20:14:38.627-03:00 DEBUG 21324 --- [ms-transaction] [  restartedMain] .PersonalJuliusApiTransactionApplication : Running with Spring Boot v4.0.1, Spring v7.0.2
+2026-01-29T20:14:38.627-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] .PersonalJuliusApiTransactionApplication : The following 1 profile is active: "dev"
+2026-01-29T20:14:39.132-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-29T20:14:39.146-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 2 JPA repository interfaces.
+2026-01-29T20:14:39.224-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=3b650286-53fc-304b-b09f-e1398878dc98
+2026-01-29T20:14:39.291-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8082 (http)
+2026-01-29T20:14:39.293-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-29T20:14:39.293-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-01-29T20:14:39.325-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 694 ms
+2026-01-29T20:14:39.377-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-01-29T20:14:39.395-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-29T20:14:39.396-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-01-29T20:14:39.415-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@75cf9fd4
+2026-01-29T20:14:39.416-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-01-29T20:14:39.424-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5433/julius_transaction_db]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: julius_transaction_db/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-29T20:14:39.470-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-29T20:14:39.479-03:00 DEBUG 21324 --- [ms-transaction] [  restartedMain] org.hibernate.SQL                        : 
+    alter table if exists transactions 
+       add column converted_amount numeric(38,2) not null
+Hibernate: 
+    alter table if exists transactions 
+       add column converted_amount numeric(38,2) not null
+2026-01-29T20:14:39.481-03:00  WARN 21324 --- [ms-transaction] [  restartedMain] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table if exists transactions 
+       add column converted_amount numeric(38,2) not null" via JDBC [ERROR: column "converted_amount" of relation "transactions" contains null values]
+
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table if exists transactions 
+       add column converted_amount numeric(38,2) not null" via JDBC [ERROR: column "converted_amount" of relation "transactions" contains null values]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:81) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:566) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:506) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:324) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:433) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:416) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:409) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:976) ~[spring-context-7.0.2.jar:7.0.2]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:620) ~[spring-context-7.0.2.jar:7.0.2]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756) ~[spring-boot-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445) ~[spring-boot-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.0.1.jar:4.0.1]
+	at nttdata.personal.julius.api.PersonalJuliusApiTransactionApplication.main(PersonalJuliusApiTransactionApplication.java:22) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52) ~[spring-boot-devtools-4.0.1.jar:4.0.1]
+Caused by: org.postgresql.util.PSQLException: ERROR: column "converted_amount" of relation "transactions" contains null values
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2736) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2421) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:525) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:435) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:357) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:342) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:318) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:313) ~[postgresql-42.7.8.jar:42.7.8]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-7.0.2.jar:na]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	... 41 common frames omitted
+
+2026-01-29T20:14:39.483-03:00 DEBUG 21324 --- [ms-transaction] [  restartedMain] org.hibernate.SQL                        : 
+    alter table if exists transactions 
+       add column public_id uuid not null
+Hibernate: 
+    alter table if exists transactions 
+       add column public_id uuid not null
+2026-01-29T20:14:39.484-03:00  WARN 21324 --- [ms-transaction] [  restartedMain] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table if exists transactions 
+       add column public_id uuid not null" via JDBC [ERROR: column "public_id" of relation "transactions" contains null values]
+
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table if exists transactions 
+       add column public_id uuid not null" via JDBC [ERROR: column "public_id" of relation "transactions" contains null values]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:81) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:566) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:506) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:324) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:96) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:433) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:416) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:409) ~[spring-orm-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.2.jar:7.0.2]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:976) ~[spring-context-7.0.2.jar:7.0.2]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:620) ~[spring-context-7.0.2.jar:7.0.2]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756) ~[spring-boot-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445) ~[spring-boot-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.0.1.jar:4.0.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.0.1.jar:4.0.1]
+	at nttdata.personal.julius.api.PersonalJuliusApiTransactionApplication.main(PersonalJuliusApiTransactionApplication.java:22) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52) ~[spring-boot-devtools-4.0.1.jar:4.0.1]
+Caused by: org.postgresql.util.PSQLException: ERROR: column "public_id" of relation "transactions" contains null values
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2736) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2421) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:525) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:435) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:357) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:342) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:318) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:313) ~[postgresql-42.7.8.jar:42.7.8]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-7.0.2.jar:na]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76) ~[hibernate-core-7.2.0.Final.jar:7.2.0.Final]
+	... 41 common frames omitted
+
+2026-01-29T20:14:39.493-03:00 DEBUG 21324 --- [ms-transaction] [  restartedMain] org.hibernate.SQL                        : 
+    alter table if exists transactions 
+       drop constraint if exists UK6ks0c2b0w4pnaq4v2heh7ychx
+Hibernate: 
+    alter table if exists transactions 
+       drop constraint if exists UK6ks0c2b0w4pnaq4v2heh7ychx
+2026-01-29T20:14:39.494-03:00  WARN 21324 --- [ms-transaction] [  restartedMain] org.hibernate.orm.jdbc.warn              : HHH000247: ErrorCode: 0, SQLState: 00000
+2026-01-29T20:14:39.494-03:00  WARN 21324 --- [ms-transaction] [  restartedMain] org.hibernate.orm.jdbc.warn              : constraint "uk6ks0c2b0w4pnaq4v2heh7ychx" of relation "transactions" does not exist, skipping
+2026-01-29T20:14:39.494-03:00 DEBUG 21324 --- [ms-transaction] [  restartedMain] org.hibernate.SQL                        : 
+    alter table if exists transactions 
+       add constraint UK6ks0c2b0w4pnaq4v2heh7ychx unique (public_id)
+Hibernate: 
+    alter table if exists transactions 
+       add constraint UK6ks0c2b0w4pnaq4v2heh7ychx unique (public_id)
+2026-01-29T20:14:39.495-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-29T20:14:39.598-03:00  WARN 21324 --- [ms-transaction] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-29T20:14:39.625-03:00  WARN 21324 --- [ms-transaction] [  restartedMain] .s.a.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: ec3f3013-77bd-40e3-9266-207c6dba7698
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-01-29T20:14:39.626-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-01-29T20:14:39.864-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-01-29T20:14:39.891-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8082 (http) with context path '/'
+2026-01-29T20:14:39.897-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = latest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-dlq-persistence-group-3
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = dlq-persistence-group
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.rebootstrap.trigger.ms = 300000
+	metadata.recovery.strategy = rebootstrap
+	metric.reporters = [org.apache.kafka.common.metrics.JmxReporter]
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.assertion.algorithm = RS256
+	sasl.oauthbearer.assertion.claim.aud = null
+	sasl.oauthbearer.assertion.claim.exp.seconds = 300
+	sasl.oauthbearer.assertion.claim.iss = null
+	sasl.oauthbearer.assertion.claim.jti.include = false
+	sasl.oauthbearer.assertion.claim.nbf.seconds = 60
+	sasl.oauthbearer.assertion.claim.sub = null
+	sasl.oauthbearer.assertion.file = null
+	sasl.oauthbearer.assertion.private.key.file = null
+	sasl.oauthbearer.assertion.private.key.passphrase = null
+	sasl.oauthbearer.assertion.template.file = null
+	sasl.oauthbearer.client.credentials.client.id = null
+	sasl.oauthbearer.client.credentials.client.secret = null
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.jwt.retriever.class = class org.apache.kafka.common.security.oauthbearer.DefaultJwtRetriever
+	sasl.oauthbearer.jwt.validator.class = class org.apache.kafka.common.security.oauthbearer.DefaultJwtValidator
+	sasl.oauthbearer.scope = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	share.acknowledgement.mode = implicit
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+
+2026-01-29T20:14:39.898-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-01-29T20:14:39.901-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.1
+2026-01-29T20:14:39.902-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: be816b82d25370ce
+2026-01-29T20:14:39.902-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1769728479901
+2026-01-29T20:14:39.903-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-dlq-persistence-group-3, groupId=dlq-persistence-group] Subscribed to topic(s): transaction-dlq
+2026-01-29T20:14:39.905-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = latest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-transaction-result-group-4
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = transaction-result-group
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.rebootstrap.trigger.ms = 300000
+	metadata.recovery.strategy = rebootstrap
+	metric.reporters = [org.apache.kafka.common.metrics.JmxReporter]
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.assertion.algorithm = RS256
+	sasl.oauthbearer.assertion.claim.aud = null
+	sasl.oauthbearer.assertion.claim.exp.seconds = 300
+	sasl.oauthbearer.assertion.claim.iss = null
+	sasl.oauthbearer.assertion.claim.jti.include = false
+	sasl.oauthbearer.assertion.claim.nbf.seconds = 60
+	sasl.oauthbearer.assertion.claim.sub = null
+	sasl.oauthbearer.assertion.file = null
+	sasl.oauthbearer.assertion.private.key.file = null
+	sasl.oauthbearer.assertion.private.key.passphrase = null
+	sasl.oauthbearer.assertion.template.file = null
+	sasl.oauthbearer.client.credentials.client.id = null
+	sasl.oauthbearer.client.credentials.client.secret = null
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.jwt.retriever.class = class org.apache.kafka.common.security.oauthbearer.DefaultJwtRetriever
+	sasl.oauthbearer.jwt.validator.class = class org.apache.kafka.common.security.oauthbearer.DefaultJwtValidator
+	sasl.oauthbearer.scope = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	share.acknowledgement.mode = implicit
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+
+2026-01-29T20:14:39.905-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-01-29T20:14:39.911-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-dlq-persistence-group-3, groupId=dlq-persistence-group] Cluster ID: julius-kafka-cluster-001
+2026-01-29T20:14:39.911-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.1
+2026-01-29T20:14:39.911-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: be816b82d25370ce
+2026-01-29T20:14:39.911-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1769728479911
+2026-01-29T20:14:39.911-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-3, groupId=dlq-persistence-group] Discovered group coordinator host.docker.internal:9092 (id: 2147483646 rack: null isFenced: false)
+2026-01-29T20:14:39.911-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-transaction-result-group-4, groupId=transaction-result-group] Subscribed to topic(s): transaction-processed
+2026-01-29T20:14:39.912-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-3, groupId=dlq-persistence-group] (Re-)joining group
+2026-01-29T20:14:39.916-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-3, groupId=dlq-persistence-group] Request joining group due to: need to re-join with the given member-id: consumer-dlq-persistence-group-3-9306a60f-80f6-4aa1-b73c-6bdddbf4fa4c
+2026-01-29T20:14:39.916-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-3, groupId=dlq-persistence-group] (Re-)joining group
+2026-01-29T20:14:39.918-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-transaction-result-group-4, groupId=transaction-result-group] Cluster ID: julius-kafka-cluster-001
+2026-01-29T20:14:39.918-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] .PersonalJuliusApiTransactionApplication : Started PersonalJuliusApiTransactionApplication in 1.332 seconds (process running for 604.461)
+2026-01-29T20:14:39.918-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-4, groupId=transaction-result-group] Discovered group coordinator host.docker.internal:9092 (id: 2147483646 rack: null isFenced: false)
+2026-01-29T20:14:39.920-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-4, groupId=transaction-result-group] (Re-)joining group
+2026-01-29T20:14:39.920-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-3, groupId=dlq-persistence-group] Successfully joined group with generation Generation{generationId=3, memberId='consumer-dlq-persistence-group-3-9306a60f-80f6-4aa1-b73c-6bdddbf4fa4c', protocol='range'}
+2026-01-29T20:14:39.920-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-3, groupId=dlq-persistence-group] Finished assignment for group at generation 3: {consumer-dlq-persistence-group-3-9306a60f-80f6-4aa1-b73c-6bdddbf4fa4c=Assignment(partitions=[transaction-dlq-0])}
+2026-01-29T20:14:39.923-03:00  INFO 21324 --- [ms-transaction] [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-01-29T20:14:39.923-03:00  WARN 21324 --- [ms-transaction] [  restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-01-29T20:14:39.924-03:00  WARN 21324 --- [ms-transaction] [  restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-01-29T20:14:39.925-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-4, groupId=transaction-result-group] Request joining group due to: need to re-join with the given member-id: consumer-transaction-result-group-4-50a2f4ba-b43b-4348-bddb-c2f18664be3c
+2026-01-29T20:14:39.925-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-4, groupId=transaction-result-group] (Re-)joining group
+2026-01-29T20:14:39.928-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-4, groupId=transaction-result-group] Successfully joined group with generation Generation{generationId=109, memberId='consumer-transaction-result-group-4-50a2f4ba-b43b-4348-bddb-c2f18664be3c', protocol='range'}
+2026-01-29T20:14:39.928-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-3, groupId=dlq-persistence-group] Successfully synced group in generation Generation{generationId=3, memberId='consumer-dlq-persistence-group-3-9306a60f-80f6-4aa1-b73c-6bdddbf4fa4c', protocol='range'}
+2026-01-29T20:14:39.929-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-4, groupId=transaction-result-group] Finished assignment for group at generation 109: {consumer-transaction-result-group-4-50a2f4ba-b43b-4348-bddb-c2f18664be3c=Assignment(partitions=[transaction-processed-0])}
+2026-01-29T20:14:39.929-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-dlq-persistence-group-3, groupId=dlq-persistence-group] Notifying assignor about the new Assignment(partitions=[transaction-dlq-0])
+2026-01-29T20:14:39.929-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-dlq-persistence-group-3, groupId=dlq-persistence-group] Adding newly assigned partitions: [transaction-dlq-0]
+2026-01-29T20:14:39.933-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition transaction-dlq-0 to the committed offset FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[host.docker.internal:9092 (id: 1 rack: null isFenced: false)], epoch=0}}
+2026-01-29T20:14:39.934-03:00  INFO 21324 --- [ms-transaction] [ntainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : dlq-persistence-group: partitions assigned: [transaction-dlq-0]
+2026-01-29T20:14:39.937-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-4, groupId=transaction-result-group] Successfully synced group in generation Generation{generationId=109, memberId='consumer-transaction-result-group-4-50a2f4ba-b43b-4348-bddb-c2f18664be3c', protocol='range'}
+2026-01-29T20:14:39.937-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-transaction-result-group-4, groupId=transaction-result-group] Notifying assignor about the new Assignment(partitions=[transaction-processed-0])
+2026-01-29T20:14:39.938-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-transaction-result-group-4, groupId=transaction-result-group] Adding newly assigned partitions: [transaction-processed-0]
+2026-01-29T20:14:39.942-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition transaction-processed-0 to the committed offset FetchPosition{offset=20, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[host.docker.internal:9092 (id: 1 rack: null isFenced: false)], epoch=22}}
+2026-01-29T20:14:39.943-03:00  INFO 21324 --- [ms-transaction] [ntainer#1-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : transaction-result-group: partitions assigned: [transaction-processed-0]
+2026-01-29T20:14:40.096-03:00  INFO 21324 --- [ms-transaction] [nio-8082-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-29T20:14:40.097-03:00  INFO 21324 --- [ms-transaction] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-01-29T20:14:40.101-03:00  INFO 21324 --- [ms-transaction] [nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms

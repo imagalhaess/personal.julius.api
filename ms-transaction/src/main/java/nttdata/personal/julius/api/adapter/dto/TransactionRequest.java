@@ -25,6 +25,7 @@ public record TransactionRequest(
         @NotNull Transaction.TransactionType type,
 
         @Schema(description = "Origem (ACCOUNT/CASH)", example = "ACCOUNT")
+        @NotNull(message = "A origem é obrigatória (ACCOUNT ou CASH)")
         nttdata.personal.julius.api.common.domain.TransactionOrigin origin,
         
         @Schema(description = "Descrição", example = "Compra Internacional")

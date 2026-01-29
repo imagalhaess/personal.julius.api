@@ -244,49 +244,57 @@ TransactionProcessedEvent result = new TransactionProcessedEvent(
 
 ### 2.2 Fluxo de Erro (Dead Letter Queue)
 
-Quando ocorre erro no processamento:
+Quando ocorre erro no processamento, a mensagem eh enviada para o topico DLQ e persistida no banco:
 
 ```
-┌──────────────────┐     ┌─────────┐     ┌───────────────┐
-│  MS-TRANSACTION  │     │  KAFKA  │     │  MS-PROCESSOR │
-└────────┬─────────┘     └────┬────┘     └───────┬───────┘
-         │                    │                  │
-         │                    │  Erro no         │
-         │                    │  processamento   │
-         │                    │<─────────────────│
-         │                    │                  │
-         │                    │  DLQ Message:    │
-         │                    │  {event, error,  │
-         │                    │   timestamp,     │
-         │                    │   service}       │
-         │                    │<─────────────────│
-         │                    │  transaction-dlq │
-         │                    │                  │
-         │  Consome DLQ       │                  │
-         │<───────────────────│                  │
-         │                    │                  │
-         │  Log + Armazena    │                  │
-         │  para reprocessamento                 │
+┌───────────────┐     ┌─────────┐     ┌───────────────┐
+│ MS-PROCESSOR  │     │  KAFKA  │     │ MS-TRANSACTION│
+└───────┬───────┘     └────┬────┘     └───────┬───────┘
+        │                  │                  │
+        │  Erro no         │                  │
+        │  processamento   │                  │
+        │                  │                  │
+        │  DlqMessage      │                  │
+        │─────────────────>│                  │
+        │  transaction-dlq │                  │
+        │                  │                  │
+        │                  │  DlqConsumer     │
+        │                  │─────────────────>│
+        │                  │                  │
+        │                  │                  │  Persiste em
+        │                  │                  │  dlq_messages
+        │                  │                  │  (PostgreSQL)
 ```
 
-**Estrutura da mensagem DLQ (ms-transaction):**
+**Estrutura da mensagem DLQ (padronizada em ms-common):**
 ```java
 public record DlqMessage(
+    String transactionId,
     Object originalEvent,
     String errorMessage,
-    LocalDateTime timestamp,
-    int retryCount
+    String sourceService,
+    LocalDateTime failedAt
 ) {}
 ```
 
-**Estrutura da mensagem DLQ (ms-processor):**
-```java
-Map<String, Object> dlqMessage = new HashMap<>();
-dlqMessage.put("event", event);
-dlqMessage.put("error", errorMessage);
-dlqMessage.put("timestamp", LocalDateTime.now());
-dlqMessage.put("service", "ms-processor");
+**Tabela de persistencia (dlq_messages):**
+```sql
+CREATE TABLE dlq_messages (
+    id BIGSERIAL PRIMARY KEY,
+    transaction_id VARCHAR(100),
+    original_event TEXT,
+    error_message TEXT,
+    source_service VARCHAR(50),
+    failed_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 ```
+
+**Componentes envolvidos:**
+- `DlqProducer` (ms-transaction): Envia erros para o topico
+- `TransactionEventConsumer` (ms-processor): Captura erros e envia para DLQ
+- `DlqConsumer` (ms-transaction): Consome do topico e persiste no banco
+- `DlqEntity` / `DlqJpaRepository`: Persistencia JPA
 
 ---
 
@@ -391,7 +399,9 @@ MS-PROCESSOR                     MockAPI
 |--------|----------|----------|-----------|
 | `transaction-events` | ms-transaction | ms-processor | Transacoes criadas aguardando processamento |
 | `transaction-processed` | ms-processor | ms-transaction | Resultado do processamento (aprovado/rejeitado) |
-| `transaction-dlq` | ms-transaction, ms-processor | - | Mensagens com erro para analise |
+| `transaction-dlq` | ms-transaction, ms-processor | ms-transaction (DlqConsumer) | Mensagens com erro, persistidas no banco |
+
+Os topicos sao criados automaticamente na inicializacao do ms-transaction via beans `NewTopic` configurados em `KafkaConfig`.
 
 ---
 
@@ -474,6 +484,19 @@ CREATE TABLE transactions (
     rejection_reason VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP
+);
+```
+
+**Tabela: dlq_messages**
+```sql
+CREATE TABLE dlq_messages (
+    id BIGSERIAL PRIMARY KEY,
+    transaction_id VARCHAR(100),
+    original_event TEXT,
+    error_message TEXT,
+    source_service VARCHAR(50),
+    failed_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
 

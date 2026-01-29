@@ -1,6 +1,7 @@
 package nttdata.personal.julius.api.infrastructure.messaging;
 
 import nttdata.personal.julius.api.application.service.TransactionProcessorService;
+import nttdata.personal.julius.api.common.event.DlqMessage;
 import nttdata.personal.julius.api.common.event.TransactionCreatedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,8 +12,6 @@ import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class TransactionEventConsumer {
@@ -45,20 +44,23 @@ public class TransactionEventConsumer {
         } catch (Exception e) {
             log.error("Erro ao processar transação {}: {}", event.transactionId(), e.getMessage(), e);
             sendToDlq(event, e.getMessage());
-            ack.acknowledge(); // Acknowledge para não ficar em loop se for erro irrecuperável
+            ack.acknowledge();
         }
     }
 
     private void sendToDlq(TransactionCreatedEvent event, String errorMessage) {
-        Map<String, Object> dlqMessage = new HashMap<>();
-        dlqMessage.put("event", event);
-        dlqMessage.put("error", errorMessage);
-        dlqMessage.put("timestamp", LocalDateTime.now());
-        dlqMessage.put("service", "ms-processor");
+        String transactionId = event.transactionId().toString();
+        DlqMessage dlqMessage = new DlqMessage(
+                transactionId,
+                event,
+                errorMessage,
+                "ms-processor",
+                LocalDateTime.now()
+        );
 
         try {
-            kafkaTemplate.send(dlqTopic, event.transactionId().toString(), dlqMessage);
-            log.warn("Mensagem enviada para DLQ: {}", dlqTopic);
+            kafkaTemplate.send(dlqTopic, transactionId, dlqMessage);
+            log.warn("Mensagem enviada para DLQ: transactionId={}", transactionId);
         } catch (Exception ex) {
             log.error("Falha crítica ao enviar para DLQ", ex);
         }

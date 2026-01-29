@@ -1,0 +1,302 @@
+[
+  {
+    "id": "2892a926",
+    "accountId": 1,
+    "amount": 2313.0,
+    "currency": "BRL"
+  },
+  {
+    "id": "1c35c5d5",
+    "accountId": 2,
+    "amount": 6864.55,
+    "currency": "BRL"
+  },
+  {
+    "id": "d6fc1493",
+    "accountId": 3,
+    "amount": 5667.05,
+    "currency": "BRL"
+  },
+  {
+    "id": "34513987",
+    "accountId": 4,
+    "amount": 1312.95,
+    "currency": "BRL"
+  },
+  {
+    "id": "4316ed83",
+    "accountId": 5,
+    "amount": 1726.62,
+    "currency": "BRL"
+  },
+  {
+    "id": "5001ed60",
+    "accountId": 6,
+    "amount": 6634.37,
+    "currency": "BRL"
+  },
+  {
+    "id": "7c3412b7",
+    "accountId": 7,
+    "amount": 5821.65,
+    "currency": "BRL"
+  },
+  {
+    "id": "25568d06",
+    "accountId": 8,
+    "amount": 8678.38,
+    "currency": "BRL"
+  },
+  {
+    "id": "8db80113",
+    "accountId": 9,
+    "amount": 9905.37,
+    "currency": "BRL"
+  },
+  {
+    "id": "4955687d",
+    "accountId": 10,
+    "amount": 5366.97,
+    "currency": "BRL"
+  },
+  {
+    "id": "a7bcd493",
+    "accountId": 11,
+    "amount": 9099.34,
+    "currency": "BRL"
+  },
+  {
+    "id": "d73717f4",
+    "accountId": 12,
+    "amount": 9833.44,
+    "currency": "BRL"
+  },
+  {
+    "id": "2f046178",
+    "accountId": 13,
+    "amount": 4113.19,
+    "currency": "BRL"
+  },
+  {
+    "id": "a4bbf6c4",
+    "accountId": 14,
+    "amount": 4709.61,
+    "currency": "BRL"
+  },
+  {
+    "id": "8317bc99",
+    "accountId": 15,
+    "amount": 8744.44,
+    "currency": "BRL"
+  },
+  {
+    "id": "2a655cc0",
+    "accountId": 16,
+    "amount": 3610.03,
+    "currency": "BRL"
+  },
+  {
+    "id": "8984906d",
+    "accountId": 17,
+    "amount": 8591.5,
+    "currency": "BRL"
+  },
+  {
+    "id": "b6f5a643",
+    "accountId": 18,
+    "amount": 4473.36,
+    "currency": "BRL"
+  },
+  {
+    "id": "c9d1e2f6",
+    "accountId": 19,
+    "amount": 3453.88,
+    "currency": "BRL"
+  },
+  {
+    "id": "ef2fe5e2",
+    "accountId": 20,
+    "amount": 9605.6,
+    "currency": "BRL"
+  },
+  {
+    "id": "afb45e20",
+    "accountId": 21,
+    "amount": 9271.17,
+    "currency": "BRL"
+  },
+  {
+    "id": "434a9890",
+    "accountId": 22,
+    "amount": 8816.55,
+    "currency": "BRL"
+  },
+  {
+    "id": "60864fff",
+    "accountId": 23,
+    "amount": 6585.23,
+    "currency": "BRL"
+  },
+  {
+    "id": "a091ce35",
+    "accountId": 24,
+    "amount": 7542.19,
+    "currency": "BRL"
+  },
+  {
+    "id": "6a45589c",
+    "accountId": 25,
+    "amount": 8736.87,
+    "currency": "BRL"
+  },
+  {
+    "id": "e7e33634",
+    "accountId": 26,
+    "amount": 3743.14,
+    "currency": "BRL"
+  },
+  {
+    "id": "a3ea8a51",
+    "accountId": 27,
+    "amount": 9250.57,
+    "currency": "BRL"
+  },
+  {
+    "id": "2b8cecc7",
+    "accountId": 28,
+    "amount": 3949.54,
+    "currency": "BRL"
+  },
+  {
+    "id": "95c5dbf3",
+    "accountId": 29,
+    "amount": 4137.14,
+    "currency": "BRL"
+  },
+  {
+    "id": "e184362f",
+    "accountId": 30,
+    "amount": 879.89,
+    "currency": "BRL"
+  },
+  {
+    "id": "9672c7f5",
+    "accountId": 31,
+    "amount": 7459.69,
+    "currency": "BRL"
+  },
+  {
+    "id": "00c1d05e",
+    "accountId": 32,
+    "amount": 8538.08,
+    "currency": "BRL"
+  },
+  {
+    "id": "229d5c60",
+    "accountId": 33,
+    "amount": 6414.81,
+    "currency": "BRL"
+  },
+  {
+    "id": "bf85c6a0",
+    "accountId": 34,
+    "amount": 351.9,
+    "currency": "BRL"
+  },
+  {
+    "id": "99980818",
+    "accountId": 35,
+    "amount": 6565.67,
+    "currency": "BRL"
+  },
+  {
+    "id": "2a2c8d6d",
+    "accountId": 36,
+    "amount": 1256.61,
+    "currency": "BRL"
+  },
+  {
+    "id": "0b027b1a",
+    "accountId": 37,
+    "amount": 6849.92,
+    "currency": "BRL"
+  },
+  {
+    "id": "d89e2803",
+    "accountId": 38,
+    "amount": 9946.08,
+    "currency": "BRL"
+  },
+  {
+    "id": "61315616",
+    "accountId": 39,
+    "amount": 7836.76,
+    "currency": "BRL"
+  },
+  {
+    "id": "bcb3a5cf",
+    "accountId": 40,
+    "amount": 809.77,
+    "currency": "BRL"
+  },
+  {
+    "id": "70f8a023",
+    "accountId": 41,
+    "amount": 7150.51,
+    "currency": "BRL"
+  },
+  {
+    "id": "7427c957",
+    "accountId": 42,
+    "amount": 319.69,
+    "currency": "BRL"
+  },
+  {
+    "id": "8274cd77",
+    "accountId": 43,
+    "amount": 2739.79,
+    "currency": "BRL"
+  },
+  {
+    "id": "791794a6",
+    "accountId": 44,
+    "amount": 903.2,
+    "currency": "BRL"
+  },
+  {
+    "id": "30b12206",
+    "accountId": 45,
+    "amount": 781.06,
+    "currency": "BRL"
+  },
+  {
+    "id": "b6382542",
+    "accountId": 46,
+    "amount": 7071.85,
+    "currency": "BRL"
+  },
+  {
+    "id": "bd069b0e",
+    "accountId": 47,
+    "amount": 4377.76,
+    "currency": "BRL"
+  },
+  {
+    "id": "7b59632e",
+    "accountId": 48,
+    "amount": 1446.7,
+    "currency": "BRL"
+  },
+  {
+    "id": "6bcfb733",
+    "accountId": 49,
+    "amount": 2161.41,
+    "currency": "BRL"
+  },
+  {
+    "id": "1911f213",
+    "accountId": 50,
+    "amount": 1568.46,
+    "currency": "BRL"
+  }
+]

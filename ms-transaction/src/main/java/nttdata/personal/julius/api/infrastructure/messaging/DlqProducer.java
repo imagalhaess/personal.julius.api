@@ -1,5 +1,6 @@
 package nttdata.personal.julius.api.infrastructure.messaging;
 
+import nttdata.personal.julius.api.common.event.DlqMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,23 +19,27 @@ public class DlqProducer {
     @Value("${kafka.dlq.topic:transaction-dlq}")
     private String dlqTopic;
 
+    @Value("${spring.application.name:ms-transaction}")
+    private String serviceName;
+
     public DlqProducer(KafkaTemplate<String, Object> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void send(Object event, String key, String errorMessage) {
+    public void send(Object event, String transactionId, String errorMessage) {
         DlqMessage dlqMessage = new DlqMessage(
+                transactionId,
                 event,
                 errorMessage,
-                LocalDateTime.now(),
-                0
+                serviceName,
+                LocalDateTime.now()
         );
 
         try {
-            kafkaTemplate.send(dlqTopic, key, dlqMessage);
-            log.warn("Mensagem enviada para DLQ. Key: {}", key);
+            kafkaTemplate.send(dlqTopic, transactionId, dlqMessage);
+            log.warn("Mensagem enviada para DLQ. TransactionId: {}", transactionId);
         } catch (Exception e) {
-            log.error("Erro ao enviar mensagem para DLQ. Key: {}", key, e);
+            log.error("Erro ao enviar mensagem para DLQ. TransactionId: {}", transactionId, e);
         }
     }
 }

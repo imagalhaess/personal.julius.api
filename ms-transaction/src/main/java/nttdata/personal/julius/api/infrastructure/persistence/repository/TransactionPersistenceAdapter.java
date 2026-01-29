@@ -68,6 +68,7 @@ public class TransactionPersistenceAdapter implements TransactionRepository {
         e.setExchangeRate(t.getExchangeRate());
         e.setCategory(t.getCategory());
         e.setType(t.getType());
+        e.setOrigin(t.getOrigin());
         e.setDescription(t.getDescription());
         e.setCreatedAt(t.getCreatedAt());
         e.setStatus(t.getStatus());
