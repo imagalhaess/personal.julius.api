@@ -3,11 +3,13 @@ package nttdata.personal.julius.api;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.kafka.annotation.EnableKafka;
 
 @SpringBootApplication
 @EnableKafka
-public class PersonalJuliusApiApplication {
+@EnableFeignClients
+public class PersonalJuliusApiTransactionApplication {
 
     public static void main(String[] args) {
 
@@ -17,6 +19,6 @@ public class PersonalJuliusApiApplication {
         dotenv.entries().forEach(entry -> System.setProperty(entry.getKey(),
                                                              entry.getValue()));
 
-        SpringApplication.run(PersonalJuliusApiApplication.class, args);
+        SpringApplication.run(PersonalJuliusApiTransactionApplication.class, args);
     }
 }

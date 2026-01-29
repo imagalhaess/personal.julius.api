@@ -1,4 +1,4 @@
-package nttdata.personal.julius.api.api.application.service;
+package nttdata.personal.julius.api.application.service;
 
 import nttdata.personal.julius.api.adapter.dto.BalanceResponse;
 import nttdata.personal.julius.api.application.port.TransactionEventPort;

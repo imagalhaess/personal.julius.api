@@ -38,6 +38,6 @@ public class AuthService {
                 .orElseThrow(() -> new BusinessException("Usuário não encontrado ou inativo"));
 
         String token = tokenService.generateToken(new UserPrincipal(user));
-        return new LoginResponse(token);
+        return new LoginResponse(token, user.getId(), user.getName(), user.getEmail());
     }
 }

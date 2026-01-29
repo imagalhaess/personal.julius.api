@@ -18,6 +18,6 @@ public interface TransactionJpaRepository extends JpaRepository<TransactionEntit
     @Query("SELECT SUM(t.amount) FROM TransactionEntity t WHERE t.userId = :userId AND t.type = 'INCOME'")
     BigDecimal sumIncomeByUserId(@Param("userId") Long userId);
 
-    @Query("SELECT SUM(t.amount) FROM TransactionEntity t WHERE t.userId = :userId AND t.type = 'EXPENSE'")
+    @Query("SELECT SUM(t.amount) FROM TransactionEntity t WHERE t.userId = :userId AND t.type IN ('EXPENSE', 'EXTERNAL')")
     BigDecimal sumExpenseByUserId(@Param("userId") Long userId);
 }

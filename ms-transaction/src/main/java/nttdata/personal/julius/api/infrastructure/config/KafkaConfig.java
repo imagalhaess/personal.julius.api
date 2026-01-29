@@ -1,6 +1,5 @@
 package nttdata.personal.julius.api.infrastructure.config;
 
-import nttdata.personal.julius.api.infrastructure.messaging.TransactionCreatedEvent;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;

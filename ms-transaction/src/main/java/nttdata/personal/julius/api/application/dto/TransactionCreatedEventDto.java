@@ -1,6 +1,7 @@
 package nttdata.personal.julius.api.application.dto;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 public record TransactionCreatedEventDto(
         Long transactionId,
@@ -8,5 +9,6 @@ public record TransactionCreatedEventDto(
         BigDecimal amount,
         String currency,
         String type,
-        String category
+        String category,
+        LocalDateTime createdAt
 ) {}

@@ -4,10 +4,6 @@ import nttdata.personal.julius.api.application.dto.TransactionCreatedEventDto;
 import nttdata.personal.julius.api.application.port.TransactionEventPort;
 import org.springframework.stereotype.Component;
 
-/**
- * Adapter that implements the TransactionEventPort interface.
- * Converts application DTOs to infrastructure events and publishes them via Kafka.
- */
 @Component
 public class TransactionEventAdapter implements TransactionEventPort {
 

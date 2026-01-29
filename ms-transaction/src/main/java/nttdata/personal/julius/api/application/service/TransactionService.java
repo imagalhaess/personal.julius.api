@@ -35,17 +35,24 @@ public class TransactionService {
         Transaction t = new Transaction();
         t.setUserId(request.userId());
         t.setAmount(request.amount());
-        t.setCurrency(request.currency() != null ? request.currency() : defaultCurrency);
+        String currency = request.currency() != null ? request.currency() : defaultCurrency;
+        t.setCurrency(currency);
+        t.setConvertedAmount(request.amount());
         t.setCategory(request.category());
         t.setType(request.type());
         t.setDescription(request.description());
-        t.setCreatedAt(java.time.LocalDateTime.now()); // Explicitly set creation date
+        t.setCreatedAt(java.time.LocalDateTime.now());
 
         Transaction saved = repository.save(t);
 
         eventPort.publishTransactionCreated(new TransactionCreatedEventDto(
-                saved.getId(), saved.getUserId(), saved.getAmount(), saved.getCurrency(),
-                saved.getType().name(), saved.getCategory().name()
+                saved.getId(), 
+                saved.getUserId(), 
+                saved.getAmount(), 
+                saved.getCurrency(),
+                saved.getType().name(), 
+                saved.getCategory().name(),
+                saved.getCreatedAt()
         ));
 
         return toResponse(saved);

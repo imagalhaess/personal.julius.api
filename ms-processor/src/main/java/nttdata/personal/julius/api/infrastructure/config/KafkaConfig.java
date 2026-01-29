@@ -34,10 +34,9 @@ public class KafkaConfig {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
-        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest"); // Important: skip old poison pills
+        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
 
-        // Configure JsonDeserializer specifically
         JsonDeserializer<Object> jsonDeserializer = new JsonDeserializer<>();
         Map<String, Object> deserializerConfig = new HashMap<>();
         deserializerConfig.put(JsonDeserializer.VALUE_DEFAULT_TYPE, TransactionCreatedEvent.class);
@@ -45,7 +44,6 @@ public class KafkaConfig {
         deserializerConfig.put(JsonDeserializer.USE_TYPE_INFO_HEADERS, false);
         jsonDeserializer.configure(deserializerConfig, false);
 
-        // Wrap in ErrorHandlingDeserializer
         ErrorHandlingDeserializer<Object> errorHandlingDeserializer =
                 new ErrorHandlingDeserializer<>(jsonDeserializer);
 
@@ -63,7 +61,6 @@ public class KafkaConfig {
         factory.setConsumerFactory(consumerFactory());
         factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
         
-        // Log error and continue (skip poison pill)
         factory.setCommonErrorHandler(new DefaultErrorHandler(
                 new FixedBackOff(1000L, 2) // Retry 2 times then skip
         ));

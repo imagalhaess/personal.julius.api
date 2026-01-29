@@ -28,7 +28,6 @@ public class TransactionController {
             Authentication authentication
     ) {
         Long userId = (Long) authentication.getPrincipal();
-        // Allow overriding via body for testing/admin purposes
         if (request.userId() != null) {
             userId = request.userId();
         }

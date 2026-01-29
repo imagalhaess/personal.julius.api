@@ -7,7 +7,7 @@ import org.springframework.kafka.annotation.EnableKafka;
 
 @SpringBootApplication
 @EnableKafka
-public class PersonalJuliusApiApplication {
+public class PersonalJuliusApiUserApplication {
 
     public static void main(String[] args) {
 
@@ -17,7 +17,7 @@ public class PersonalJuliusApiApplication {
         dotenv.entries().forEach(entry -> System.setProperty(entry.getKey(),
                                                              entry.getValue()));
 
-        SpringApplication.run(PersonalJuliusApiApplication.class, args);
+        SpringApplication.run(PersonalJuliusApiUserApplication.class, args);
     }
 
 }

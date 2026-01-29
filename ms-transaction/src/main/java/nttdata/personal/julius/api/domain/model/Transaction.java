@@ -10,11 +10,18 @@ public class Transaction {
     private Long userId;
     private BigDecimal amount;
     private String currency;
+
+    public void setConvertedAmount(BigDecimal convertedAmount) {
+        this.convertedAmount = convertedAmount;
+    }
+
+    private BigDecimal convertedAmount;
     private TransactionStatus status;
     private Category category;
     private TransactionType type;
     private String description;
     private LocalDateTime createdAt;
+
 
     public Transaction() {
         this.status = TransactionStatus.PENDING;
@@ -34,11 +41,6 @@ public class Transaction {
         this.createdAt = createdAt;
     }
 
-    /**
-     * Approves the transaction. Can only be called on PENDING transactions.
-     *
-     * @throws BusinessException if the transaction is not in PENDING status
-     */
     public void approve() {
         if (this.status != TransactionStatus.PENDING) {
             throw new BusinessException("Transação não pode ser aprovada. Status atual: " + this.status);
@@ -46,11 +48,6 @@ public class Transaction {
         this.status = TransactionStatus.APPROVED;
     }
 
-    /**
-     * Rejects the transaction. Can only be called on PENDING transactions.
-     *
-     * @throws BusinessException if the transaction is not in PENDING status
-     */
     public void reject() {
         if (this.status != TransactionStatus.PENDING) {
             throw new BusinessException("Transação não pode ser rejeitada. Status atual: " + this.status);
@@ -132,7 +129,7 @@ public class Transaction {
 
     public enum TransactionStatus {PENDING, APPROVED, REJECTED}
 
-    public enum TransactionType {INCOME, EXPENSE}
+    public enum TransactionType {INCOME, EXPENSE, EXTERNAL}
 
     public enum Category {FOOD, TRANSPORT, LEISURE, HEALTH, EDUCATION, SALARY, INVESTMENT, OTHER}
 }

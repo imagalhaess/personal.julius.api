@@ -1,4 +1,4 @@
-package nttdata.personal.julius.api.api.domain.model;
+package nttdata.personal.julius.api.model;
 
 import nttdata.personal.julius.api.common.exception.BusinessException;
 import nttdata.personal.julius.api.domain.model.Transaction;
