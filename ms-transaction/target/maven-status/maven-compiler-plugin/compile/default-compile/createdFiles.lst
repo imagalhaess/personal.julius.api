@@ -22,7 +22,6 @@ nttdata\personal\julius\api\application\service\ReportService.class
 nttdata\personal\julius\api\domain\model\Transaction$TransactionType.class
 nttdata\personal\julius\api\adapter\dto\BalanceResponse.class
 nttdata\personal\julius\api\infrastructure\messaging\TransactionEventProducer.class
-nttdata\personal\julius\api\domain\exception\BusinessException.class
 nttdata\personal\julius\api\adapter\dto\CurrencyRateDto.class
 nttdata\personal\julius\api\application\port\TransactionEventPort.class
 nttdata\personal\julius\api\adapter\dto\TransactionRequest.class

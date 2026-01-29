@@ -14,7 +14,6 @@ C:\Users\isa\NTTData\ms-transaction\src\main\java\nttdata\personal\julius\api\ap
 C:\Users\isa\NTTData\ms-transaction\src\main\java\nttdata\personal\julius\api\domain\model\Transaction.java
 C:\Users\isa\NTTData\ms-transaction\src\main\java\nttdata\personal\julius\api\adapter\controller\TransactionController.java
 C:\Users\isa\NTTData\ms-transaction\src\main\java\nttdata\personal\julius\api\infrastructure\config\ApplicationConfig.java
-C:\Users\isa\NTTData\ms-transaction\src\main\java\nttdata\personal\julius\api\domain\exception\BusinessException.java
 C:\Users\isa\NTTData\ms-transaction\src\main\java\nttdata\personal\julius\api\application\service\ReportService.java
 C:\Users\isa\NTTData\ms-transaction\src\main\java\nttdata\personal\julius\api\infrastructure\messaging\TransactionEventProducer.java
 C:\Users\isa\NTTData\ms-transaction\src\main\java\nttdata\personal\julius\api\infrastructure\config\TransactionOpenApiConfig.java

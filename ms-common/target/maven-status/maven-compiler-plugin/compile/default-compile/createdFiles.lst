@@ -12,3 +12,4 @@ nttdata\personal\julius\api\common\domain\TransactionOrigin.class
 nttdata\personal\julius\api\common\exception\BusinessException.class
 nttdata\personal\julius\api\common\event\TransactionCreatedEvent.class
 nttdata\personal\julius\api\common\exception\GlobalExceptionHandler.class
+nttdata\personal\julius\api\common\validation\ValidationPatterns.class

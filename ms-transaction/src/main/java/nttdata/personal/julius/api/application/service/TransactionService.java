@@ -39,7 +39,7 @@ public class TransactionService {
         t.setUserId(request.userId());
         t.setAmount(request.amount());
         t.setCurrency(currency);
-        t.setConvertedAmount(request.amount()); // Inicialmente igual ao amount se for BRL
+        t.setConvertedAmount(request.amount());
         t.setExchangeRate(BigDecimal.ONE);
         t.setCategory(request.category());
         t.setType(request.type());

@@ -16,7 +16,6 @@ nttdata\personal\julius\api\adapter\controller\AuthController.class
 nttdata\personal\julius\api\infrastructure\persistence\repository\UserPersistenceAdapter.class
 nttdata\personal\julius\api\adapter\controller\UserController.class
 nttdata\personal\julius\api\adapter\dto\UserUpdateRequest.class
-nttdata\personal\julius\api\domain\exception\BusinessException.class
 nttdata\personal\julius\api\infrastructure\persistence\entity\UserEntity.class
 nttdata\personal\julius\api\infrastructure\persistence\repository\UserJpaRepository.class
 nttdata\personal\julius\api\PersonalJuliusApiUserApplication.class
