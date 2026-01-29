@@ -13,10 +13,12 @@ target/
 # ─────────────────────────────────────────────────────────────────────────────
 # IntelliJ IDEA
 .idea/
+.idea_backup/
 *.iml
 *.iws
 *.ipr
 out/
+.claude/
 
 # Eclipse
 .classpath
