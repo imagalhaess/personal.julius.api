@@ -5,6 +5,7 @@ import nttdata.personal.julius.api.common.event.TransactionProcessedEvent;
 import nttdata.personal.julius.api.infrastructure.client.BrasilApiClient;
 import nttdata.personal.julius.api.infrastructure.client.MockApiClient;
 import nttdata.personal.julius.api.infrastructure.client.dto.ExternalBalanceResponse;
+import nttdata.personal.julius.api.infrastructure.messaging.DlqProducer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,12 +34,14 @@ class TransactionProcessorServiceTest {
     private BrasilApiClient brasilApiClient;
     @Mock
     private MockApiClient mockApiClient;
+    @Mock
+    private DlqProducer dlqProducer;
 
     private TransactionProcessorService service;
 
     @BeforeEach
     void setUp() {
-        service = new TransactionProcessorService(kafkaTemplate, brasilApiClient, mockApiClient);
+        service = new TransactionProcessorService(kafkaTemplate, brasilApiClient, mockApiClient, dlqProducer);
     }
 
     @Test
