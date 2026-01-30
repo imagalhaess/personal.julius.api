@@ -1,5 +1,7 @@
 package nttdata.personal.julius.api.adapter.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import nttdata.personal.julius.api.application.service.AuthService;
 import nttdata.personal.julius.api.application.service.UserService;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "Autenticacao", description = "Endpoints de registro e login")
 public class AuthController {
 
     private final UserService userService;
@@ -27,11 +30,13 @@ public class AuthController {
     }
 
     @PostMapping("/register")
+    @Operation(summary = "Registrar novo usuario", description = "Cria uma nova conta de usuario no sistema")
     public ResponseEntity<UserResponse> register(@RequestBody @Valid UserRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.create(request));
     }
 
     @PostMapping("/login")
+    @Operation(summary = "Autenticar usuario", description = "Realiza login e retorna token JWT")
     public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginRequest request) {
         return ResponseEntity.ok(authService.login(request));
     }
