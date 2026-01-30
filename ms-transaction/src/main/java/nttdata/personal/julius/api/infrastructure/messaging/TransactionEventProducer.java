@@ -1,5 +1,6 @@
 package nttdata.personal.julius.api.infrastructure.messaging;
 
+import nttdata.personal.julius.api.common.event.TransactionCreatedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,6 +1,7 @@
 package nttdata.personal.julius.api.infrastructure.messaging;
 
 import nttdata.personal.julius.api.application.service.TransactionService;
+import nttdata.personal.julius.api.common.event.TransactionProcessedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -25,7 +26,7 @@ public class TransactionEventConsumer {
 
         try {
             if (event.approved()) {
-                transactionService.approve(event.transactionId());
+                transactionService.approve(event.transactionId(), event.convertedAmount(), event.exchangeRate());
                 log.info("Transação {} finalizada com sucesso (APROVADA).", event.transactionId());
             } else {
                 transactionService.reject(event.transactionId(), event.reason());

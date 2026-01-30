@@ -18,6 +18,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/users")
 @Tag(name = "Usuários", description = "Gerenciamento de usuários")
+@CrossOrigin(origins = "*")
 public class UserController {
 
     private final UserService userService;
@@ -57,6 +58,7 @@ public class UserController {
 
     @PostMapping(value = "/import", consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Importar usuários via planilha Excel")
+    @CrossOrigin
     public ResponseEntity<ImportReportDto> importUsers(@RequestParam("file") MultipartFile file) {
         ImportReportDto report = userImportService.importUsers(file);
         return ResponseEntity.ok(report);

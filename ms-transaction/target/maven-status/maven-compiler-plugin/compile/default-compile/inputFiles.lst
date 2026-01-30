@@ -20,8 +20,6 @@ C:\Users\isa\NTTData\ms-transaction\src\main\java\nttdata\personal\julius\api\in
 C:\Users\isa\NTTData\ms-transaction\src\main\java\nttdata\personal\julius\api\infrastructure\messaging\TransactionEventProducer.java
 C:\Users\isa\NTTData\ms-transaction\src\main\java\nttdata\personal\julius\api\infrastructure\config\TransactionOpenApiConfig.java
 C:\Users\isa\NTTData\ms-transaction\src\main\java\nttdata\personal\julius\api\application\port\TransactionEventPort.java
-C:\Users\isa\NTTData\ms-transaction\src\main\java\nttdata\personal\julius\api\infrastructure\messaging\TransactionProcessedEvent.java
-C:\Users\isa\NTTData\ms-transaction\src\main\java\nttdata\personal\julius\api\infrastructure\messaging\TransactionCreatedEvent.java
 C:\Users\isa\NTTData\ms-transaction\src\main\java\nttdata\personal\julius\api\infrastructure\security\SecurityConfig.java
 C:\Users\isa\NTTData\ms-transaction\src\main\java\nttdata\personal\julius\api\adapter\client\CurrencyApiClient.java
 C:\Users\isa\NTTData\ms-transaction\src\main\java\nttdata\personal\julius\api\infrastructure\config\KafkaConfig.java

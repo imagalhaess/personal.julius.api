@@ -59,20 +59,7 @@ public class TransactionPersistenceAdapter implements TransactionRepository {
     }
 
     private TransactionEntity toEntity(Transaction t) {
-        TransactionEntity e = new TransactionEntity();
-        e.setId(t.getId());
-        e.setUserId(t.getUserId());
-        e.setAmount(t.getAmount());
-        e.setCurrency(t.getCurrency());
-        e.setConvertedAmount(t.getConvertedAmount());
-        e.setExchangeRate(t.getExchangeRate());
-        e.setCategory(t.getCategory());
-        e.setType(t.getType());
-        e.setOrigin(t.getOrigin());
-        e.setDescription(t.getDescription());
-        e.setCreatedAt(t.getCreatedAt());
-        e.setStatus(t.getStatus());
-        return e;
+        return TransactionEntity.fromDomain(t);
     }
 
     private Transaction toDomain(TransactionEntity e) {

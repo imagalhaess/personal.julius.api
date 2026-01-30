@@ -20,6 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/transactions")
 @Tag(name = "Transações", description = "Operações financeiras e relatórios")
+@CrossOrigin(origins = "*")
 public class TransactionController {
 
     private final TransactionService service;
@@ -92,19 +93,5 @@ public class TransactionController {
     ) {
         Long userId = SecurityUtils.getAuthenticatedUserId();
         return ResponseEntity.ok(service.update(id, request.withUserId(userId)));
-    }
-
-    @PostMapping("/{id}/approve")
-    @Operation(summary = "Aprovar uma transação (Interno)")
-    public ResponseEntity<Void> approve(@PathVariable Long id) {
-        service.approve(id);
-        return ResponseEntity.ok().build();
-    }
-
-    @PostMapping("/{id}/reject")
-    @Operation(summary = "Rejeitar uma transação (Interno)")
-    public ResponseEntity<Void> reject(@PathVariable Long id, @RequestParam String reason) {
-        service.reject(id, reason);
-        return ResponseEntity.ok().build();
     }
 }

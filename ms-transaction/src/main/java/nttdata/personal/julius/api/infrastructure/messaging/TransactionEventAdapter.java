@@ -2,6 +2,7 @@ package nttdata.personal.julius.api.infrastructure.messaging;
 
 import nttdata.personal.julius.api.application.dto.TransactionCreatedEventDto;
 import nttdata.personal.julius.api.application.port.TransactionEventPort;
+import nttdata.personal.julius.api.common.event.TransactionCreatedEvent;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,7 +23,8 @@ public class TransactionEventAdapter implements TransactionEventPort {
                 dto.currency(),
                 dto.type(),
                 dto.category(),
-                dto.origin()
+                dto.origin(),
+                dto.createdAt()
         );
         producer.send(event);
     }

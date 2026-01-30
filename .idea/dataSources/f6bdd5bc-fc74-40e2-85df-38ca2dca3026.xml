@@ -11,8 +11,9 @@
 4||10|c|G
 4||10|C|G
 4||10|T|G</Grants>
+      <IntrospectionStateNumber>788</IntrospectionStateNumber>
       <ServerVersion>18.1</ServerVersion>
-      <StartupTime>1769608599</StartupTime>
+      <StartupTime>1769729060</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -706,6 +707,7 @@ false posixrules
 13293||10|C|G
 13293||-9223372036854775808|U|G
 13293||10|U|G</Grants>
+      <IntrospectionStateNumber>788</IntrospectionStateNumber>
       <ObjectId>16384</ObjectId>
       <OwnerName>julius_user</OwnerName>
     </database>
@@ -714,58 +716,7 @@ false posixrules
       <ObjectId>5</ObjectId>
       <OwnerName>julius_user</OwnerName>
     </database>
-    <role id="4" parent="1" name="pg_database_owner">
-      <ObjectId>6171</ObjectId>
-    </role>
-    <role id="5" parent="1" name="pg_read_all_data">
-      <ObjectId>6181</ObjectId>
-    </role>
-    <role id="6" parent="1" name="pg_write_all_data">
-      <ObjectId>6182</ObjectId>
-    </role>
-    <role id="7" parent="1" name="pg_monitor">
-      <ObjectId>3373</ObjectId>
-      <RoleGrants>3374
-3375
-3377</RoleGrants>
-    </role>
-    <role id="8" parent="1" name="pg_read_all_settings">
-      <ObjectId>3374</ObjectId>
-    </role>
-    <role id="9" parent="1" name="pg_read_all_stats">
-      <ObjectId>3375</ObjectId>
-    </role>
-    <role id="10" parent="1" name="pg_stat_scan_tables">
-      <ObjectId>3377</ObjectId>
-    </role>
-    <role id="11" parent="1" name="pg_read_server_files">
-      <ObjectId>4569</ObjectId>
-    </role>
-    <role id="12" parent="1" name="pg_write_server_files">
-      <ObjectId>4570</ObjectId>
-    </role>
-    <role id="13" parent="1" name="pg_execute_server_program">
-      <ObjectId>4571</ObjectId>
-    </role>
-    <role id="14" parent="1" name="pg_signal_backend">
-      <ObjectId>4200</ObjectId>
-    </role>
-    <role id="15" parent="1" name="pg_checkpoint">
-      <ObjectId>4544</ObjectId>
-    </role>
-    <role id="16" parent="1" name="pg_maintain">
-      <ObjectId>6337</ObjectId>
-    </role>
-    <role id="17" parent="1" name="pg_use_reserved_connections">
-      <ObjectId>4550</ObjectId>
-    </role>
-    <role id="18" parent="1" name="pg_create_subscription">
-      <ObjectId>6304</ObjectId>
-    </role>
-    <role id="19" parent="1" name="pg_signal_autovacuum_worker">
-      <ObjectId>6392</ObjectId>
-    </role>
-    <role id="20" parent="1" name="julius_user">
+    <role id="4" parent="1" name="julius_user">
       <BypassRls>1</BypassRls>
       <CanLogin>1</CanLogin>
       <CreateDb>1</CreateDb>
@@ -773,6 +724,57 @@ false posixrules
       <ObjectId>10</ObjectId>
       <Replication>1</Replication>
       <SuperRole>1</SuperRole>
+    </role>
+    <role id="5" parent="1" name="pg_checkpoint">
+      <ObjectId>4544</ObjectId>
+    </role>
+    <role id="6" parent="1" name="pg_create_subscription">
+      <ObjectId>6304</ObjectId>
+    </role>
+    <role id="7" parent="1" name="pg_database_owner">
+      <ObjectId>6171</ObjectId>
+    </role>
+    <role id="8" parent="1" name="pg_execute_server_program">
+      <ObjectId>4571</ObjectId>
+    </role>
+    <role id="9" parent="1" name="pg_maintain">
+      <ObjectId>6337</ObjectId>
+    </role>
+    <role id="10" parent="1" name="pg_monitor">
+      <ObjectId>3373</ObjectId>
+      <RoleGrants>3374
+3375
+3377</RoleGrants>
+    </role>
+    <role id="11" parent="1" name="pg_read_all_data">
+      <ObjectId>6181</ObjectId>
+    </role>
+    <role id="12" parent="1" name="pg_read_all_settings">
+      <ObjectId>3374</ObjectId>
+    </role>
+    <role id="13" parent="1" name="pg_read_all_stats">
+      <ObjectId>3375</ObjectId>
+    </role>
+    <role id="14" parent="1" name="pg_read_server_files">
+      <ObjectId>4569</ObjectId>
+    </role>
+    <role id="15" parent="1" name="pg_signal_autovacuum_worker">
+      <ObjectId>6392</ObjectId>
+    </role>
+    <role id="16" parent="1" name="pg_signal_backend">
+      <ObjectId>4200</ObjectId>
+    </role>
+    <role id="17" parent="1" name="pg_stat_scan_tables">
+      <ObjectId>3377</ObjectId>
+    </role>
+    <role id="18" parent="1" name="pg_use_reserved_connections">
+      <ObjectId>4550</ObjectId>
+    </role>
+    <role id="19" parent="1" name="pg_write_all_data">
+      <ObjectId>6182</ObjectId>
+    </role>
+    <role id="20" parent="1" name="pg_write_server_files">
+      <ObjectId>4570</ObjectId>
     </role>
     <tablespace id="21" parent="1" name="pg_default">
       <ObjectId>1663</ObjectId>
@@ -4226,13 +4228,16 @@ false posixrules
       <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
       <Comment>standard public schema</Comment>
       <Current>1</Current>
+      <LastIntrospectionL1Xid>788</LastIntrospectionL1Xid>
+      <LastIntrospectionL2Xid>788</LastIntrospectionL2Xid>
+      <LastIntrospectionL3Xid>788</LastIntrospectionL3Xid>
       <LastIntrospectionLevel>3</LastIntrospectionLevel>
-      <LastIntrospectionLocalTimestamp>2026-01-27.22:26:43</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2026-01-30.01:28:52</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>546</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
-    <sequence id="273" parent="272" name="transactions_id_seq">
+    <sequence id="273" parent="272" name="dlq_messages_id_seq">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>16389</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
@@ -4241,32 +4246,36 @@ false posixrules
       <StoredType>bigint|0s</StoredType>
       <OwnerName>julius_user</OwnerName>
     </sequence>
-    <table id="274" parent="272" name="transactions">
+    <sequence id="274" parent="272" name="transactions_id_seq">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>16398</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>766</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <OwnerName>julius_user</OwnerName>
+    </sequence>
+    <table id="275" parent="272" name="dlq_messages">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>16390</ObjectId>
       <StateNumber>765</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>julius_user</OwnerName>
     </table>
-    <check id="275" parent="274" name="transactions_category_check">
-      <ColNames>category</ColNames>
+    <table id="276" parent="272" name="transactions">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>16399</ObjectId>
+      <StateNumber>766</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>julius_user</OwnerName>
+    </table>
+    <check id="277" parent="275" name="transactions_category_check">
+      <ColNames>error_message</ColNames>
       <ObjectId>16393</ObjectId>
       <Predicate>(category)::text = ANY ((ARRAY[&apos;FOOD&apos;::character varying, &apos;TRANSPORT&apos;::character varying, &apos;LEISURE&apos;::character varying, &apos;HEALTH&apos;::character varying, &apos;EDUCATION&apos;::character varying, &apos;SALARY&apos;::character varying, &apos;INVESTMENT&apos;::character varying, &apos;OTHER&apos;::character varying])::text[])</Predicate>
       <StateNumber>765</StateNumber>
     </check>
-    <check id="276" parent="274" name="transactions_status_check">
-      <ColNames>status</ColNames>
-      <ObjectId>16394</ObjectId>
-      <Predicate>(status)::text = ANY ((ARRAY[&apos;PENDING&apos;::character varying, &apos;APPROVED&apos;::character varying, &apos;REJECTED&apos;::character varying])::text[])</Predicate>
-      <StateNumber>765</StateNumber>
-    </check>
-    <check id="277" parent="274" name="transactions_type_check">
-      <ColNames>type</ColNames>
-      <ObjectId>16395</ObjectId>
-      <Predicate>(type)::text = ANY ((ARRAY[&apos;INCOME&apos;::character varying, &apos;EXPENSE&apos;::character varying])::text[])</Predicate>
-      <StateNumber>765</StateNumber>
-    </check>
-    <column id="278" parent="274" name="id">
+    <column id="278" parent="275" name="id">
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4275,73 +4284,206 @@ false posixrules
       <SequenceId>16389</SequenceId>
       <TypeId>20</TypeId>
     </column>
-    <column id="279" parent="274" name="amount">
-      <NotNull>1</NotNull>
+    <column id="279" parent="275" name="created_at">
       <Position>2</Position>
       <StateNumber>765</StateNumber>
-      <StoredType>numeric(38,2 digit)|0s</StoredType>
-      <TypeId>1700</TypeId>
+      <StoredType>timestamp(6)|0s</StoredType>
+      <TypeId>1114</TypeId>
     </column>
-    <column id="280" parent="274" name="category">
+    <column id="280" parent="275" name="error_message">
       <Position>3</Position>
       <StateNumber>765</StateNumber>
-      <StoredType>varchar(255)|0s</StoredType>
-      <TypeId>1043</TypeId>
+      <StoredType>text|0s</StoredType>
+      <TypeId>25</TypeId>
     </column>
-    <column id="281" parent="274" name="created_at">
+    <column id="281" parent="275" name="failed_at">
       <Position>4</Position>
       <StateNumber>765</StateNumber>
       <StoredType>timestamp(6)|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <column id="282" parent="274" name="currency">
-      <NotNull>1</NotNull>
+    <column id="282" parent="275" name="original_event">
       <Position>5</Position>
       <StateNumber>765</StateNumber>
-      <StoredType>varchar(255)|0s</StoredType>
-      <TypeId>1043</TypeId>
+      <StoredType>text|0s</StoredType>
+      <TypeId>25</TypeId>
     </column>
-    <column id="283" parent="274" name="description">
+    <column id="283" parent="275" name="source_service">
       <Position>6</Position>
       <StateNumber>765</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="284" parent="274" name="status">
-      <NotNull>1</NotNull>
+    <column id="284" parent="275" name="transaction_id">
       <Position>7</Position>
       <StateNumber>765</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="285" parent="274" name="type">
-      <Position>9</Position>
-      <StateNumber>765</StateNumber>
-      <StoredType>varchar(255)|0s</StoredType>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="286" parent="274" name="user_id">
-      <NotNull>1</NotNull>
-      <Position>10</Position>
-      <StateNumber>765</StateNumber>
-      <StoredType>bigint|0s</StoredType>
-      <TypeId>20</TypeId>
-    </column>
-    <index id="287" parent="274" name="transactions_pkey">
+    <index id="285" parent="275" name="dlq_messages_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16403</ObjectId>
+      <ObjectId>16396</ObjectId>
       <Primary>1</Primary>
       <StateNumber>765</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="288" parent="274" name="transactions_pkey">
+    <key id="286" parent="275" name="dlq_messages_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16397</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>765</StateNumber>
+      <UnderlyingIndexId>16396</UnderlyingIndexId>
+    </key>
+    <key id="287" parent="275" name="transactions_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16404</ObjectId>
       <Primary>1</Primary>
       <StateNumber>765</StateNumber>
       <UnderlyingIndexId>16403</UnderlyingIndexId>
+    </key>
+    <check id="288" parent="276" name="transactions_category_check">
+      <ColNames>category</ColNames>
+      <ObjectId>16402</ObjectId>
+      <Predicate>(category)::text = ANY ((ARRAY[&apos;FOOD&apos;::character varying, &apos;TRANSPORT&apos;::character varying, &apos;LEISURE&apos;::character varying, &apos;HEALTH&apos;::character varying, &apos;EDUCATION&apos;::character varying, &apos;OTHER&apos;::character varying, &apos;SALARY&apos;::character varying, &apos;INVESTMENT&apos;::character varying])::text[])</Predicate>
+      <StateNumber>766</StateNumber>
+    </check>
+    <check id="289" parent="276" name="transactions_origin_check">
+      <ColNames>origin</ColNames>
+      <ObjectId>16403</ObjectId>
+      <Predicate>(origin)::text = ANY ((ARRAY[&apos;ACCOUNT&apos;::character varying, &apos;CASH&apos;::character varying])::text[])</Predicate>
+      <StateNumber>766</StateNumber>
+    </check>
+    <check id="290" parent="276" name="transactions_status_check">
+      <ColNames>status</ColNames>
+      <ObjectId>16404</ObjectId>
+      <Predicate>(status)::text = ANY ((ARRAY[&apos;PENDING&apos;::character varying, &apos;APPROVED&apos;::character varying, &apos;REJECTED&apos;::character varying])::text[])</Predicate>
+      <StateNumber>766</StateNumber>
+    </check>
+    <check id="291" parent="276" name="transactions_type_check">
+      <ColNames>type</ColNames>
+      <ObjectId>16405</ObjectId>
+      <Predicate>(type)::text = ANY ((ARRAY[&apos;INCOME&apos;::character varying, &apos;EXPENSE&apos;::character varying, &apos;EXTERNAL&apos;::character varying])::text[])</Predicate>
+      <StateNumber>766</StateNumber>
+    </check>
+    <column id="292" parent="276" name="id">
+      <IdentityKind>by-default</IdentityKind>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>766</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <SequenceId>16398</SequenceId>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="293" parent="276" name="amount">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>766</StateNumber>
+      <StoredType>numeric(38,2 digit)|0s</StoredType>
+      <TypeId>1700</TypeId>
+    </column>
+    <column id="294" parent="276" name="category">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>766</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="295" parent="276" name="converted_amount">
+      <Position>4</Position>
+      <StateNumber>782</StateNumber>
+      <StoredType>numeric(38,2 digit)|0s</StoredType>
+      <TypeId>1700</TypeId>
+    </column>
+    <column id="296" parent="276" name="created_at">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>766</StateNumber>
+      <StoredType>timestamp(6)|0s</StoredType>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="297" parent="276" name="currency">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StateNumber>766</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="298" parent="276" name="description">
+      <Position>7</Position>
+      <StateNumber>766</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="299" parent="276" name="exchange_rate">
+      <Position>8</Position>
+      <StateNumber>766</StateNumber>
+      <StoredType>numeric(38,2 digit)|0s</StoredType>
+      <TypeId>1700</TypeId>
+    </column>
+    <column id="300" parent="276" name="origin">
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+      <StateNumber>766</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="301" parent="276" name="public_id">
+      <NotNull>1</NotNull>
+      <Position>10</Position>
+      <StateNumber>766</StateNumber>
+      <StoredType>uuid|0s</StoredType>
+      <TypeId>2950</TypeId>
+    </column>
+    <column id="302" parent="276" name="status">
+      <NotNull>1</NotNull>
+      <Position>11</Position>
+      <StateNumber>766</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="303" parent="276" name="type">
+      <NotNull>1</NotNull>
+      <Position>12</Position>
+      <StateNumber>766</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="304" parent="276" name="user_id">
+      <NotNull>1</NotNull>
+      <Position>13</Position>
+      <StateNumber>766</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="305" parent="276" name="transactions_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16419</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>766</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="306" parent="276" name="uk6ks0c2b0w4pnaq4v2heh7ychx">
+      <ColNames>public_id</ColNames>
+      <ObjectId>16421</ObjectId>
+      <StateNumber>768</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="307" parent="276" name="transactions_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16420</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>766</StateNumber>
+      <UnderlyingIndexId>16419</UnderlyingIndexId>
+    </key>
+    <key id="308" parent="276" name="uk6ks0c2b0w4pnaq4v2heh7ychx">
+      <ObjectId>16422</ObjectId>
+      <StateNumber>768</StateNumber>
+      <UnderlyingIndexId>16421</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "bal-001",
+    "accountId": 1,
+    "amount": 1500.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-002",
+    "accountId": 2,
+    "amount": 25000.50,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-003",
+    "accountId": 3,
+    "amount": 500.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-004",
+    "accountId": 4,
+    "amount": 12000.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-005",
+    "accountId": 5,
+    "amount": 320.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-006",
+    "accountId": 6,
+    "amount": 50000.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-007",
+    "accountId": 7,
+    "amount": 750.75,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-008",
+    "accountId": 8,
+    "amount": 0.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-009",
+    "accountId": 9,
+    "amount": 1000000.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-010",
+    "accountId": 10,
+    "amount": 4500.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-011",
+    "accountId": 11,
+    "amount": 200.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-012",
+    "accountId": 12,
+    "amount": 8900.50,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-013",
+    "accountId": 13,
+    "amount": 15000.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-014",
+    "accountId": 14,
+    "amount": 50.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-015",
+    "accountId": 15,
+    "amount": 3000.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-016",
+    "accountId": 16,
+    "amount": 600.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-017",
+    "accountId": 17,
+    "amount": 9500.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-018",
+    "accountId": 18,
+    "amount": 1250.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-019",
+    "accountId": 19,
+    "amount": 45000.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-020",
+    "accountId": 20,
+    "amount": 10.00,
+    "currency": "BRL"
+  }
+]

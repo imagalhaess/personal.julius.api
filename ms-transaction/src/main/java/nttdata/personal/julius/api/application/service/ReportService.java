@@ -37,11 +37,11 @@ public class ReportService {
             for (Transaction t : transactions) {
                 Row row = sheet.createRow(rowIdx++);
                 row.createCell(0).setCellValue(t.getId());
-                row.createCell(1).setCellValue(t.getAmount().doubleValue());
-                row.createCell(2).setCellValue(t.getCurrency());
-                row.createCell(3).setCellValue(t.getConvertedAmount().doubleValue());
-                row.createCell(4).setCellValue(t.getStatus().name());
-                row.createCell(5).setCellValue(t.getCreatedAt().toString());
+                row.createCell(1).setCellValue(t.getAmount() != null ? t.getAmount().doubleValue() : 0);
+                row.createCell(2).setCellValue(t.getCurrency() != null ? t.getCurrency() : "-");
+                row.createCell(3).setCellValue(t.getConvertedAmount() != null ? t.getConvertedAmount().doubleValue() : 0);
+                row.createCell(4).setCellValue(t.getStatus() != null ? t.getStatus().name() : "PENDING");
+                row.createCell(5).setCellValue(t.getCreatedAt() != null ? t.getCreatedAt().toString() : "-");
             }
 
             workbook.write(out);

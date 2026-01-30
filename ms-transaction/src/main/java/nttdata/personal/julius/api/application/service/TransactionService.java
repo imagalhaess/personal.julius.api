@@ -39,8 +39,15 @@ public class TransactionService {
         t.setUserId(request.userId());
         t.setAmount(request.amount());
         t.setCurrency(currency);
-        t.setConvertedAmount(request.amount());
-        t.setExchangeRate(BigDecimal.ONE);
+        
+        if ("BRL".equals(currency)) {
+            t.setConvertedAmount(request.amount());
+            t.setExchangeRate(BigDecimal.ONE);
+        } else {
+            t.setConvertedAmount(null);
+            t.setExchangeRate(null);
+        }
+
         t.setCategory(request.category());
         t.setType(request.type());
         t.setOrigin(request.origin() != null ? request.origin() : nttdata.personal.julius.api.common.domain.TransactionOrigin.ACCOUNT);
@@ -52,13 +59,14 @@ public class TransactionService {
 
         // Publica evento
         eventPort.publishTransactionCreated(new nttdata.personal.julius.api.application.dto.TransactionCreatedEventDto(
-                saved.getPublicId(), 
+                saved.getId(), 
                 saved.getUserId(), 
                 saved.getAmount(), 
                 saved.getCurrency(),
                 saved.getType().name(), 
                 saved.getCategory().name(),
-                saved.getOrigin()
+                saved.getOrigin(),
+                saved.getCreatedAt()
         ));
 
         return toResponse(saved);
@@ -89,9 +97,15 @@ public class TransactionService {
     }
 
     @Transactional
-    public void approve(Long transactionId) {
+    public void approve(Long transactionId, BigDecimal convertedAmount, BigDecimal exchangeRate) {
         Transaction t = repository.findById(transactionId).orElseThrow();
         t.approve();
+        if (convertedAmount != null) {
+            t.setConvertedAmount(convertedAmount);
+        }
+        if (exchangeRate != null) {
+            t.setExchangeRate(exchangeRate);
+        }
         repository.save(t);
     }
 
