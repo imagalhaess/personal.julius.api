@@ -2,7 +2,8 @@
 
 ## Visao Geral da Arquitetura
 
-A aplicacao Julius API eh composta por **3 microsservicos** que se comunicam de forma **assincrona via Apache Kafka** e **sincrona via REST**:
+A aplicacao Julius API é composta por **3 microsservicos** que se comunicam de forma **assincrona via Apache Kafka** 
+e **sincrona via REST**:
 
 ```
 ┌─────────────────┐     ┌─────────────────────┐     ┌─────────────────┐
@@ -135,7 +136,7 @@ Cliente HTTP                    Qualquer MS
 
 ### 2.1 Criacao de Transacao (Fluxo Completo)
 
-Este eh o fluxo mais complexo, envolvendo comunicacao assincrona:
+Este é o fluxo mais complexo, envolvendo comunicacao assincrona:
 
 ```
 ┌──────────┐     ┌───────────────────┐     ┌─────────┐     ┌──────────────┐     ┌──────────┐
@@ -222,7 +223,10 @@ TransactionCreatedEvent event = new TransactionCreatedEvent(
 - Logica de aprovacao:
   - Se `type == INCOME`: aprovado automaticamente (receita)
   - Se `type == EXPENSE` e `origin == CASH`: aprovado automaticamente
-  - Se `type == EXPENSE` e `origin == ACCOUNT`: valida saldo via MockAPI
+  - Se `type == EXPENSE` e `origin == ACCOUNT`:
+    - Consulta saldo externo via MockAPI
+    - Se tem saldo externo → valida se suficiente
+    - Se NAO tem saldo externo → aprova automaticamente
 - Codigo: `TransactionProcessorService.process()`
 
 **PASSO 5: Resultado publicado**
@@ -245,7 +249,20 @@ TransactionProcessedEvent result = new TransactionProcessedEvent(
 
 ### 2.2 Fluxo de Erro (Dead Letter Queue)
 
-Quando ocorre erro no processamento, a mensagem eh enviada para o topico DLQ e persistida no banco:
+Quando ocorre erro tecnico no processamento, a mensagem eh enviada para o topico DLQ e persistida no banco.
+
+**Erros que vao para o DLQ:**
+| Erro | Causa |
+|------|-------|
+| `CURRENCY_CONVERSION_FAILED` | Falha ao obter cotacao da BrasilAPI |
+| `EXTERNAL_BANK_ERROR` | Falha ao consultar saldo no MockAPI |
+| `INTERNAL_ERROR` | Excecao nao tratada durante processamento |
+| `UNEXPECTED_ERROR` | Excecao no consumer antes de chamar o service |
+
+**Erros que NAO vao para o DLQ:**
+| Erro | Motivo |
+|------|--------|
+| `INSUFFICIENT_FUNDS` | Regra de negocio valida, nao eh falha tecnica |
 
 ```
 ┌───────────────┐     ┌─────────┐     ┌───────────────┐
@@ -292,8 +309,8 @@ CREATE TABLE dlq_messages (
 ```
 
 **Componentes envolvidos:**
-- `DlqProducer` (ms-transaction): Envia erros para o topico
-- `TransactionEventConsumer` (ms-processor): Captura erros e envia para DLQ
+- `DlqProducer` (ms-processor): Envia erros tecnicos para o topico DLQ
+- `DlqProducer` (ms-transaction): Envia erros de persistencia para o topico DLQ
 - `DlqConsumer` (ms-transaction): Consome do topico e persiste no banco
 - `DlqEntity` / `DlqJpaRepository`: Persistencia JPA
 
@@ -350,6 +367,33 @@ Cliente HTTP                    MS-TRANSACTION                  PostgreSQL
 
 ---
 
+### 3.3 Relatorios Financeiros (PDF e Excel)
+
+**Endpoints:**
+- `GET /transactions/report/pdf` - Baixa relatorio em PDF
+- `GET /transactions/report/excel` - Baixa relatorio em Excel
+
+**Calculo de Totais:**
+- Apenas transacoes com status `APPROVED` sao consideradas no calculo
+- Usa `convertedAmount` (valor em BRL) quando disponivel, senao `amount`
+- Transacoes `PENDING` e `REJECTED` aparecem no relatorio mas NAO somam no total
+
+```
+Para cada transacao:
+  │
+  ├─ Status != APPROVED? ──→ Ignora no calculo
+  │
+  └─ Status == APPROVED?
+       ├─ INCOME  → soma em totalIncome
+       └─ EXPENSE → soma em totalExpense
+
+Saldo = totalIncome - totalExpense
+```
+
+**Codigo:** `ReportService.java` (ms-transaction)
+
+---
+
 ## 4. Integracao com APIs Externas
 
 ### 4.1 BrasilAPI (Taxa de Cambio)
@@ -373,14 +417,16 @@ MS-PROCESSOR                     BrasilAPI
 
 ---
 
-### 4.2 MockAPI (Saldo do Usuario)
+### 4.2 MockAPI (Carteira Externa - Somente Leitura)
 
-**Uso:** Validacao de saldo para transacoes EXPENSE + ACCOUNT
+**Uso:** Consulta de saldo em carteira externa para transacoes EXPENSE + ACCOUNT
+
+**Importante:** A integracao eh **somente leitura**. Nao criamos nem atualizamos saldo na API externa.
 
 ```
 MS-PROCESSOR                     MockAPI
      │                              │
-     │  GET /saldos?accountId={id}  │
+     │  GET /balances?accountId={id}│
      │────────────────────────────>│
      │                              │
      │  [                           │
@@ -390,7 +436,11 @@ MS-PROCESSOR                     MockAPI
      │<────────────────────────────│
 ```
 
-**Cliente Feign:** `MockApiClient.java` (ms-processor)
+**Logica de validacao:**
+- Se usuario tem saldo externo → valida contra esse saldo
+- Se usuario NAO tem saldo externo → aprova automaticamente (controle interno via transacoes)
+
+**Cliente Feign:** `MockApiClient.java` (ms-processor) - apenas `GET /balances`
 
 ---
 

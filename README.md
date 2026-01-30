@@ -1,6 +1,9 @@
 # Julius API - Gestao Financeira Pessoal
 
+
 Sistema de microsservicos para controle financeiro, com suporte a multiplas moedas e integracao com APIs externas.
+
+>*Se não comprar, o desconto é maior!*
 
 ## Tecnologias
 *   Java 21 / Spring Boot 4.0.1

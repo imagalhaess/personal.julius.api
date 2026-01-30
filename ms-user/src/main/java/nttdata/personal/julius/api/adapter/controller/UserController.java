@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -27,14 +26,6 @@ public class UserController {
     public UserController(UserService userService, UserImportService userImportService) {
         this.userService = userService;
         this.userImportService = userImportService;
-    }
-
-    @GetMapping
-    @Operation(summary = "Listar todos os usuários ativos")
-    public ResponseEntity<List<UserResponse>> listAll(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "20") int size) {
-        return ResponseEntity.ok(userService.findAll(page, size));
     }
 
     @GetMapping("/{id}")

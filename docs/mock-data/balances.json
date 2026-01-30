@@ -1,0 +1,34 @@
+[
+  {
+    "id": "bal-001",
+    "accountId": 1,
+    "userId": 1,
+    "userName": "Maria Excel",
+    "amount": 5000.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-002",
+    "accountId": 2,
+    "userId": 2,
+    "userName": "Joao Planilha",
+    "amount": 12500.75,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-003",
+    "accountId": 3,
+    "userId": 3,
+    "userName": "Maria Pdf",
+    "amount": 850.00,
+    "currency": "BRL"
+  },
+  {
+    "id": "bal-004",
+    "accountId": 4,
+    "userId": 4,
+    "userName": "Joao Notebook",
+    "amount": 23000.50,
+    "currency": "BRL"
+  }
+]

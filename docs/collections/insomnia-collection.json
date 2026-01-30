@@ -1,0 +1,1326 @@
+{
+	"log": {
+		"version": "1.2",
+		"creator": {
+			"name": "Insomnia REST Client",
+			"version": "insomnia.desktop.app:v12.3.0"
+		},
+		"entries": [
+			{
+				"startedDateTime": "2026-01-30T15:29:45.346Z",
+				"time": 37.712,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8082/transactions",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.3.0"
+						},
+						{
+							"name": "Authorization",
+							"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwidXNlcklkIjoxLCJzdWIiOiJ0ZXN0ZTEzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzY5Nzc3NjQwLCJleHAiOjE3Njk4NjQwNDB9.MJve88ljH-HqsDlgGXyvPB_H77_sK4GY9znoUZWbbaEgbxdCTsfOaTuwwPZUPJ1A"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{                      \n    \"amount\": 100.00,                     \n    \"currency\": \"USD\",      \n    \"type\": \"EXPENSE\",                     \n    \"category\": \"FOOD\",                   \n    \"description\": \"Almoco\",               \n    \"origin\": \"ACCOUNT\"                     \n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 201,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"name": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"name": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"name": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"name": "Expires",
+							"value": "0"
+						},
+						{
+							"name": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Fri, 30 Jan 2026 13:02:41 GMT"
+						}
+					],
+					"content": {
+						"size": 240,
+						"mimeType": "application/json",
+						"text": "{\"id\":5,\"sourceCurrency\":\"USD\",\"targetCurrency\":\"BRL\",\"originalAmount\":100.00,\"exchangeRate\":null,\"convertedAmount\":null,\"status\":\"PENDING\",\"description\":\"Almoco\",\"createdAt\":\"2026-01-30T10:02:41.5617291\",\"category\":\"FOOD\",\"type\":\"EXPENSE\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 37.712,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Criar Transação"
+			},
+			{
+				"startedDateTime": "2026-01-30T15:29:45.346Z",
+				"time": 98.378,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8082/transactions?page=0&size=10",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.3.0"
+						},
+						{
+							"name": "Authorization",
+							"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwidXNlcklkIjoxLCJzdWIiOiJ0ZXN0ZTEzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzY5Nzc3NjQwLCJleHAiOjE3Njk4NjQwNDB9.MJve88ljH-HqsDlgGXyvPB_H77_sK4GY9znoUZWbbaEgbxdCTsfOaTuwwPZUPJ1A"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"name": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"name": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"name": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"name": "Expires",
+							"value": "0"
+						},
+						{
+							"name": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Fri, 30 Jan 2026 13:03:05 GMT"
+						}
+					],
+					"content": {
+						"size": 731,
+						"mimeType": "application/json",
+						"text": "[{\"id\":3,\"sourceCurrency\":\"BRL\",\"targetCurrency\":\"BRL\",\"originalAmount\":1000.00,\"exchangeRate\":1.00,\"convertedAmount\":1000.00,\"status\":\"APPROVED\",\"description\":\"Almoco\",\"createdAt\":\"2026-01-30T09:54:20.88692\",\"category\":\"FOOD\",\"type\":\"INCOME\"},{\"id\":4,\"sourceCurrency\":\"BRL\",\"targetCurrency\":\"BRL\",\"originalAmount\":1000.00,\"exchangeRate\":1.00,\"convertedAmount\":1000.00,\"status\":\"APPROVED\",\"description\":\"Almoco\",\"createdAt\":\"2026-01-30T09:59:04.051989\",\"category\":\"FOOD\",\"type\":\"INCOME\"},{\"id\":5,\"sourceCurrency\":\"USD\",\"targetCurrency\":\"BRL\",\"originalAmount\":100.00,\"exchangeRate\":5.20,\"convertedAmount\":519.56,\"status\":\"APPROVED\",\"description\":\"Almoco\",\"createdAt\":\"2026-01-30T10:02:41.561729\",\"category\":\"FOOD\",\"type\":\"EXPENSE\"}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 98.378,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Listar Transações Do Usuário Logado"
+			},
+			{
+				"startedDateTime": "2026-01-30T15:29:45.346Z",
+				"time": 229.041,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8082/transactions/report/pdf",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.3.0"
+						},
+						{
+							"name": "Authorization",
+							"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwidXNlcklkIjoxLCJzdWIiOiJ0ZXN0ZTEzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzY5Nzc3NjQwLCJleHAiOjE3Njk4NjQwNDB9.MJve88ljH-HqsDlgGXyvPB_H77_sK4GY9znoUZWbbaEgbxdCTsfOaTuwwPZUPJ1A"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Disposition",
+							"value": "attachment; filename=relatorio.pdf"
+						},
+						{
+							"name": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"name": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"name": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"name": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"name": "Expires",
+							"value": "0"
+						},
+						{
+							"name": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/pdf"
+						},
+						{
+							"name": "Content-Length",
+							"value": "1257"
+						},
+						{
+							"name": "Date",
+							"value": "Fri, 30 Jan 2026 13:04:21 GMT"
+						}
+					],
+					"content": {
+						"size": 1257,
+						"mimeType": "application/pdf",
+						"text": "%PDF-1.4\n%����\n3 0 obj\n<</Length 296/Filter/FlateDecode>>stream\nx���MO�@\u0010����9xh\u0013��\u0014\br�eI0� �4\u001ez�\u00144\u0018�*\u001f7��G\u001bmH��x۝y�}g���VB[��\u0010\u001bD�\u0011X\u0018fw��)PUz�fqV`#�\\���X\u001e�����Ƕ��\u001a\u001e�`.�\u0015HF�Z\u0003o\u0000%=��-vt�@ϴ�Ik�Z���c_TX�x�Y�^���T�4K�\u0002�H\u0017��:�0u�a!+5'!�\u0010X�O���&{S\t�\u000b~\u0018z��\u001bl��U�Gq�cޔYoa���u�`/\u0011���\u001e�E½�X\\�91��&����\r\u0016�ʦ�\u0014k�φ\\�s\u0017�\u001b0T(:!��\u000e$�|��eGТ��e_\u0018�c��^NM���Cτ��}\u0003���U\nendstream\nendobj\n5 0 obj\n<</Type/Page/MediaBox[0 0 595 842]/Resources<</Font<</F1 1 0 R/F2 2 0 R>>>>/Contents 3 0 R/Parent 4 0 R>>\nendobj\n1 0 obj\n<</Type/Font/Subtype/Type1/BaseFont/Helvetica-Bold/Encoding/WinAnsiEncoding>>\nendobj\n2 0 obj\n<</Type/Font/Subtype/Type1/BaseFont/Helvetica/Encoding/WinAnsiEncoding>>\nendobj\n4 0 obj\n<</Type/Pages/Count 1/Kids[5 0 R]>>\nendobj\n6 0 obj\n<</Type/Catalog/Pages 4 0 R>>\nendobj\n7 0 obj\n<</Producer(iText� 5.5.13.3 �2000-2022 iText Group NV \\(AGPL-version\\))/CreationDate(D:20260130100421-03'00')/ModDate(D:20260130100421-03'00')>>\nendobj\nxref\n0 8\n0000000000 65535 f \n0000000499 00000 n \n0000000592 00000 n \n0000000015 00000 n \n0000000680 00000 n \n0000000378 00000 n \n0000000731 00000 n \n0000000776 00000 n \ntrailer\n<</Size 8/Root 6 0 R/Info 7 0 R/ID [<61f78b1463ac3716e9a4012a5a8d8e63><61f78b1463ac3716e9a4012a5a8d8e63>]>>\n%iText-5.5.13.3\nstartxref\n936\n%%EOF\n"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 229.041,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Gerar Relatório PDF"
+			},
+			{
+				"startedDateTime": "2026-01-30T15:29:45.346Z",
+				"time": 34.159,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8082/transactions/report/pdf",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.3.0"
+						},
+						{
+							"name": "Authorization",
+							"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwidXNlcklkIjoxLCJzdWIiOiJ0ZXN0ZTEzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzY5Nzc3NjQwLCJleHAiOjE3Njk4NjQwNDB9.MJve88ljH-HqsDlgGXyvPB_H77_sK4GY9znoUZWbbaEgbxdCTsfOaTuwwPZUPJ1A"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Disposition",
+							"value": "attachment; filename=relatorio.pdf"
+						},
+						{
+							"name": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"name": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"name": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"name": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"name": "Expires",
+							"value": "0"
+						},
+						{
+							"name": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/pdf"
+						},
+						{
+							"name": "Content-Length",
+							"value": "1257"
+						},
+						{
+							"name": "Date",
+							"value": "Fri, 30 Jan 2026 13:04:31 GMT"
+						}
+					],
+					"content": {
+						"size": 1257,
+						"mimeType": "application/pdf",
+						"text": "%PDF-1.4\n%����\n3 0 obj\n<</Length 296/Filter/FlateDecode>>stream\nx���MO�@\u0010����9xh\u0013��\u0014\br�eI0� �4\u001ez�\u00144\u0018�*\u001f7��G\u001bmH��x۝y�}g���VB[��\u0010\u001bD�\u0011X\u0018fw��)PUz�fqV`#�\\���X\u001e�����Ƕ��\u001a\u001e�`.�\u0015HF�Z\u0003o\u0000%=��-vt�@ϴ�Ik�Z���c_TX�x�Y�^���T�4K�\u0002�H\u0017��:�0u�a!+5'!�\u0010X�O���&{S\t�\u000b~\u0018z��\u001bl��U�Gq�cޔYoa���u�`/\u0011���\u001e�E½�X\\�91��&����\r\u0016�ʦ�\u0014k�φ\\�s\u0017�\u001b0T(:!��\u000e$�|��eGТ��e_\u0018�c��^NM���Cτ��}\u0003���U\nendstream\nendobj\n5 0 obj\n<</Type/Page/MediaBox[0 0 595 842]/Resources<</Font<</F1 1 0 R/F2 2 0 R>>>>/Contents 3 0 R/Parent 4 0 R>>\nendobj\n1 0 obj\n<</Type/Font/Subtype/Type1/BaseFont/Helvetica-Bold/Encoding/WinAnsiEncoding>>\nendobj\n2 0 obj\n<</Type/Font/Subtype/Type1/BaseFont/Helvetica/Encoding/WinAnsiEncoding>>\nendobj\n4 0 obj\n<</Type/Pages/Count 1/Kids[5 0 R]>>\nendobj\n6 0 obj\n<</Type/Catalog/Pages 4 0 R>>\nendobj\n7 0 obj\n<</Producer(iText� 5.5.13.3 �2000-2022 iText Group NV \\(AGPL-version\\))/CreationDate(D:20260130100431-03'00')/ModDate(D:20260130100431-03'00')>>\nendobj\nxref\n0 8\n0000000000 65535 f \n0000000499 00000 n \n0000000592 00000 n \n0000000015 00000 n \n0000000680 00000 n \n0000000378 00000 n \n0000000731 00000 n \n0000000776 00000 n \ntrailer\n<</Size 8/Root 6 0 R/Info 7 0 R/ID [<463299b507796f5a1f66e40089338faf><463299b507796f5a1f66e40089338faf>]>>\n%iText-5.5.13.3\nstartxref\n936\n%%EOF\n"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 34.159,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Gerar Relatório Excel"
+			},
+			{
+				"startedDateTime": "2026-01-30T15:29:45.346Z",
+				"time": 377.514,
+				"request": {
+					"method": "DELETE",
+					"url": "http://localhost:8082/transactions/6",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.3.0"
+						},
+						{
+							"name": "Authorization",
+							"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwidXNlcklkIjoxNTIsInN1YiI6InRlc3RlOEBlbWFpbC5jb20iLCJpYXQiOjE3Njk2MTYwODgsImV4cCI6MTc2OTcwMjQ4OH0.9p6jiXqOXrh7s_ewLp8AfhH2u3XR1h-pzjqrI1_Qr0M"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 204,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"name": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"name": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"name": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"name": "Expires",
+							"value": "0"
+						},
+						{
+							"name": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 28 Jan 2026 16:03:55 GMT"
+						}
+					],
+					"content": {
+						"size": 0,
+						"mimeType": "",
+						"text": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 377.514,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Deletar Transação"
+			},
+			{
+				"startedDateTime": "2026-01-30T15:29:45.346Z",
+				"time": 37.608000000000004,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8082/transactions/balance",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.3.0"
+						},
+						{
+							"name": "Authorization",
+							"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwidXNlcklkIjoxLCJzdWIiOiJ0ZXN0ZTEzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzY5Nzc3NjQwLCJleHAiOjE3Njk4NjQwNDB9.MJve88ljH-HqsDlgGXyvPB_H77_sK4GY9znoUZWbbaEgbxdCTsfOaTuwwPZUPJ1A"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"name": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"name": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"name": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"name": "Expires",
+							"value": "0"
+						},
+						{
+							"name": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Fri, 30 Jan 2026 13:03:40 GMT"
+						}
+					],
+					"content": {
+						"size": 63,
+						"mimeType": "application/json",
+						"text": "{\"totalIncome\":2000.00,\"totalExpense\":519.56,\"balance\":1480.44}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 37.608000000000004,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Mostrar Saldo"
+			},
+			{
+				"startedDateTime": "2026-01-30T15:29:45.346Z",
+				"time": 21.016,
+				"request": {
+					"method": "PUT",
+					"url": "http://localhost:8082/transactions/2",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.3.0"
+						},
+						{
+							"name": "Authorization",
+							"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwidXNlcklkIjoyLCJzdWIiOiJ0ZXN0ZUBlbWFpbC5jb20iLCJpYXQiOjE3Njk1NTIyMTIsImV4cCI6MTc2OTYzODYxMn0.eQ_J9rFxYAQ8DJrA648f4zEQnslgD_Rx0lnivm_O0IA"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"amount\": 250.00,\n  \"currency\": \"BRL\",\n  \"category\": \"FOOD\",\n  \"type\": \"EXPENSE\",\n  \"description\": \"Jantar corrigido (Editei no Insomnia)\",\n  \"date\": \"2026-01-27T20:00:00\"\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"name": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"name": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"name": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"name": "Expires",
+							"value": "0"
+						},
+						{
+							"name": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Tue, 27 Jan 2026 22:53:20 GMT"
+						}
+					],
+					"content": {
+						"size": 153,
+						"mimeType": "application/json",
+						"text": "{\"id\":2,\"amount\":250.00,\"status\":\"APPROVED\",\"description\":\"Jantar corrigido (Editei no Insomnia)\",\"date\":\"2026-01-27\",\"category\":\"FOOD\",\"type\":\"EXPENSE\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 21.016,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Atualizar Transação"
+			},
+			{
+				"startedDateTime": "2026-01-30T15:29:45.346Z",
+				"time": 94.08500000000001,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8081/users/b1bb8bc0-3b62-41d7-92b9-bed427db2e1f",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.3.0"
+						},
+						{
+							"name": "Authorization",
+							"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwidXNlcklkIjozLCJzdWIiOiJpc2FfdGVzdGVAZXhhbXBsZS5jb20iLCJpYXQiOjE3Njk3Mzk0NzMsImV4cCI6MTc2OTgyNTg3M30.lTkXYfLrS_hLsro3VJw5_tORJBzEpvfvuEFMbKnQYLUd8Oa_EBHwmv0uLGV8FGKm"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"name": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"name": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"name": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"name": "Expires",
+							"value": "0"
+						},
+						{
+							"name": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Fri, 30 Jan 2026 02:21:14 GMT"
+						}
+					],
+					"content": {
+						"size": 90,
+						"mimeType": "application/json",
+						"text": "{\"id\":\"c0931c92-2690-4732-b081-4591fc5e876f\",\"name\":\"Isa\",\"email\":\"isa_teste@example.com\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 94.08500000000001,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Buscar Usuário"
+			},
+			{
+				"startedDateTime": "2026-01-30T15:29:45.346Z",
+				"time": 44.382,
+				"request": {
+					"method": "PUT",
+					"url": "http://localhost:8081/users/b1bb8bc0-3b62-41d7-92b9-bed427db2e1f",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.3.0"
+						},
+						{
+							"name": "Authorization",
+							"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwidXNlcklkIjozLCJzdWIiOiJpc2FfdGVzdGVAZXhhbXBsZS5jb20iLCJpYXQiOjE3Njk3Mzk0NzMsImV4cCI6MTc2OTgyNTg3M30.lTkXYfLrS_hLsro3VJw5_tORJBzEpvfvuEFMbKnQYLUd8Oa_EBHwmv0uLGV8FGKm"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"name\": \"João Silva Atualizado\",\n  \"email\": \"isa_teste@example.com\",\n  \"cpf\": \"309.781.828-68\"\n}\n"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"name": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"name": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"name": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"name": "Expires",
+							"value": "0"
+						},
+						{
+							"name": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Fri, 30 Jan 2026 02:23:56 GMT"
+						}
+					],
+					"content": {
+						"size": 109,
+						"mimeType": "application/json",
+						"text": "{\"id\":\"c0931c92-2690-4732-b081-4591fc5e876f\",\"name\":\"João Silva Atualizado\",\"email\":\"isa_teste@example.com\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 44.382,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Atualizar Usuário"
+			},
+			{
+				"startedDateTime": "2026-01-30T15:29:45.346Z",
+				"time": 26.087,
+				"request": {
+					"method": "DELETE",
+					"url": "http://localhost:8081/users/b1bb8bc0-3b62-41d7-92b9-bed427db2e1f",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.3.0"
+						},
+						{
+							"name": "Authorization",
+							"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwidXNlcklkIjozLCJzdWIiOiJpc2FfdGVzdGVAZXhhbXBsZS5jb20iLCJpYXQiOjE3Njk3Mzk0NzMsImV4cCI6MTc2OTgyNTg3M30.lTkXYfLrS_hLsro3VJw5_tORJBzEpvfvuEFMbKnQYLUd8Oa_EBHwmv0uLGV8FGKm"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 204,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"name": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"name": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"name": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"name": "Expires",
+							"value": "0"
+						},
+						{
+							"name": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"name": "Date",
+							"value": "Fri, 30 Jan 2026 02:26:16 GMT"
+						}
+					],
+					"content": {
+						"size": 0,
+						"mimeType": "",
+						"text": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 26.087,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Desativar Usuário"
+			},
+			{
+				"startedDateTime": "2026-01-30T15:29:45.346Z",
+				"time": 136.036,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8081/auth/register",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.3.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\"name\": \"Apresentacao\",\n\"email\": \"teste90@example.com\",\n\"password\": \"123@Senha123\",\n\"cpf\": \"156.456.789-00\"\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 201,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"name": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"name": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"name": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"name": "Expires",
+							"value": "0"
+						},
+						{
+							"name": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Fri, 30 Jan 2026 13:33:16 GMT"
+						}
+					],
+					"content": {
+						"size": 97,
+						"mimeType": "application/json",
+						"text": "{\"id\":\"9e28f4d3-e0c9-4752-a57f-170fe06ea253\",\"name\":\"Apresentacao\",\"email\":\"teste90@example.com\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 136.036,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Cadastro"
+			},
+			{
+				"startedDateTime": "2026-01-30T15:29:45.346Z",
+				"time": 139.171,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8081/users/import",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "multipart/form-data"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.3.0"
+						},
+						{
+							"name": "Authorization",
+							"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwidXNlcklkIjoxLCJzdWIiOiJ0ZXN0ZTEzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzY5Nzc3NjQwLCJleHAiOjE3Njk4NjQwNDB9.MJve88ljH-HqsDlgGXyvPB_H77_sK4GY9znoUZWbbaEgbxdCTsfOaTuwwPZUPJ1A"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "multipart/form-data",
+						"params": [
+							{
+								"name": "file",
+								"fileName": "C:\\Users\\isa\\Downloads\\example-users-import (1).xlsx"
+							}
+						]
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"name": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"name": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"name": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"name": "Expires",
+							"value": "0"
+						},
+						{
+							"name": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Fri, 30 Jan 2026 13:30:54 GMT"
+						}
+					],
+					"content": {
+						"size": 177,
+						"mimeType": "application/json",
+						"text": "{\"totalSuccess\":0,\"totalFailure\":3,\"errors\":[{\"row\":2,\"message\":\"Invalid email format\"},{\"row\":3,\"message\":\"E-mail já cadastrado\"},{\"row\":4,\"message\":\"E-mail já cadastrado\"}]}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 139.171,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Importar Excel"
+			},
+			{
+				"startedDateTime": "2026-01-30T15:29:45.346Z",
+				"time": 199.835,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8081/auth/login",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/12.3.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"email\": \"teste90@example.com\",\n  \"password\": \"123@Senha123\"\n}\n"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"name": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"name": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"name": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"name": "Expires",
+							"value": "0"
+						},
+						{
+							"name": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Fri, 30 Jan 2026 13:33:33 GMT"
+						}
+					],
+					"content": {
+						"size": 285,
+						"mimeType": "application/json",
+						"text": "{\"token\":\"eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwidXNlcklkIjo2LCJzdWIiOiJ0ZXN0ZTkwQGV4YW1wbGUuY29tIiwiaWF0IjoxNzY5NzgwMDEzLCJleHAiOjE3Njk4NjY0MTN9.Gbchfo3uJN_UrUlPE7DOJhOExOA4KgzMWftEGQzY2jRZah8wbqGqAVbaXxffFGUG\",\"id\":6,\"name\":\"Apresentacao\",\"email\":\"teste90@example.com\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 199.835,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Login"
+			}
+		]
+	}
+}

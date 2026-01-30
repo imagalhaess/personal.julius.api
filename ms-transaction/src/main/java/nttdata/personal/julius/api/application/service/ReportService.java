@@ -55,13 +55,16 @@ public class ReportService {
                 row.createCell(6).setCellValue(t.getStatus() != null ? t.getStatus().name() : "PENDING");
                 row.createCell(7).setCellValue(t.getCreatedAt() != null ? t.getCreatedAt().toString() : "-");
 
-                // Calcular totais (usa convertedAmount se disponivel, senao amount)
-                BigDecimal valor = t.getConvertedAmount() != null ? t.getConvertedAmount() :
-                                   (t.getAmount() != null ? t.getAmount() : BigDecimal.ZERO);
-                if (t.getType() == Transaction.TransactionType.INCOME) {
-                    totalIncome = totalIncome.add(valor);
-                } else if (t.getType() == Transaction.TransactionType.EXPENSE) {
-                    totalExpense = totalExpense.add(valor);
+                // Calcular totais apenas para transações APPROVED - correção do bug
+                if (t.getStatus() != Transaction.TransactionStatus.APPROVED) continue;
+
+                BigDecimal valor = t.getConvertedAmount() != null ? t.getConvertedAmount() : t.getAmount();
+                if (valor == null) continue;
+
+                switch (t.getType()) {
+                    case INCOME -> totalIncome = totalIncome.add(valor);
+                    case EXPENSE -> totalExpense = totalExpense.add(valor);
+                    default -> {}
                 }
             }
 
@@ -116,17 +119,22 @@ public class ReportService {
             for (Transaction t : transactions) {
                 String tipo = t.getType() != null ? t.getType().name() : "-";
                 String categoria = t.getCategory() != null ? t.getCategory().name() : "-";
-                BigDecimal valor = t.getConvertedAmount() != null ? t.getConvertedAmount() :
-                                   (t.getAmount() != null ? t.getAmount() : BigDecimal.ZERO);
+                String status = t.getStatus() != null ? t.getStatus().name() : "PENDING";
 
                 document.add(new Paragraph(String.format(
                         "ID: %d | Tipo: %s | Valor: %s %s | Categoria: %s | Status: %s",
-                        t.getId(), tipo, t.getAmount(), t.getCurrency(), categoria, t.getStatus()), normalFont));
+                        t.getId(), tipo, t.getAmount(), t.getCurrency(), categoria, status), normalFont));
 
-                if (t.getType() == Transaction.TransactionType.INCOME) {
-                    totalIncome = totalIncome.add(valor);
-                } else if (t.getType() == Transaction.TransactionType.EXPENSE) {
-                    totalExpense = totalExpense.add(valor);
+                // Calcular totais apenas para transações APPROVED - correção de big
+                if (t.getStatus() != Transaction.TransactionStatus.APPROVED) continue;
+
+                BigDecimal valor = t.getConvertedAmount() != null ? t.getConvertedAmount() : t.getAmount();
+                if (valor == null) continue;
+
+                switch (t.getType()) {
+                    case INCOME -> totalIncome = totalIncome.add(valor);
+                    case EXPENSE -> totalExpense = totalExpense.add(valor);
+                    default -> {}
                 }
             }
 

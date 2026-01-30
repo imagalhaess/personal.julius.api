@@ -8,12 +8,14 @@ import nttdata.personal.julius.api.infrastructure.client.BrasilApiClient;
 import nttdata.personal.julius.api.infrastructure.client.MockApiClient;
 import nttdata.personal.julius.api.infrastructure.client.dto.ExchangeRateResponse;
 import nttdata.personal.julius.api.infrastructure.client.dto.ExternalBalanceResponse;
+import nttdata.personal.julius.api.infrastructure.messaging.DlqProducer;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -24,6 +26,7 @@ public class TransactionProcessorService {
     private final KafkaTemplate<String, Object> kafkaTemplate;
     private final BrasilApiClient brasilApiClient;
     private final MockApiClient mockApiClient;
+    private final DlqProducer dlqProducer;
 
     public void process(TransactionCreatedEvent event) {
         log.info("Processando transação {} para o usuário {}. Origem: {}",
@@ -38,7 +41,7 @@ public class TransactionProcessorService {
             // 1. Conversão de Moeda
             if (!"BRL".equalsIgnoreCase(event.currency())) {
                 try {
-                    String dateStr = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                    String dateStr = LocalDate.now().minusDays(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                     ExchangeRateResponse response = brasilApiClient.getQuotation(event.currency(), dateStr);
                     
                     if (response != null && response.cotacoes() != null && !response.cotacoes().isEmpty()) {
@@ -51,7 +54,8 @@ public class TransactionProcessorService {
                     }
                 } catch (Exception e) {
                     log.error("Erro ao converter moeda: {}", e.getMessage());
-                    reason = "CURRENCY_CONVERSION_FAILED";
+                    reason = "CURRENCY_CONVERSION_FAILED: " + e.getMessage();
+                    dlqProducer.send(event, reason);
                     sendResult(event.transactionId(), false, reason, null, null);
                     return;
                 }
@@ -70,26 +74,34 @@ public class TransactionProcessorService {
                 log.info("Transação em dinheiro (CASH) aprovada automaticamente.");
                 approved = true;
             } else {
-                // EXPENSE + ACCOUNT: validar saldo
-                log.info("Despesa de conta (ACCOUNT). Validando saldo no banco externo...");
+                // EXPENSE + ACCOUNT: validar saldo externo (se existir)
+                log.info("Despesa de conta (ACCOUNT). Consultando saldo em carteira externa...");
                 try {
-                    List<ExternalBalanceResponse> balances = mockApiClient.getBalance(event.userId());
+                    List<ExternalBalanceResponse> balances = getExternalBalanceSafe(event.userId());
 
-                    BigDecimal totalBalance = balances.stream()
-                            .map(ExternalBalanceResponse::amount)
-                            .reduce(BigDecimal.ZERO, BigDecimal::add);
-
-                    log.info("Saldo total encontrado para usuário {}: {}", event.userId(), totalBalance);
-
-                    if (totalBalance.compareTo(convertedAmount) >= 0) {
+                    if (balances.isEmpty()) {
+                        // Sem carteira externa vinculada - aprova (controle será interno)
+                        log.info("Usuário {} sem carteira externa vinculada. Aprovando transação.", event.userId());
                         approved = true;
                     } else {
-                        reason = "INSUFFICIENT_FUNDS";
-                        log.warn("Saldo insuficiente. Necessário: {}, Disponível: {}", convertedAmount, totalBalance);
+                        // Tem carteira externa - valida contra saldo externo
+                        BigDecimal totalBalance = balances.stream()
+                                .map(ExternalBalanceResponse::amount)
+                                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+                        log.info("Saldo externo encontrado para usuário {}: {}", event.userId(), totalBalance);
+
+                        if (totalBalance.compareTo(convertedAmount) >= 0) {
+                            approved = true;
+                        } else {
+                            reason = "INSUFFICIENT_FUNDS";
+                            log.warn("Saldo insuficiente. Necessário: {}, Disponível: {}", convertedAmount, totalBalance);
+                        }
                     }
                 } catch (Exception e) {
                     log.error("Erro ao consultar saldo externo: {}", e.getMessage());
-                    reason = "EXTERNAL_BANK_ERROR";
+                    reason = "EXTERNAL_BANK_ERROR: " + e.getMessage();
+                    dlqProducer.send(event, reason);
                 }
             }
 
@@ -97,7 +109,18 @@ public class TransactionProcessorService {
 
         } catch (Exception e) {
             log.error("Erro fatal processando transação {}", event.transactionId(), e);
-            sendResult(event.transactionId(), false, "INTERNAL_ERROR", null, null);
+            String internalError = "INTERNAL_ERROR: " + e.getMessage();
+            dlqProducer.send(event, internalError);
+            sendResult(event.transactionId(), false, internalError, null, null);
+        }
+    }
+
+    private List<ExternalBalanceResponse> getExternalBalanceSafe(Long userId) {
+        try {
+            return mockApiClient.getBalance(userId);
+        } catch (Exception e) {
+            log.debug("Erro ao consultar saldo externo para usuário {}: {}", userId, e.getMessage());
+            return Collections.emptyList();
         }
     }
 
