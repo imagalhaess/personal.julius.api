@@ -11,9 +11,6 @@ build/
 *.swp
 *.swo
 
-# Claude
-.claude/
-
 # Logs
 logs/
 *.log
