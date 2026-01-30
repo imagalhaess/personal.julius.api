@@ -17,5 +17,5 @@ Garantir uma cobertura de testes unitários superior a 80% para os microserviço
 | **Média** | **85.6%** | **81%** | **✅ OK** |
 
 ## Próximos Passos
-*   Configurar o pipeline de CI/CD para falhar se a cobertura cair abaixo de 80%.
+*   Configurar o pipeline de CI/CD para falhar se a cobertura cair abaixo de 80%. (BEM futuramente)
 *   Focar na cobertura de branches para atingir 85% em todos os módulos.
