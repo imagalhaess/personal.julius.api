@@ -12,7 +12,7 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorResponse {
     private String status;
-    private String transactionId; // Mantendo o nome solicitado pelo usuário para ms-transaction
+    private String transactionId;
     private String errorCode;
     private String message;
     private LocalDateTime timestamp;

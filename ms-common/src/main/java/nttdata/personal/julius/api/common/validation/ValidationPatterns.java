@@ -1,12 +1,8 @@
 package nttdata.personal.julius.api.common.validation;
 
-/**
- * Constantes de validacao centralizadas para uso em DTOs e modelos de dominio.
- */
 public final class ValidationPatterns {
 
     private ValidationPatterns() {
-        // Utility class
     }
 
     // CPF
