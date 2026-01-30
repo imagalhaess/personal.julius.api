@@ -390,7 +390,7 @@ curl -X GET http://localhost:8082/transactions/1 \
 
 ---
 
-#### 2.1.2 Transacao de conta (ACCOUNT) - Valor baixo (aprovada)
+#### 2.1.2 Transacao de conta (ACCOUNT) - Com saldo suficiente
 ```bash
 curl -X POST http://localhost:8082/transactions \
   -H "Authorization: Bearer $TOKEN" \
@@ -406,13 +406,13 @@ curl -X POST http://localhost:8082/transactions \
 ```
 
 **Resultado esperado apos processamento:**
-- Status: `APPROVED` (valor < R$ 10.000)
+- Status: `APPROVED` (saldo validado via API externa)
 
 ---
 
 ### 2.2 Criar Transacao - Cenario REJEITADA
 
-#### 2.2.1 Limite excedido (ACCOUNT com valor alto)
+#### 2.2.1 Saldo insuficiente (ACCOUNT com valor maior que saldo)
 ```bash
 curl -X POST http://localhost:8082/transactions \
   -H "Authorization: Bearer $TOKEN" \
@@ -447,7 +447,7 @@ curl -X GET http://localhost:8082/transactions/3 \
 {
   "id": 3,
   "status": "REJECTED",
-  "rejectionReason": "LIMIT_EXCEEDED",
+  "rejectionReason": "INSUFFICIENT_FUNDS",
   ...
 }
 ```
@@ -726,9 +726,10 @@ mvn test -pl ms-processor
 - [ ] Usuario pode se registrar
 - [ ] Usuario pode fazer login
 - [ ] Token JWT eh valido e funciona
-- [ ] Transacao CASH eh aprovada automaticamente
-- [ ] Transacao ACCOUNT < 10000 eh aprovada
-- [ ] Transacao ACCOUNT >= 10000 eh rejeitada
+- [ ] Transacao INCOME eh aprovada automaticamente
+- [ ] Transacao EXPENSE + CASH eh aprovada automaticamente
+- [ ] Transacao EXPENSE + ACCOUNT com saldo suficiente eh aprovada
+- [ ] Transacao EXPENSE + ACCOUNT com saldo insuficiente eh rejeitada
 - [ ] Conversao de moeda funciona (USD, EUR)
 - [ ] Topicos Kafka criados (transaction-events, transaction-processed, transaction-dlq)
 - [ ] Erros de processamento sao enviados para DLQ

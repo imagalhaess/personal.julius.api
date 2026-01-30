@@ -198,10 +198,8 @@ Content-Type: application/json
 **PASSO 2: MS-TRANSACTION valida e persiste**
 - Extrai `userId` do token JWT via `SecurityUtils.getAuthenticatedUserId()`
 - Valida campos obrigatorios
-- Busca taxa de cambio via `CurrencyApiClient` (BrasilAPI)
-- Calcula `convertedAmount = amount * exchangeRate`
-- Persiste com status `PENDING`
-- Codigo: `TransactionService.create()` linha 37-70
+- Persiste com status `PENDING` (conversao sera feita no ms-processor)
+- Codigo: `TransactionService.create()`
 
 **PASSO 3: Evento publicado no Kafka**
 ```java
@@ -218,11 +216,14 @@ TransactionCreatedEvent event = new TransactionCreatedEvent(
 ```
 
 **PASSO 4: MS-PROCESSOR consome e processa**
-- Consumer Group: `processor-group-v7`
+- Consumer Group: `processor-group`
+- Busca taxa de cambio na BrasilAPI (se moeda != BRL)
+- Calcula `convertedAmount = amount * exchangeRate`
 - Logica de aprovacao:
-  - Se `origin == CASH`: aprovado automaticamente
-  - Se `origin == ACCOUNT`: verifica se `amount < 10000.00`
-- Codigo: `TransactionProcessorService.process()` linha 17-37
+  - Se `type == INCOME`: aprovado automaticamente (receita)
+  - Se `type == EXPENSE` e `origin == CASH`: aprovado automaticamente
+  - Se `type == EXPENSE` e `origin == ACCOUNT`: valida saldo via MockAPI
+- Codigo: `TransactionProcessorService.process()`
 
 **PASSO 5: Resultado publicado**
 ```java
@@ -353,43 +354,43 @@ Cliente HTTP                    MS-TRANSACTION                  PostgreSQL
 
 ### 4.1 BrasilAPI (Taxa de Cambio)
 
-**Uso:** Ao criar transacao com moeda diferente de BRL
+**Uso:** Conversao de moeda durante processamento (ms-processor)
 
 ```
-MS-TRANSACTION                   BrasilAPI
+MS-PROCESSOR                     BrasilAPI
      │                              │
-     │  GET /api/cambio/v1          │
+     │  GET /cambio/v1/cotacao/     │
+     │      {moeda}/{data}          │
      │────────────────────────────>│
      │                              │
      │  {                           │
-     │    "USD": 4.97,              │
-     │    "EUR": 5.42               │
+     │    "cotacao_venda": 5.19     │
      │  }                           │
      │<────────────────────────────│
 ```
 
-**Cliente Feign:** `CurrencyApiClient.java`
+**Cliente Feign:** `BrasilApiClient.java` (ms-processor)
 
 ---
 
 ### 4.2 MockAPI (Saldo do Usuario)
 
-**Uso:** Validacao de saldo antes de aprovar transacao (futuro)
+**Uso:** Validacao de saldo para transacoes EXPENSE + ACCOUNT
 
 ```
 MS-PROCESSOR                     MockAPI
      │                              │
-     │  GET /api/users/{id}/balance │
+     │  GET /saldos?accountId={id}  │
      │────────────────────────────>│
      │                              │
-     │  {                           │
-     │    "userId": 1,              │
-     │    "balance": 5000.00        │
-     │  }                           │
+     │  [                           │
+     │    {"accountId": 1,          │
+     │     "amount": 5000.00}       │
+     │  ]                           │
      │<────────────────────────────│
 ```
 
-**Cliente Feign:** `MockApiClient.java`
+**Cliente Feign:** `MockApiClient.java` (ms-processor)
 
 ---
 
@@ -528,5 +529,5 @@ CREATE TABLE dlq_messages (
 - Visualiza topicos, mensagens, consumer groups
 
 ### Swagger UI
-- MS-USER: `http://localhost:8081/swagger-ui.html`
-- MS-TRANSACTION: `http://localhost:8082/swagger-ui.html`
+- MS-USER: `http://localhost:8081/swagger-ui/index.html`
+- MS-TRANSACTION: `http://localhost:8082/swagger-ui/index.html`
