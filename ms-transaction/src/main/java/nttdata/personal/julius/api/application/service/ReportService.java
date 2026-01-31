@@ -9,6 +9,8 @@ import nttdata.personal.julius.api.domain.model.Transaction;
 import nttdata.personal.julius.api.domain.repository.TransactionRepository;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
@@ -17,6 +19,8 @@ import java.util.List;
 
 @Service
 public class ReportService {
+
+    private static final Logger log = LoggerFactory.getLogger(ReportService.class);
 
     private final TransactionRepository repository;
 
@@ -90,6 +94,7 @@ public class ReportService {
             workbook.write(out);
             return out.toByteArray();
         } catch (Exception e) {
+            log.error("Erro ao gerar relatório Excel para userId={}", userId, e);
             throw new RuntimeException("Erro ao gerar relatorio Excel", e);
         }
     }
@@ -144,10 +149,14 @@ public class ReportService {
             document.add(new Paragraph(String.format("Total Saidas (EXPENSE): R$ %.2f", totalExpense), normalFont));
             document.add(new Paragraph(String.format("Saldo: R$ %.2f", totalIncome.subtract(totalExpense)), headerFont));
 
-            document.close();
             return out.toByteArray();
         } catch (Exception e) {
+            log.error("Erro ao gerar relatório PDF para userId={}", userId, e);
             throw new RuntimeException("Erro ao gerar relatorio PDF", e);
+        } finally {
+            if (document.isOpen()) {
+                document.close();
+            }
         }
     }
 }

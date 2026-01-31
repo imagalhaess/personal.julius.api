@@ -23,9 +23,10 @@ public class TransactionEventProducer {
     public void send(TransactionCreatedEvent event) {
         try {
             kafkaTemplate.send(topicName, event.transactionId().toString(), event);
-            log.info("Evento enviado para o Kafka: {}", event);
+            log.info("Evento publicado: transactionId={}", event.transactionId());
         } catch (Exception e) {
-            log.error("Erro ao enviar evento para Kafka", e);
+            log.error("Falha ao publicar evento no Kafka: transactionId={}", event.transactionId(), e);
+            throw new RuntimeException("Falha ao publicar evento de transação", e);
         }
     }
 }

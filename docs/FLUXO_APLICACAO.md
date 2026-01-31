@@ -218,16 +218,13 @@ TransactionCreatedEvent event = new TransactionCreatedEvent(
 
 **PASSO 4: MS-PROCESSOR consome e processa**
 - Consumer Group: `processor-group`
-- Busca taxa de cambio na BrasilAPI (se moeda != BRL)
+- Busca taxa de cambio na BrasilAPI (se moeda != BRL) - **cacheado por 24h**
 - Calcula `convertedAmount = amount * exchangeRate`
 - Logica de aprovacao:
-  - Se `type == INCOME`: aprovado automaticamente (receita)
-  - Se `type == EXPENSE` e `origin == CASH`: aprovado automaticamente
-  - Se `type == EXPENSE` e `origin == ACCOUNT`:
-    - Consulta saldo externo via MockAPI
-    - Se tem saldo externo → valida se suficiente
-    - Se NAO tem saldo externo → aprova automaticamente
-- Codigo: `TransactionProcessorService.process()`
+  - `INCOME` (qualquer origem): aprovado automaticamente (entrada de dinheiro)
+  - `EXPENSE + CASH`: aprovado (transacao em dinheiro, sem conta vinculada)
+  - `EXPENSE + ACCOUNT`: valida saldo externo via MockAPI
+- Codigo: `TransactionProcessorService.process()`, `ExchangeRateService.convert()`
 
 **PASSO 5: Resultado publicado**
 ```java
@@ -400,12 +397,14 @@ Saldo = totalIncome - totalExpense
 
 **Uso:** Conversao de moeda durante processamento (ms-processor)
 
+**Cache:** Cotacoes sao cacheadas por 24h (Caffeine). Key: `{moeda}-{data}`
+
 ```
 MS-PROCESSOR                     BrasilAPI
      │                              │
      │  GET /cambio/v1/cotacao/     │
      │      {moeda}/{data}          │
-     │────────────────────────────>│
+     │────────────────────────────>│  (somente se cache miss)
      │                              │
      │  {                           │
      │    "cotacao_venda": 5.19     │
@@ -413,15 +412,15 @@ MS-PROCESSOR                     BrasilAPI
      │<────────────────────────────│
 ```
 
-**Cliente Feign:** `BrasilApiClient.java` (ms-processor)
+**Servicos:** `ExchangeRateService.java` (cache), `BrasilApiClient.java` (Feign)
 
 ---
 
 ### 4.2 MockAPI (Carteira Externa - Somente Leitura)
 
-**Uso:** Consulta de saldo em carteira externa para transacoes EXPENSE + ACCOUNT
+**Uso:** Consulta de saldo para transacoes `EXPENSE + ACCOUNT`
 
-**Importante:** A integracao eh **somente leitura**. Nao criamos nem atualizamos saldo na API externa.
+**Importante:** Integracao **somente leitura** (simula Open Finance).
 
 ```
 MS-PROCESSOR                     MockAPI
@@ -429,18 +428,19 @@ MS-PROCESSOR                     MockAPI
      │  GET /balances?accountId={id}│
      │────────────────────────────>│
      │                              │
-     │  [                           │
-     │    {"accountId": 1,          │
-     │     "amount": 5000.00}       │
-     │  ]                           │
+     │  [{"accountId": 1,           │
+     │    "amount": 5000.00}]       │
      │<────────────────────────────│
 ```
 
-**Logica de validacao:**
-- Se usuario tem saldo externo → valida contra esse saldo
-- Se usuario NAO tem saldo externo → aprova automaticamente (controle interno via transacoes)
+**Logica:**
+| Cenario | Resultado |
+|---------|-----------|
+| Tem saldo externo >= valor | Aprovado |
+| Tem saldo externo < valor | Rejeitado (`INSUFFICIENT_FUNDS`) |
+| Sem carteira vinculada | Aprovado (controle interno) |
 
-**Cliente Feign:** `MockApiClient.java` (ms-processor) - apenas `GET /balances`
+**Cliente:** `MockApiClient.java` (Feign, somente GET)
 
 ---
 

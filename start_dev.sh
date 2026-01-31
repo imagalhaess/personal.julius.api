@@ -15,7 +15,7 @@ cd "$BASE_DIR"
 mkdir -p logs
 
 echo "[1/4] Subindo infraestrutura (Bancos e Kafka)..."
-docker compose up -d user-db transaction-db kafka kafdrop
+docker compose -f docker-compose.dev.yml up -d
 
 if [ $? -ne 0 ]; then
     echo "ERRO: Falha ao subir Docker. Certifique-se de que o Docker esta rodando."
