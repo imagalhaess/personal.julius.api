@@ -2,7 +2,7 @@
 
 Sistema de microsservicos para controle financeiro pessoal, com suporte a multiplas moedas e integracao com APIs externas.
 
-> *Se nao comprar, o desconto eh maior!*
+> *Se nao comprar, o desconto é maior!*
 
 ## Tecnologias
 
