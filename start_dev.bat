@@ -14,7 +14,7 @@ REM Criar pasta de logs se nao existir
 if not exist "logs" mkdir logs
 
 echo [1/4] Subindo infraestrutura (Bancos e Kafka)...
-docker compose up -d user-db transaction-db kafka kafdrop
+docker compose -f docker-compose.dev.yml up -d
 
 if %ERRORLEVEL% NEQ 0 (
     echo ERRO: Falha ao subir Docker. Certifique-se de que o Docker Desktop esta rodando.

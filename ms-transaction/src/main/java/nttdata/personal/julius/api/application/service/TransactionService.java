@@ -11,14 +11,18 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class TransactionService {
+
+    private static final Logger log = LoggerFactory.getLogger(TransactionService.class);
 
     private final TransactionRepository repository;
     private final TransactionEventPort eventPort;
@@ -57,17 +61,23 @@ public class TransactionService {
 
         Transaction saved = repository.save(t);
 
-        // Publica evento
-        eventPort.publishTransactionCreated(new nttdata.personal.julius.api.application.dto.TransactionCreatedEventDto(
-                saved.getId(), 
-                saved.getUserId(), 
-                saved.getAmount(), 
-                saved.getCurrency(),
-                saved.getType().name(), 
-                saved.getCategory().name(),
-                saved.getOrigin(),
-                saved.getCreatedAt()
-        ));
+        // Publica evento - se falhar, rejeita a transação
+        try {
+            eventPort.publishTransactionCreated(new nttdata.personal.julius.api.application.dto.TransactionCreatedEventDto(
+                    saved.getId(),
+                    saved.getUserId(),
+                    saved.getAmount(),
+                    saved.getCurrency(),
+                    saved.getType().name(),
+                    saved.getCategory().name(),
+                    saved.getOrigin(),
+                    saved.getCreatedAt()
+            ));
+        } catch (Exception e) {
+            log.error("Falha ao publicar evento, rejeitando transação: {}", saved.getId(), e);
+            saved.reject();
+            repository.save(saved);
+        }
 
         return toResponse(saved);
     }
@@ -98,7 +108,8 @@ public class TransactionService {
 
     @Transactional
     public void approve(Long transactionId, BigDecimal convertedAmount, BigDecimal exchangeRate) {
-        Transaction t = repository.findById(transactionId).orElseThrow();
+        Transaction t = repository.findById(transactionId)
+                .orElseThrow(() -> new BusinessException("Transação não encontrada", "TRANSACTION_NOT_FOUND"));
         t.approve();
         if (convertedAmount != null) {
             t.setConvertedAmount(convertedAmount);
@@ -111,14 +122,16 @@ public class TransactionService {
 
     @Transactional
     public void reject(Long transactionId, String reason) {
-        Transaction t = repository.findById(transactionId).orElseThrow();
+        Transaction t = repository.findById(transactionId)
+                .orElseThrow(() -> new BusinessException("Transação não encontrada", "TRANSACTION_NOT_FOUND"));
         t.reject();
         repository.save(t);
     }
 
     @Transactional
     public TransactionResponse update(Long id, TransactionRequest dto) {
-        Transaction t = repository.findByIdAndUserId(id, dto.userId()).orElseThrow();
+        Transaction t = repository.findByIdAndUserId(id, dto.userId())
+                .orElseThrow(() -> new BusinessException("Transação não encontrada", "TRANSACTION_NOT_FOUND"));
         t.setAmount(dto.amount());
         t.setCategory(dto.category());
         t.setDescription(dto.description());

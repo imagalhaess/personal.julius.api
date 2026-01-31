@@ -16,8 +16,8 @@ start_dev.bat
 
 Ou manualmente:
 ```bash
-# Subir containers Docker
-docker compose up -d user-db transaction-db kafka kafdrop
+# Subir containers Docker (apenas infra)
+docker compose -f docker-compose.dev.yml up -d
 
 # Compilar projeto
 mvn clean install -DskipTests
@@ -384,7 +384,9 @@ curl -X GET http://localhost:8082/transactions/1 \
 **O que acontece internamente:**
 1. MS-TRANSACTION cria transacao com status PENDING
 2. Publica evento no topico `transaction-events`
-3. MS-PROCESSOR consome, detecta `origin=CASH`, aprova
+3. MS-PROCESSOR consome e processa:
+   - Converte moeda se necessario (cache de 24h)
+   - `EXPENSE + CASH` → aprova (sem conta vinculada)
 4. Publica resultado no topico `transaction-processed`
 5. MS-TRANSACTION consome e atualiza para APPROVED
 
@@ -726,11 +728,11 @@ mvn test -pl ms-processor
 - [ ] Usuario pode se registrar
 - [ ] Usuario pode fazer login
 - [ ] Token JWT eh valido e funciona
-- [ ] Transacao INCOME eh aprovada automaticamente
-- [ ] Transacao EXPENSE + CASH eh aprovada automaticamente
+- [ ] Transacao INCOME eh aprovada automaticamente (entrada)
+- [ ] Transacao EXPENSE + CASH eh aprovada (sem conta vinculada)
 - [ ] Transacao EXPENSE + ACCOUNT com saldo suficiente eh aprovada
 - [ ] Transacao EXPENSE + ACCOUNT com saldo insuficiente eh rejeitada
-- [ ] Conversao de moeda funciona (USD, EUR)
+- [ ] Conversao de moeda funciona (USD, EUR) - cache de 24h
 - [ ] Topicos Kafka criados (transaction-events, transaction-processed, transaction-dlq)
 - [ ] Erros de processamento sao enviados para DLQ
 - [ ] Mensagens DLQ sao persistidas na tabela dlq_messages
@@ -773,7 +775,7 @@ docker ps | grep kafka
 docker ps
 
 # Se nao estiver rodando
-docker compose up -d user-db transaction-db
+docker compose -f docker-compose.dev.yml up -d
 ```
 
 ### 6.3 Token JWT Expirado
@@ -858,12 +860,11 @@ echo "=== TESTE COMPLETO ==="
 ### 7.2 Limpar Banco de Dados (Dev)
 
 ```bash
-# Parar servicos
-# Remover volumes Docker
-docker compose down -v
+# Parar servicos e remover volumes
+docker compose -f docker-compose.dev.yml down -v
 
 # Subir novamente (bancos limpos)
-docker compose up -d user-db transaction-db kafka kafdrop
+docker compose -f docker-compose.dev.yml up -d
 ```
 
 ---

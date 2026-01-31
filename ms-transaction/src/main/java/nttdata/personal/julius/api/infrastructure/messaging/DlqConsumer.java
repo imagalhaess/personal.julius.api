@@ -53,7 +53,7 @@ public class DlqConsumer {
             } catch (NumberFormatException e) {
                 log.error("ID da transação inválido no DLQ: {}", message.transactionId());
             } catch (Exception e) {
-                log.error("Erro ao rejeitar transação via DLQ: {}", e.getMessage());
+                log.error("Erro ao rejeitar transação via DLQ: transactionId={}", message.transactionId(), e);
             }
 
         } catch (Exception e) {

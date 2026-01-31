@@ -1,4 +1,5 @@
-version: '3.8'
+# Docker Compose - Desenvolvimento (apenas infraestrutura)
+# Use os scripts start_dev.bat ou start_dev.sh para subir os microsservicos via Maven
 
 services:
   # ---------------------------------------------------------------------------
@@ -6,7 +7,7 @@ services:
   # ---------------------------------------------------------------------------
 
   user-db:
-    image: postgres:18
+    image: postgres:16
     container_name: julius-user-db
     environment:
       POSTGRES_DB: julius_user_db
@@ -15,14 +16,14 @@ services:
     ports:
       - "5432:5432"
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U postgres -d user_db" ]
+      test: [ "CMD-SHELL", "pg_isready -U julius_user -d julius_user_db" ]
       interval: 10s
       timeout: 5s
       retries: 5
     restart: unless-stopped
 
   transaction-db:
-    image: postgres:18
+    image: postgres:16
     container_name: julius-transaction-db
     environment:
       POSTGRES_DB: julius_transaction_db
@@ -31,7 +32,7 @@ services:
     ports:
       - "5433:5432"
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U postgres -d transaction_db" ]
+      test: [ "CMD-SHELL", "pg_isready -U julius_user -d julius_transaction_db" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -46,7 +47,7 @@ services:
       KAFKA_NODE_ID: 1
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093,INTERNAL://:29092
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://host.docker.internal:9092,INTERNAL://kafka:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,INTERNAL://kafka:29092
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,INTERNAL:PLAINTEXT
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
@@ -56,7 +57,7 @@ services:
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       CLUSTER_ID: julius-kafka-cluster-001
     healthcheck:
-      test: [ "CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server kafka:29092 || exit 1" ]
+      test: [ "CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092 || exit 1" ]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -73,43 +74,3 @@ services:
     environment:
       KAFKA_BROKERCONNECT: kafka:29092
     restart: unless-stopped
-
-  # ---------------------------------------------------------------------------
-  # APLICAÇÕES (Microsserviços)
-  # ---------------------------------------------------------------------------
-
-  ms-user-app:
-    build: ./ms-user
-    container_name: julius-ms-user
-    ports:
-      - "8081:8081"
-    depends_on:
-      user-db:
-        condition: service_healthy
-    environment:
-      # Conecta no container do banco (nome do service: user-db)
-      SPRING_DATASOURCE_URL: jdbc:postgresql://user-db:5432/julius_user_db
-      SPRING_DATASOURCE_USERNAME: julius_user
-      SPRING_DATASOURCE_PASSWORD: julius1234
-      # Chave fixa para facilitar a avaliação
-      JWT_SECRET: 7f8a9b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0
-
-  ms-transaction-app:
-    build: ./ms-transaction
-    container_name: julius-ms-transaction
-    ports:
-      - "8082:8082"
-    depends_on:
-      transaction-db:
-        condition: service_healthy
-      kafka:
-        condition: service_healthy
-    environment:
-      # Conecta no container do banco (nome do service: transaction-db)
-      SPRING_DATASOURCE_URL: jdbc:postgresql://transaction-db:5432/julius_transaction_db
-      SPRING_DATASOURCE_USERNAME: julius_user
-      SPRING_DATASOURCE_PASSWORD: julius1234
-      # Conecta no container do Kafka
-      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
-      # Chave fixa deve ser IGUAL a do ms-user
-      JWT_SECRET: 7f8a9b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0

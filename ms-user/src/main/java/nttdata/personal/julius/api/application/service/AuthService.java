@@ -7,12 +7,17 @@ import nttdata.personal.julius.api.domain.model.User;
 import nttdata.personal.julius.api.domain.repository.UserRepository;
 import nttdata.personal.julius.api.infrastructure.security.TokenService;
 import nttdata.personal.julius.api.infrastructure.security.UserPrincipal;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
+
+    private static final Logger log = LoggerFactory.getLogger(AuthService.class);
 
     private final AuthenticationManager authenticationManager;
     private final TokenService tokenService;
@@ -29,8 +34,12 @@ public class AuthService {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(request.email(), request.password())
             );
+        } catch (AuthenticationException e) {
+            log.warn("Falha de autenticação para email={}: {}", request.email(), e.getMessage());
+            throw new BusinessException("Credenciais inválidas", "INVALID_CREDENTIALS");
         } catch (Exception e) {
-            throw new BusinessException("Credenciais inválidas");
+            log.error("Erro inesperado na autenticação para email={}", request.email(), e);
+            throw new BusinessException("Erro interno na autenticação", "AUTH_ERROR");
         }
 
         User user = userRepository.findByEmail(request.email())

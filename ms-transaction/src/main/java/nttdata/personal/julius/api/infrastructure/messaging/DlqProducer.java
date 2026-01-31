@@ -39,7 +39,9 @@ public class DlqProducer {
             kafkaTemplate.send(dlqTopic, transactionId, dlqMessage);
             log.warn("Mensagem enviada para DLQ. TransactionId: {}", transactionId);
         } catch (Exception e) {
-            log.error("Erro ao enviar mensagem para DLQ. TransactionId: {}", transactionId, e);
+            // FALLBACK: Log estruturado para recuperação manual
+            log.error("CRITICAL_DLQ_FAILURE transactionId={} event={} error={}",
+                    transactionId, event, errorMessage, e);
         }
     }
 }
