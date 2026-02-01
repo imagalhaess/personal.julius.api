@@ -1,5 +1,8 @@
 package nttdata.personal.julius.api.infrastructure.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import nttdata.personal.julius.api.common.config.BaseKafkaConfig;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +15,14 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 
 @Configuration
 public class KafkaConfig extends BaseKafkaConfig {
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        return mapper;
+    }
 
     @Value("${spring.kafka.consumer.group-id:transaction-group}")
     private String groupId;

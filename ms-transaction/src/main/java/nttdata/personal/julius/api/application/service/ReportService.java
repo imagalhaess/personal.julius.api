@@ -149,14 +149,11 @@ public class ReportService {
             document.add(new Paragraph(String.format("Total Saidas (EXPENSE): R$ %.2f", totalExpense), normalFont));
             document.add(new Paragraph(String.format("Saldo: R$ %.2f", totalIncome.subtract(totalExpense)), headerFont));
 
+            document.close();
             return out.toByteArray();
         } catch (Exception e) {
             log.error("Erro ao gerar relatório PDF para userId={}", userId, e);
             throw new RuntimeException("Erro ao gerar relatorio PDF", e);
-        } finally {
-            if (document.isOpen()) {
-                document.close();
-            }
         }
     }
 }
