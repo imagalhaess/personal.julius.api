@@ -55,16 +55,6 @@ public class TransactionController {
         return ResponseEntity.ok(service.getBalance(userId));
     }
 
-    @GetMapping("/report/pdf")
-    @Operation(summary = "Baixar relatório financeiro em PDF")
-    public ResponseEntity<byte[]> downloadPdf() {
-        Long userId = SecurityUtils.getAuthenticatedUserId();
-        byte[] pdf = reportService.generatePdfReport(userId);
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=relatorio.pdf")
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(pdf);
-    }
 
     @GetMapping("/report/excel")
     @Operation(summary = "Baixar relatório financeiro em Excel")
@@ -75,6 +65,17 @@ public class TransactionController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=relatorio.xlsx")
                 .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
                 .body(excel);
+    }
+
+    @GetMapping("/report/pdf")
+    @Operation(summary = "Baixar relatório financeiro em PDF")
+    public ResponseEntity<byte[]> downloadPdf() {
+        Long userId = SecurityUtils.getAuthenticatedUserId();
+        byte[] pdf = reportService.generatePdfReport(userId);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=relatorio.pdf")
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(pdf);
     }
 
     @DeleteMapping("/{id}")
